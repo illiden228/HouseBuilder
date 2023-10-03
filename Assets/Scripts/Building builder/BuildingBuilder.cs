@@ -6,7 +6,6 @@ using UnityEngine.UI;
 public class BuildingBuilder : MonoBehaviour
 {
     [SerializeField] private Transform _floorPrefab;
-    [SerializeField] private int _availableFloorsTest;
     [SerializeField] private TextMeshProUGUI _availableFloorsText;
     [SerializeField] private TextMeshProUGUI _availableFloorsHeaderText;
     [SerializeField] private Button _placeFloor;
@@ -19,7 +18,7 @@ public class BuildingBuilder : MonoBehaviour
 
     private void Start()
     {
-        _availableFloors = _availableFloorsTest;
+        _availableFloors = UserData.Instance.CountFloors;
         _availableFloorsText.text = _availableFloors.ToString();
 
         _placeFloor.onClick.AddListener(PlaceFloor);
@@ -46,6 +45,7 @@ public class BuildingBuilder : MonoBehaviour
         _floors.Add(prefabInstance);
 
         _availableFloors--;
+        UserData.Instance.CountFloors = _availableFloors;
         _availableFloorsText.text = _availableFloors.ToString();
     }
 
