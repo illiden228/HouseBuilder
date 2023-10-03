@@ -49,8 +49,5 @@ public class BuildingBuilder : MonoBehaviour
         _availableFloorsText.text = _availableFloors.ToString();
     }
 
-    private void LoadResourcesScene()
-    {
-
-    }
+    private void LoadResourcesScene() => LoadSceneController.Instance.LoadResourcesScene();
 }
