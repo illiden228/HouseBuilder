@@ -43,7 +43,11 @@ public class UserData : MonoBehaviour
 
     private void Awake()
     {
-        instance = this;
+        if (instance == null)
+        {
+            instance = this;
+            DontDestroyOnLoad(this);
+        }        
 
         Init();
     }
