@@ -8,6 +8,8 @@ public class FloorBuilder : MonoBehaviour
 {
     [SerializeField] private Transform _enterPoint;
     [SerializeField] private int _countForFloor;
+    [SerializeField] private ParticleSystem _smokeEffect;
+    [SerializeField] private float _smokeDuration;
     private int _currentCount;
 
     public event Action AddFloor;
@@ -29,8 +31,19 @@ public class FloorBuilder : MonoBehaviour
         {
             AddFloor?.Invoke();
             _currentCount -= _countForFloor;
+            StartCoroutine(EnableSmoke(_smokeDuration));
         }
         
         ChangeResources?.Invoke(_currentCount);
+    }
+
+    private IEnumerator EnableSmoke(float seconds)
+    {
+        if (_smokeEffect == null)
+            yield break;
+        
+        _smokeEffect.Play();
+        yield return new WaitForSeconds(seconds);
+        _smokeEffect.Stop();
     }
 }
