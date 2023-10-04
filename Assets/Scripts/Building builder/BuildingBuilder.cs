@@ -13,13 +13,14 @@ public class BuildingBuilder : MonoBehaviour
     [SerializeField] private Button _loadResourcesScene;
     [SerializeField] private Transform _virtualCameraTarget;
     [SerializeField] private float _floorOffsetY = 3f;
+    [SerializeField] private ParticleSystem _floorBuiltEffect;
 
     private int _availableFloors;
     private List<Transform> _floors = new List<Transform>();
 
     private void Start()
     {
-        _availableFloors = UserData.Instance.CountFloors;
+        _availableFloors = 10;
 
         int savedFloors = UserData.Instance.SavedFloors;
         _builtFloorsText.text = savedFloors.ToString();
@@ -41,6 +42,14 @@ public class BuildingBuilder : MonoBehaviour
 
         _placeFloor.onClick.AddListener(PlaceFloor);
         _loadResourcesScene.onClick.AddListener(() => LoadSceneController.Instance.LoadResourcesScene());
+
+        if (_availableFloors <= 0)
+        {
+            _availableFloorsHeaderText.gameObject.SetActive(false);
+            _availableFloorsText.gameObject.SetActive(false);
+            _placeFloor.gameObject.SetActive(false);
+            _loadResourcesScene.gameObject.SetActive(true);            
+        }
     }
 
     private void PlaceFloor()
@@ -67,5 +76,15 @@ public class BuildingBuilder : MonoBehaviour
         UserData.Instance.SavedFloors++;
         _builtFloorsText.text = UserData.Instance.SavedFloors.ToString();
         _availableFloorsText.text = _availableFloors.ToString();
+
+        _floorBuiltEffect.Play();
+
+        if (_availableFloors <= 0)
+        {
+            _availableFloorsHeaderText.gameObject.SetActive(false);
+            _availableFloorsText.gameObject.SetActive(false);
+            _placeFloor.gameObject.SetActive(false);
+            _loadResourcesScene.gameObject.SetActive(true);            
+        }
     }
 }
