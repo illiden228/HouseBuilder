@@ -6258,6 +6258,10 @@ PrefabInstance:
       value: SM_Env_Skyline_01
       objectReference: {fileID: 0}
     - target: {fileID: 116414, guid: c2c402e99a56ad749b560bee7cdc6b2a, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 116414, guid: c2c402e99a56ad749b560bee7cdc6b2a, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 2147483647
       objectReference: {fileID: 0}
@@ -7083,6 +7087,10 @@ PrefabInstance:
     - target: {fileID: 150134, guid: 60d3688bc6832bf45ac9ea2bf1c8ab03, type: 3}
       propertyPath: m_Name
       value: SM_Env_Ocean_Tile_01
+      objectReference: {fileID: 0}
+    - target: {fileID: 150134, guid: 60d3688bc6832bf45ac9ea2bf1c8ab03, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 150134, guid: 60d3688bc6832bf45ac9ea2bf1c8ab03, type: 3}
       propertyPath: m_StaticEditorFlags
