@@ -20,7 +20,7 @@ public class BuildingBuilder : MonoBehaviour
 
     private void Start()
     {
-        _availableFloors = 10;
+        _availableFloors = UserData.Instance.CountFloors;
 
         int savedFloors = UserData.Instance.SavedFloors;
         _builtFloorsText.text = savedFloors.ToString();
