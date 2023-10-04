@@ -6,6 +6,7 @@ public class UserData : MonoBehaviour
     public class ProgressData
     {
         public int countFloors = 0;
+        public int savedFloors = 0;
     }
 
     [System.Serializable]
@@ -140,6 +141,22 @@ public class UserData : MonoBehaviour
             _progressData.countFloors = Mathf.Clamp(value, 0, _progressData.countFloors);
 
             SaveProgressData();
+        }
+    }
+
+    public int SavedFloors
+    {
+        get { return _progressData.savedFloors; }
+        set
+        {
+            if (_progressData.savedFloors == value)
+                return;
+
+            _progressData.savedFloors = value;
+            _progressData.savedFloors = Mathf.Clamp(value, 0, _progressData.savedFloors);
+
+            SaveProgressData();
+
         }
     }
 }

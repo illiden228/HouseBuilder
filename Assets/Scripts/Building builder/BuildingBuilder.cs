@@ -8,6 +8,7 @@ public class BuildingBuilder : MonoBehaviour
     [SerializeField] private Transform _floorPrefab;
     [SerializeField] private TextMeshProUGUI _availableFloorsText;
     [SerializeField] private TextMeshProUGUI _availableFloorsHeaderText;
+    [SerializeField] private TextMeshProUGUI _builtFloorsText;
     [SerializeField] private Button _placeFloor;
     [SerializeField] private Button _loadResourcesScene;
     [SerializeField] private Transform _virtualCameraTarget;
@@ -18,11 +19,28 @@ public class BuildingBuilder : MonoBehaviour
 
     private void Start()
     {
-        _availableFloors = UserData.Instance.CountFloors;
+        _availableFloors = 10;
+
+        int savedFloors = UserData.Instance.SavedFloors;
+        _builtFloorsText.text = savedFloors.ToString();
+
+        for (int i = 0; i < savedFloors; i++)
+        {
+            var floorInstance = Instantiate(_floorPrefab, transform);
+
+            if (i != 0)
+                floorInstance.transform.position = _floors[_floors.Count - 1].position + Vector3.up * _floorOffsetY;
+
+            _floors.Add(floorInstance);
+        }
+
+        if (savedFloors != 0)
+            _virtualCameraTarget.position = _floors[_floors.Count - 1].transform.position;
+
         _availableFloorsText.text = _availableFloors.ToString();
 
         _placeFloor.onClick.AddListener(PlaceFloor);
-        _loadResourcesScene.onClick.AddListener(LoadResourcesScene);
+        _loadResourcesScene.onClick.AddListener(() => LoadSceneController.Instance.LoadResourcesScene());
     }
 
     private void PlaceFloor()
@@ -46,8 +64,8 @@ public class BuildingBuilder : MonoBehaviour
 
         _availableFloors--;
         UserData.Instance.CountFloors = _availableFloors;
+        UserData.Instance.SavedFloors++;
+        _builtFloorsText.text = UserData.Instance.SavedFloors.ToString();
         _availableFloorsText.text = _availableFloors.ToString();
     }
-
-    private void LoadResourcesScene() => LoadSceneController.Instance.LoadResourcesScene();
 }
