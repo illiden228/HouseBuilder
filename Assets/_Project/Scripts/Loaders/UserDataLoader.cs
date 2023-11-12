@@ -1,6 +1,7 @@
+using Core;
 using UnityEngine;
 
-public class UserData : MonoBehaviour
+public class UserDataLoader : BaseDisposable
 {
     [System.Serializable]
     public class ProgressData
@@ -30,39 +31,10 @@ public class UserData : MonoBehaviour
 
     #region data managment
 
-    private static UserData instance;
-    public static UserData Instance
+    public UserDataLoader(IStorageService storageService)
     {
-        get
-        {
-            if (instance == null)
-            {
-                instance = new UserData();
-            }
-            return instance;
-        }
-    }
-
-    private void Awake()
-    {
-        if (instance == null)
-        {
-            instance = this;
-            DontDestroyOnLoad(this);
-        }        
-
-        Init();
-    }
-
-    public void Init()
-    {
-        if (inited)
-            return;
-
-        inited = true;
-
-        _storageService = new JsonToFileStorageService();
-
+        _storageService = storageService;
+        
         InitFirstData();
 
         _storageService.LoadAndPopulate(ProgressKey, _progressData);

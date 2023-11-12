@@ -6,6 +6,15 @@ using UnityEngine;
 
 public class JsonToFileStorageService : IStorageService
 {
+    public struct Ctx { }
+
+    private readonly Ctx _ctx;
+
+    public JsonToFileStorageService(Ctx ctx)
+    {
+        _ctx = ctx;
+    }
+
     public void ClearData(string key)
     {
         string path = BuildPath(key);

@@ -1,26 +1,35 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Core;
 using Unity.VisualScripting.Dependencies.NCalc;
 using UnityEngine;
 
-public class FloorBuilder : MonoBehaviour
+public class FloorBuilder : BaseMonobehaviour
 {
+    public struct Ctx
+    {
+        public UserDataLoader userDataLoader;
+    }
     [SerializeField] private Transform _enterPoint;
     [SerializeField] private int _countForFloor;
     [SerializeField] private ParticleSystem _smokeEffect;
     [SerializeField] private float _smokeDuration;
+    
     private int _currentCount;
-
+    private Ctx _ctx;
+    
     public event Action AddFloor;
     public event Action<int> ChangeResources;
 
     public Transform EnterPoint => _enterPoint;
     public int ResourcesForFloor => _countForFloor;
 
-    private void Start()
+    public void Init(Ctx ctx)
     {
-        _currentCount = UserData.Instance.CountResources;
+        _ctx = ctx;
+
+        _currentCount = _ctx.userDataLoader.CountResources;
     }
 
     public void AddPregress(int count)

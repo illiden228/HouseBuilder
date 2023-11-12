@@ -1,27 +1,35 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Core;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class FloorRegistrator : MonoBehaviour
+public class FloorRegistrator : BaseMonobehaviour
 {
+    public struct Ctx
+    {
+        public UserDataLoader userDataLoader;
+        public ISceneLoader sceneLoader;
+    }
+    
     [SerializeField] private FloorBuilder _floorBuilder;
     [SerializeField] private Button _setFloorButton;
     [SerializeField] private Slider _resourcesSlider;
     [SerializeField] private TMP_Text _floorsCountText;
     [SerializeField] private TMP_Text _resourcessCountText;
 
-    private void Awake()
+    private Ctx _ctx;
+    
+    public void Init(Ctx ctx)
     {
+        _ctx = ctx;
+        
         _floorBuilder.AddFloor += OnAddFloor;
         _floorBuilder.ChangeResources += OnChangeResources;
-        _setFloorButton.onClick.AddListener(() => LoadSceneController.Instance.LoadFloorScene());
-    }
-
-    private void Start()
-    {
+        _setFloorButton.onClick.AddListener(() => _ctx.sceneLoader.LoadScene((int) Scenes.FloorScene, null, null));
+        
         SetResourcesHUD();
         SetFloorsHUD();
     }
@@ -33,7 +41,7 @@ public class FloorRegistrator : MonoBehaviour
 
     private void OnAddFloor()
     {
-        UserData.Instance.CountFloors++;
+        _ctx.userDataLoader.CountFloors++;
 
         SetFloorsHUD();
         
@@ -42,19 +50,19 @@ public class FloorRegistrator : MonoBehaviour
 
     private void OnChangeResources(int newValue)
     {
-        UserData.Instance.CountResources = newValue;
+        _ctx.userDataLoader.CountResources = newValue;
         SetResourcesHUD();
     }
 
     private void SetFloorsHUD()
     {
-        _floorsCountText.text = UserData.Instance.CountFloors.ToString();
+        _floorsCountText.text = _ctx.userDataLoader.CountFloors.ToString();
         TryEnableSetFloorButton();
     }
     
     private void SetResourcesHUD()
     {
-        int resourcesCount = UserData.Instance.CountResources;
+        int resourcesCount = _ctx.userDataLoader.CountResources;
         int resourcesForFloor = _floorBuilder.ResourcesForFloor;
         _resourcesSlider.value = resourcesCount / (float) resourcesForFloor;
         _resourcessCountText.text = $"{resourcesCount} / {resourcesForFloor}";
@@ -62,7 +70,7 @@ public class FloorRegistrator : MonoBehaviour
 
     private void TryEnableSetFloorButton()
     {
-        if(UserData.Instance.CountFloors > 0)
+        if(_ctx.userDataLoader.CountFloors > 0)
             _setFloorButton.gameObject.SetActive(true);
     }
 }

@@ -1,10 +1,16 @@
 using System.Collections.Generic;
+using Core;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class BuildingBuilder : MonoBehaviour
+public class BuildingBuilder : BaseMonobehaviour
 {
+    public struct Ctx
+    {
+        public UserDataLoader userDataLoader;
+        public ISceneLoader sceneLoader;
+    }
     [SerializeField] private Transform _floorPrefab;
     [SerializeField] private TextMeshProUGUI _availableFloorsText;
     [SerializeField] private TextMeshProUGUI _availableFloorsHeaderText;
@@ -15,14 +21,16 @@ public class BuildingBuilder : MonoBehaviour
     [SerializeField] private float _floorOffsetY = 3f;
     [SerializeField] private ParticleSystem _floorBuiltEffect;
 
+    private Ctx _ctx;
     private int _availableFloors;
     private List<Transform> _floors = new List<Transform>();
 
-    private void Start()
+    private void Init(Ctx ctx)
     {
-        _availableFloors = UserData.Instance.CountFloors;
+        _ctx = ctx;
+        _availableFloors = _ctx.userDataLoader.CountFloors;
 
-        int savedFloors = UserData.Instance.SavedFloors;
+        int savedFloors = _ctx.userDataLoader.SavedFloors;
         _builtFloorsText.text = savedFloors.ToString();
 
         for (int i = 0; i < savedFloors; i++)
@@ -41,7 +49,7 @@ public class BuildingBuilder : MonoBehaviour
         _availableFloorsText.text = _availableFloors.ToString();
 
         _placeFloor.onClick.AddListener(PlaceFloor);
-        _loadResourcesScene.onClick.AddListener(() => LoadSceneController.Instance.LoadResourcesScene());
+        _loadResourcesScene.onClick.AddListener(() => _ctx.sceneLoader.LoadScene((int) Scenes.IdleScene, null, null));
 
         if (_availableFloors <= 0)
         {
@@ -72,9 +80,9 @@ public class BuildingBuilder : MonoBehaviour
         _floors.Add(prefabInstance);
 
         _availableFloors--;
-        UserData.Instance.CountFloors = _availableFloors;
-        UserData.Instance.SavedFloors++;
-        _builtFloorsText.text = UserData.Instance.SavedFloors.ToString();
+        _ctx.userDataLoader.CountFloors = _availableFloors;
+        _ctx.userDataLoader.SavedFloors++;
+        _builtFloorsText.text = _ctx.userDataLoader.SavedFloors.ToString();
         _availableFloorsText.text = _availableFloors.ToString();
 
         _floorBuiltEffect.Play();
