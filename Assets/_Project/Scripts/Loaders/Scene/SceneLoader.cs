@@ -41,13 +41,13 @@ namespace Core
 
       void OnNewSceneLoadedToMemory(bool result)
       {
-        Debug.LogError($"Scene {sceneIndex} bundle loaded to memory");
+        Debug.Log($"Scene {sceneIndex} bundle loaded to memory");
         LoadSceneAsync(sceneIndex, OnNewSceneLoaded);
       }
 
       void OnNewSceneLoaded()
       {
-        Debug.LogError($"Scene {sceneIndex} loaded");
+        Debug.Log($"Scene {sceneIndex} loaded");
         _isLoading = false;
         _loadingLevel?.Dispose();
         onUnload?.Invoke();

@@ -6,7 +6,7 @@ using UnityEngine;
 using Object = UnityEngine.Object;
 using Random = UnityEngine.Random;
 
-namespace Tools
+namespace Core
 {
     public class ResourcePreLoader : BaseDisposable, IResourceLoader
     {
@@ -30,6 +30,12 @@ namespace Tools
             _configMain = Resources.Load<ResourceConfigMain>(PRELOADED_FILES_PATH);
             _prefabsToLoadCache = new Dictionary<string, GameObject>();
             _cacheImitator = new HashSet<string>();
+
+            if (_configMain == null)
+            {
+                Debug.LogWarning("Main Config is not found!");
+                return;
+            }
             
             foreach (ResourceConfigPrefabs config in _configMain.PrefabConfigs)
             {

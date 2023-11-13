@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using Core;
 using TMPro;
+using UniRx;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -9,7 +10,7 @@ public class BuildingBuilder : BaseMonobehaviour
     public struct Ctx
     {
         public UserDataLoader userDataLoader;
-        public ISceneLoader sceneLoader;
+        public ReactiveProperty<Scenes> currentScene;
     }
     [SerializeField] private Transform _floorPrefab;
     [SerializeField] private TextMeshProUGUI _availableFloorsText;
@@ -25,7 +26,7 @@ public class BuildingBuilder : BaseMonobehaviour
     private int _availableFloors;
     private List<Transform> _floors = new List<Transform>();
 
-    private void Init(Ctx ctx)
+    public void Init(Ctx ctx)
     {
         _ctx = ctx;
         _availableFloors = _ctx.userDataLoader.CountFloors;
@@ -49,7 +50,7 @@ public class BuildingBuilder : BaseMonobehaviour
         _availableFloorsText.text = _availableFloors.ToString();
 
         _placeFloor.onClick.AddListener(PlaceFloor);
-        _loadResourcesScene.onClick.AddListener(() => _ctx.sceneLoader.LoadScene((int) Scenes.IdleScene, null, null));
+        _loadResourcesScene.onClick.AddListener(() => _ctx.currentScene.Value = Scenes.IdleScene);
 
         if (_availableFloors <= 0)
         {

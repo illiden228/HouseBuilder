@@ -15,15 +15,19 @@ public class Builder : MonoBehaviour
     private Transform _currentTarget;
     private bool _isCarry;
     private int _bagCount;
-
-    private void Start()
+    private bool _initred;
+    
+    public void Init()
     {
         _animator = GetComponent<Animator>();
         _currentTarget = _storage.EnterPoint;
+        _initred = true;
     }
 
     private void Update()
     {
+        if(!_initred)
+            return;
         if(_currentTarget == null)
             return;
         Vector3 direction = _currentTarget.position - transform.position;
