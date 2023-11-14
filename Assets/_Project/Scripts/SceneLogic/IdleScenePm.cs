@@ -19,7 +19,7 @@ namespace SceneLogic
         {
             _ctx = ctx;
             
-            _ctx.sceneContext.Builder.Init();
+            _ctx.sceneContext.Worker.Init();
             
             _ctx.sceneContext.FloorBuilder.Init(new FloorBuilder.Ctx
             {

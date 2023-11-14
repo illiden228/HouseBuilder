@@ -5,7 +5,7 @@ using UnityEngine;
 using UnityEngine.Serialization;
 
 [RequireComponent(typeof(Animator))]
-public class Builder : MonoBehaviour
+public class Worker : MonoBehaviour
 {
     [SerializeField] private Transform _bagPoint;
     [SerializeField] private FloorBuilder _floorBuilder;

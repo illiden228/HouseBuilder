@@ -13830,7 +13830,7 @@ MonoBehaviour:
   mainCanvas: {fileID: 1891322386}
   uiParent: {fileID: 1891322387}
   _floorBuilder: {fileID: 1462289958}
-  _builder: {fileID: 975835796}
+  worker: {fileID: 975835796}
   _storage: {fileID: 5757456009623766928}
   _floorRegistrator: {fileID: 472029956}
 --- !u!4 &1706815306
@@ -16585,7 +16585,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &2048362697
 RectTransform:
   m_ObjectHideFlags: 0

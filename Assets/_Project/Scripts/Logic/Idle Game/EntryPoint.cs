@@ -1,3 +1,4 @@
+using Containers.Data;
 using Core;
 using Logic.Intro;
 using SceneLogic;
@@ -20,8 +21,7 @@ namespace Logic.Idle
 
         [SerializeField] private ResourceLoadType _resourceLoadType;
         [SerializeField] private LocalStorageType _localStorageType;
-        [SerializeField] private int _resourcesSceneIndex = 0;
-        [SerializeField] private int _floorSceneIndex = 1;
+        [SerializeField] private GameConfig _gameConfig;
 
         private IResourceLoader _resourceLoader;
         private IStorageService _storageService;
