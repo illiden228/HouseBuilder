@@ -80,7 +80,7 @@ public class CableComponent : MonoBehaviour
 		line.SetWidth(cableWidth, cableWidth);
 		line.SetVertexCount(segments + 1);
 		line.material = cableMaterial;
-		line.GetComponent<Renderer>().enabled = true;
+		//line.GetComponent<Renderer>().enabled = true;
 		line.shadowCastingMode = castShadows ? UnityEngine.Rendering.ShadowCastingMode.On : UnityEngine.Rendering.ShadowCastingMode.Off;
     }
 
