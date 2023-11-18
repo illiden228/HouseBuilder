@@ -154,6 +154,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _resourceLoadType: 0
   _localStorageType: 0
+  _gameConfig: {fileID: 11400000, guid: 9bae052aa7a178c4e9641416e3d25044, type: 2}
 --- !u!4 &1876037227
 Transform:
   m_ObjectHideFlags: 0

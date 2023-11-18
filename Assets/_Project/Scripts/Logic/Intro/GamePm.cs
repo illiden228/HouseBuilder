@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Linq;
 using Core;
+using Logic.Idle.Workers;
+using Logic.Profile;
 using SceneLogic;
 using Tools;
 using UniRx;
@@ -16,7 +18,9 @@ namespace Logic.Intro
         {
             public ISceneLoader sceneLoader;
             public IResourceLoader resourceLoader;
-            public ReactiveProperty<Scenes> currentScene;
+            public IReactiveCollection<WorkerModel> workers;
+            public IReadOnlyProfile profile;
+            //public ReactiveProperty<Scenes> currentScene;
             public UserDataLoader userDataLoader;
         }
 
@@ -26,7 +30,7 @@ namespace Logic.Intro
         {
             _ctx = ctx;
 
-            AddDispose(_ctx.currentScene.Subscribe(OnSceneChanged));
+            AddDispose(_ctx.profile.CurrentScene.Subscribe(OnSceneChanged));
         }
 
         private void OnSceneChanged(Scenes scene)
@@ -65,9 +69,11 @@ namespace Logic.Intro
 
             IdleScenePm.Ctx idleSceneCtx =new IdleScenePm.Ctx
             {
-                currentScene = _ctx.currentScene,
+                currentScene = _ctx.profile.CurrentScene,
                 userDataLoader = _ctx.userDataLoader,
-                sceneContext = idleContextView
+                sceneContext = idleContextView,
+                resourceLoader = _ctx.resourceLoader,
+                workers = _ctx.workers
             };
             AddDispose(new IdleScenePm(idleSceneCtx));
         }
@@ -83,7 +89,7 @@ namespace Logic.Intro
             
             FloorsScenePm.Ctx floorsSceneCtx = new FloorsScenePm.Ctx
             {
-                currentScene = _ctx.currentScene,
+                currentScene = _ctx.profile.CurrentScene,
                 userDataLoader = _ctx.userDataLoader,
                 sceneContext = floorsContextView
             };

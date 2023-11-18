@@ -1,5 +1,8 @@
 ﻿using System;
+using _Project.Scripts.Logic.Factories;
 using Core;
+using Logic.Idle.Workers;
+using Logic.Profile;
 using UniRx;
 
 namespace SceneLogic
@@ -11,6 +14,8 @@ namespace SceneLogic
             public IdleContextView sceneContext;
             public ReactiveProperty<Scenes> currentScene;
             public UserDataLoader userDataLoader;
+            public IResourceLoader resourceLoader;
+            public IReactiveCollection<WorkerModel> workers;
         }
 
         private readonly Ctx _ctx;
@@ -18,8 +23,14 @@ namespace SceneLogic
         public IdleScenePm(Ctx ctx)
         {
             _ctx = ctx;
-            
-            _ctx.sceneContext.Worker.Init();
+
+            FactorySystem.Ctx factorySystemCtx = new FactorySystem.Ctx
+            {
+                resourceLoader = _ctx.resourceLoader,
+                workers = _ctx.workers,
+                sceneContext = _ctx.sceneContext
+            };
+            AddDispose(new FactorySystem(factorySystemCtx));
             
             _ctx.sceneContext.FloorBuilder.Init(new FloorBuilder.Ctx
             {

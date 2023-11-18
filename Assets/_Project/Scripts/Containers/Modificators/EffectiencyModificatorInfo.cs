@@ -1,6 +1,6 @@
 ﻿namespace Containers.Modificators
 {
-    public class EffectiencyModificator : Modificator
+    public class EffectiencyModificatorInfo : ModificatorInfo
     {
         public int incomeMoneyModifier;
         public int incomeWorkModifier;

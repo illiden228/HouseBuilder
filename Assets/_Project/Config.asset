@@ -37,3 +37,17 @@ MonoBehaviour:
     number: 5
     effectiencyModifier: 5
     timeSpeedModifier: 5
+  _currentBuildInfo:
+    id: build_1
+    floors:
+    - id: build_1_floor_1
+      maxWorkCount: 5
+      currentWorkCount: 0
+    - id: build_1_floor_2
+      maxWorkCount: 10
+      currentWorkCount: 0
+    - id: build_1_floor_3
+      maxWorkCount: 15
+      currentWorkCount: 0
+    income: 10
+    timeSpeed: 5

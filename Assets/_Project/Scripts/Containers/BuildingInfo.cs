@@ -1,13 +1,12 @@
 ﻿using System.Collections.Generic;
-using Core;
 
 namespace Containers
 {
+    [System.Serializable]
     public class BuildingInfo : BaseInfo
     {
-        public BuildFloorProgressInfo floorProgressInfo;
-        public int floorsCount;
-        public int maxFloorsCount;
+        public List<FloorInfo> floors;
         public int income;
+        public float timeSpeed;
     }
 }

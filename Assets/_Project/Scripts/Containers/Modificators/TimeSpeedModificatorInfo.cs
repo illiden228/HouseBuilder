@@ -1,6 +1,6 @@
 ﻿namespace Containers.Modificators
 {
-    public class TimeSpeedModificator : Modificator
+    public class TimeSpeedModificatorInfo : ModificatorInfo
     {
         public float timeSpeedModifier;
     }

@@ -1,8 +1,10 @@
+using Containers;
 using Containers.Data;
 using Core;
 using Logic.Intro;
-using SceneLogic;
-using UniRx;
+using Logic.Model;
+using Logic.Profile;
+using Tools.Extensions;
 using UnityEngine;
 
 namespace Logic.Idle
@@ -26,7 +28,10 @@ namespace Logic.Idle
         private IResourceLoader _resourceLoader;
         private IStorageService _storageService;
         private ISceneLoader _sceneLoader;
+        private UserDataLoader _userDataLoader;
+        private DataLoader _dataLoader;
         private GamePm _game;
+        private CoreIdleLogic _coreLogic;
 
         private void Awake()
         {
@@ -35,14 +40,32 @@ namespace Logic.Idle
             _resourceLoader = CreateResourceLoader(_resourceLoadType);
             _storageService = CreateStorageService(_localStorageType);
             _sceneLoader = CreateSceneLoader(_resourceLoadType);
-            UserDataLoader userDataLoader = new UserDataLoader(_storageService);
+            _userDataLoader = new UserDataLoader(_storageService); // TODO: изжил себя, нужен только для поддержания старого кода
+            
+            ProfileClient profile = new ProfileClient(new ProfileClient.Ctx { });
 
+            DataLoader.Ctx dataLoaderCtx = new DataLoader.Ctx
+            {
+                storageService = _storageService,
+                profile = profile,
+                gameConfig = _gameConfig,
+            };
+            _dataLoader = new DataLoader(dataLoaderCtx);
+
+            _coreLogic = new CoreIdleLogic(new CoreIdleLogic.Ctx
+            {
+                profile = profile,
+                buildinReadyEvent = new ReactiveEvent<BuildingInfo>() // TODO: пока что заглушка
+            });
+            
             _game = new GamePm(new GamePm.Ctx
             {
                 resourceLoader = _resourceLoader,
                 sceneLoader = _sceneLoader,
-                userDataLoader = userDataLoader,
-                currentScene = new ReactiveProperty<Scenes>(Scenes.IdleScene)
+                userDataLoader = _userDataLoader,
+                profile = profile,
+                workers = profile.Workers
+                //currentScene = new ReactiveProperty<Scenes>(Scenes.IdleScene)
             });
         }
 
@@ -94,6 +117,8 @@ namespace Logic.Idle
             _resourceLoader.Dispose();
             _sceneLoader.Dispose();
             _game.Dispose();
+            _dataLoader.Dispose();
+            _coreLogic.Dispose();
             base.OnDestroy();
         }
     }

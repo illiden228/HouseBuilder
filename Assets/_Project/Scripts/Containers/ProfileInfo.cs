@@ -8,6 +8,9 @@ namespace Containers
         public int moneys;
         public List<WorkerInfo> workers;
         public List<BuildingInfo> buildings;
-        public List<Modificator> modificators;
+        public List<ModificatorInfo> modificators;
+        public BuildingInfo currentBuildingInfo;
+        public int currentFloorsCount;
+        public FloorInfo currentFloor;
     }
 }
