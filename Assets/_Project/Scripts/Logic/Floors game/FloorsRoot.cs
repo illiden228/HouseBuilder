@@ -4,6 +4,8 @@ using Tools.Extensions;
 
 public class FloorsRoot : BaseDisposable
 {
+    //obsolete
+
     private readonly Ctx _ctx;
 
     public struct Ctx

@@ -2,6 +2,9 @@ using UnityEngine;
 
 public class FloorsSceneEntryPoint : MonoBehaviour
 {
+    // для теста
+    // в проде будет GamePm будет инитить
+
     [SerializeField] private FloorsSceneContext _floorsSceneContext;
     [SerializeField] private FloorsSceneSettings _settings;
 

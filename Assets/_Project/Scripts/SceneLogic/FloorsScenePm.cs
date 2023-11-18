@@ -5,6 +5,7 @@ namespace SceneLogic
 {
     public class FloorsScenePm : BaseDisposable
     {
+        //вместо рута, floorsRoot перенести сюда
         public struct Ctx
         {
             public FloorsContextView sceneContext;

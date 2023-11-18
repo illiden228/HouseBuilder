@@ -4,9 +4,7 @@ using Core;
 using Logic.Idle.Workers;
 using Logic.Profile;
 using SceneLogic;
-using Tools;
 using UniRx;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
