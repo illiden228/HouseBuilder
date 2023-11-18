@@ -4,7 +4,6 @@ using Core;
 using Logic.Idle.Workers;
 using Tools.Extensions;
 using UniRx;
-using Unity.VisualScripting;
 using UnityEngine;
 
 namespace Logic.Model
