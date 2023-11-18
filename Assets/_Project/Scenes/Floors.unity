@@ -148,7 +148,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 67661366}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.5632057, z: 0}
+  m_LocalPosition: {x: -7.6, y: 2.75, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -167,11 +167,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b9cf9c5931a3b3c4ba456c8213d7ebfc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_position: {x: 0, y: 9.436794, z: 0}
-  m_precedingControlPointLocalPosition: {x: -0.84199834, y: 0, z: 0}
-  m_precedingControlPointPosition: {x: -0.84199834, y: 9.436794, z: 0}
-  m_followingControlPointLocalPosition: {x: 0.84199834, y: 0, z: 0}
-  m_followingControlPointPosition: {x: 0.84199834, y: 9.436794, z: 0}
+  m_position: {x: -7.6, y: 12.75, z: 0}
+  m_precedingControlPointLocalPosition: {x: -1.3535533, y: 2.738008, z: 0}
+  m_precedingControlPointPosition: {x: -8.953553, y: 15.4880085, z: 0}
+  m_followingControlPointLocalPosition: {x: 1.3535533, y: -2.738008, z: -0}
+  m_followingControlPointPosition: {x: -6.2464466, y: 10.0119915, z: 0}
   m_handleMode: 2
   m_normal: {x: 0, y: 1, z: 0}
   m_autoCalculatedNormalAngleOffset: 0
@@ -249,7 +249,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 122989107}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 7.6106505, y: 2.75, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -268,11 +268,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b9cf9c5931a3b3c4ba456c8213d7ebfc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_position: {x: 7.6106505, y: 12.75, z: 0}
-  m_precedingControlPointLocalPosition: {x: 0.06895542, y: -3.0596714, z: 0}
-  m_precedingControlPointPosition: {x: 7.679606, y: 9.690329, z: 0}
-  m_followingControlPointLocalPosition: {x: -0.06895542, y: 3.0596714, z: 0}
-  m_followingControlPointPosition: {x: 7.541695, y: 15.809671, z: 0}
+  m_position: {x: 0, y: 10, z: 0}
+  m_precedingControlPointLocalPosition: {x: -1.85, y: 0, z: 0}
+  m_precedingControlPointPosition: {x: -1.85, y: 10, z: 0}
+  m_followingControlPointLocalPosition: {x: 1.85, y: -0, z: -0}
+  m_followingControlPointPosition: {x: 1.85, y: 10, z: 0}
   m_handleMode: 2
   m_normal: {x: -0.9997887, y: -0.020556178, z: -0}
   m_autoCalculatedNormalAngleOffset: 0
@@ -809,7 +809,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 830304890}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -7.6, y: 2.75, z: 0}
+  m_LocalPosition: {x: 7.6, y: 2.75, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -828,11 +828,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b9cf9c5931a3b3c4ba456c8213d7ebfc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_position: {x: -7.6, y: 12.75, z: 0}
-  m_precedingControlPointLocalPosition: {x: 0.20409346, y: 2.8911676, z: 0}
-  m_precedingControlPointPosition: {x: -7.3959064, y: 15.641168, z: 0}
-  m_followingControlPointLocalPosition: {x: -0.20409346, y: -2.8911676, z: 0}
-  m_followingControlPointPosition: {x: -7.8040934, y: 9.858832, z: 0}
+  m_position: {x: 7.6, y: 12.75, z: 0}
+  m_precedingControlPointLocalPosition: {x: -1.353553, y: -2.7380085, z: -0}
+  m_precedingControlPointPosition: {x: 6.2464466, y: 10.0119915, z: 0}
+  m_followingControlPointLocalPosition: {x: 1.353553, y: 2.7380085, z: 0}
+  m_followingControlPointPosition: {x: 8.953553, y: 15.4880085, z: 0}
   m_handleMode: 2
   m_normal: {x: 0.9980727, y: -0.062055286, z: -0}
   m_autoCalculatedNormalAngleOffset: 0
@@ -1577,7 +1577,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a3dbf94c21a22d74d895b2051a04ba1e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_loop: 1
+  m_loop: 0
   drawGizmos: 0
   gizmoColor: {r: 1, g: 1, b: 1, a: 1}
   gizmoSmoothness: 4
@@ -2924,13 +2924,14 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2118718228}
-  - component: {fileID: 2118718226}
-  - component: {fileID: 2118718225}
-  - component: {fileID: 2118718224}
+  - component: {fileID: 2118718236}
   - component: {fileID: 2118718231}
+  - component: {fileID: 2118718226}
+  - component: {fileID: 2118718224}
+  - component: {fileID: 2118718225}
   - component: {fileID: 2118718230}
   - component: {fileID: 2118718229}
-  - component: {fileID: 2118718236}
+  - component: {fileID: 2118718237}
   m_Layer: 0
   m_Name: Cable_start
   m_TagString: Untagged
@@ -2951,7 +2952,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spline: {fileID: 1401065666}
-  travelMode: 1
+  travelMode: 2
   speed: 7
   m_normalizedT: 0
   rotationLerpModifier: 10
@@ -2959,6 +2960,25 @@ MonoBehaviour:
   onPathCompleted:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &2118718237
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2118718235}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 17b675957a920ef4e8da909ede6d0d04, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  walker: {fileID: 2118718236}
+  tailObjects: []
+  tailObjectDistances: []
+  highQuality: 1
+  movementLerpModifier: 10
+  rotationLerpModifier: 10
+  lookAt: 1
 --- !u!1001 &2146990784
 PrefabInstance:
   m_ObjectHideFlags: 0
