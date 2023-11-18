@@ -12,7 +12,7 @@ public class Storage : MonoBehaviour
 
     public Transform EnterPoint => _enterPoint;
 
-    private void Start()
+    public void Init()
     {
         _bag = Instantiate(_bagPrefab);
         _bag.SetActive(false);

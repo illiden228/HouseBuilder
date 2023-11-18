@@ -1,7 +1,28 @@
-﻿namespace SceneLogic
+﻿using Core;
+using UniRx;
+
+namespace SceneLogic
 {
-    public class FloorsScenePm
+    public class FloorsScenePm : BaseDisposable
     {
-        // здесь грузится сцена floors
+        public struct Ctx
+        {
+            public FloorsContextView sceneContext;
+            public ReactiveProperty<Scenes> currentScene;
+            public UserDataLoader userDataLoader;
+        }
+
+        private readonly Ctx _ctx;
+
+        public FloorsScenePm(Ctx ctx)
+        {
+            _ctx = ctx;
+            
+            _ctx.sceneContext.BuildingBuilder.Init(new BuildingBuilder.Ctx
+            {
+                userDataLoader = _ctx.userDataLoader,
+                currentScene = _ctx.currentScene
+            });
+        }
     }
 }

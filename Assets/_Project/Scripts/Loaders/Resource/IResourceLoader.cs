@@ -1,7 +1,7 @@
 ﻿using System;
 using UnityEngine;
 
-namespace Tools
+namespace Core
 {
     public interface IResourceLoader : IDisposable
     {

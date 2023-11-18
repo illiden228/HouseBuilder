@@ -1,0 +1,53 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3fb3f4798717426aa7c37ea4242721b8, type: 3}
+  m_Name: Config
+  m_EditorClassIdentifier: 
+  _startWorkerCount: 1
+  _baseWorkerWorkIncome: 1
+  _baseWorkerMoneyIncome: 5
+  _baseWorkerTimeSpeed: 10
+  _grades:
+  - id: grade_1
+    number: 1
+    effectiencyModifier: 1
+    timeSpeedModifier: 1
+  - id: grade_2
+    number: 2
+    effectiencyModifier: 2
+    timeSpeedModifier: 2
+  - id: grade_3
+    number: 3
+    effectiencyModifier: 3
+    timeSpeedModifier: 3
+  - id: grade_4
+    number: 4
+    effectiencyModifier: 4
+    timeSpeedModifier: 4
+  - id: grade_5
+    number: 5
+    effectiencyModifier: 5
+    timeSpeedModifier: 5
+  _currentBuildInfo:
+    id: build_1
+    floors:
+    - id: build_1_floor_1
+      maxWorkCount: 5
+      currentWorkCount: 0
+    - id: build_1_floor_2
+      maxWorkCount: 10
+      currentWorkCount: 0
+    - id: build_1_floor_3
+      maxWorkCount: 15
+      currentWorkCount: 0
+    income: 10
+    timeSpeed: 5

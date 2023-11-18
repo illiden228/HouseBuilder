@@ -2,7 +2,8 @@
 {
     public enum Scenes
     {
-        IdleScene = 0,
-        FloorScene = 1,
+        Intro = 0,
+        IdleScene = 1,
+        FloorScene = 2,
     }
 }

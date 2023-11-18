@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Core;
 using TMPro;
+using UniRx;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -11,7 +12,7 @@ public class FloorRegistrator : BaseMonobehaviour
     public struct Ctx
     {
         public UserDataLoader userDataLoader;
-        public ISceneLoader sceneLoader;
+        public ReactiveProperty<Scenes> currentScene;
     }
     
     [SerializeField] private FloorBuilder _floorBuilder;
@@ -28,7 +29,7 @@ public class FloorRegistrator : BaseMonobehaviour
         
         _floorBuilder.AddFloor += OnAddFloor;
         _floorBuilder.ChangeResources += OnChangeResources;
-        _setFloorButton.onClick.AddListener(() => _ctx.sceneLoader.LoadScene((int) Scenes.FloorScene, null, null));
+        _setFloorButton.onClick.AddListener(() => _ctx.currentScene.Value = Scenes.FloorScene);
         
         SetResourcesHUD();
         SetFloorsHUD();
