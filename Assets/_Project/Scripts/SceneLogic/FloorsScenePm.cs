@@ -18,7 +18,7 @@ namespace SceneLogic
         {
             _ctx = ctx;
             
-            _ctx.sceneContext.BuildingBuilder.Init(new BuildingBuilder.Ctx
+            _ctx.sceneContext.BuildingBuilder.Init(new TowerBuilderView.Ctx
             {
                 userDataLoader = _ctx.userDataLoader,
                 currentScene = _ctx.currentScene

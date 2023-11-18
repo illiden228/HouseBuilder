@@ -11,7 +11,8 @@ public class TowerBuilderView : BaseMonobehaviour
 {
     public struct Ctx
     {
-        public int savedFloors;
+        public UserDataLoader userDataLoader;
+        public ReactiveProperty<Scenes> currentScene;
     }
 
     [SerializeField] private Transform _crane;

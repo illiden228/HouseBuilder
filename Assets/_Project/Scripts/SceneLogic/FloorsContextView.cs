@@ -5,8 +5,8 @@ namespace SceneLogic
 {
     public class FloorsContextView : SceneContextView
     {
-        [SerializeField] private BuildingBuilder _buildingBuilder;
+        [SerializeField] private TowerBuilderView _buildingBuilder;
 
-        public BuildingBuilder BuildingBuilder => _buildingBuilder;
+        public TowerBuilderView BuildingBuilder => _buildingBuilder;
     }
 }
