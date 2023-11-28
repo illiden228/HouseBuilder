@@ -67,7 +67,7 @@ namespace Logic.Idle.Workers
             if (direction.sqrMagnitude > 0.01)
             {
                 float delta = _speed * Time.deltaTime;
-                _speed = CalcPathDistance() / _ctx.model.Info.Value.baseTimeToWork;
+                _speed = CalcPathDistance() / _ctx.model.TimeSpeed.Value; // нужно ли?
                 _viewTransform.position = Vector3.MoveTowards(_viewTransform.position, _ctx.path[_currentPathIndex].Point.position, delta);
                 _viewTransform.forward = direction;
             }
@@ -88,7 +88,7 @@ namespace Logic.Idle.Workers
                 Debug.Log(time.ToString());
                 time = 0;
                 _distance = CalcPathDistance();
-                _speed = _distance / _ctx.model.Info.Value.baseTimeToWork;
+                _speed = _distance / _ctx.model.TimeSpeed.Value; // нужно ли?
             }
             else
                 _currentPathIndex++;
@@ -100,7 +100,7 @@ namespace Logic.Idle.Workers
                 _ctx.view.MoveAnimation();
             
             _distance = CalcPathDistance();
-            _speed = _distance / _ctx.model.Info.Value.baseTimeToWork;
+            _speed = _distance / _ctx.model.TimeSpeed.Value; // нужно ли?
         }
     }
 }

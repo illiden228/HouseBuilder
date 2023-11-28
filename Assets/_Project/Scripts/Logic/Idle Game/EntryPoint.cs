@@ -64,7 +64,8 @@ namespace Logic.Idle
                 sceneLoader = _sceneLoader,
                 userDataLoader = _userDataLoader,
                 profile = profile,
-                workers = profile.Workers
+                workers = profile.Workers,
+                gameConfig = _gameConfig
                 //currentScene = new ReactiveProperty<Scenes>(Scenes.IdleScene)
             });
         }

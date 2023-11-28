@@ -47,7 +47,11 @@ namespace Logic.Idle
             {
                 id = "start_test_profile",
                 buildings = new List<BuildingInfo>(),
-                modificators = new List<ModificatorInfo>(),
+                modificators = new List<ModificatorInfo>
+                {
+                    new EffectiencyModificatorInfo(),
+                    new TimeSpeedModificatorInfo()
+                },
                 moneys = 0,
                 workers = new List<WorkerInfo>
                 {
@@ -102,8 +106,7 @@ namespace Logic.Idle
 
         private WorkerModel CreateWorkerModel(WorkerInfo info)
         {
-            WorkerModel model = new WorkerModel();
-            model.Info.Value = info;
+            WorkerModel model = new WorkerModel(info);
             return model;
         }
 

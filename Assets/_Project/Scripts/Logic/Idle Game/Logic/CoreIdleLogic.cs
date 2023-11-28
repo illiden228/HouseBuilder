@@ -20,12 +20,12 @@ namespace Logic.Model
         {
             _ctx = ctx;
 
-            ApplyModificator.Ctx applyModificatorCtx = new ApplyModificator.Ctx
+            ApplyModificatorLogic.Ctx applyModificatorCtx = new ApplyModificatorLogic.Ctx
             {
                 modificators = _ctx.profile.Modificators,
                 workers = _ctx.profile.Workers
             };
-            AddDispose(new ApplyModificator(applyModificatorCtx));
+            AddDispose(new ApplyModificatorLogic(applyModificatorCtx));
 
             WorkersLogic.Ctx workerLogicCtx = new WorkersLogic.Ctx
             {

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq;
+using Containers.Data;
 using Core;
 using Logic.Idle.Workers;
 using Logic.Profile;
@@ -20,6 +21,7 @@ namespace Logic.Intro
             public IReadOnlyProfile profile;
             //public ReactiveProperty<Scenes> currentScene;
             public UserDataLoader userDataLoader;
+            public GameConfig gameConfig;
         }
 
         private readonly Ctx _ctx;
@@ -71,7 +73,8 @@ namespace Logic.Intro
                 userDataLoader = _ctx.userDataLoader,
                 sceneContext = idleContextView,
                 resourceLoader = _ctx.resourceLoader,
-                workers = _ctx.workers
+                workers = _ctx.workers,
+                gameConfig = _ctx.gameConfig
             };
             AddDispose(new IdleScenePm(idleSceneCtx));
         }
