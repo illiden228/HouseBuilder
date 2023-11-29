@@ -1,4 +1,5 @@
 using Core;
+using SceneLogic;
 using System;
 using Tools.Extensions;
 
@@ -10,7 +11,7 @@ public class FloorsRoot : BaseDisposable
 
     public struct Ctx
     {
-        public FloorsSceneContext sceneContext;
+        public FloorsContextView sceneContext;
         public FloorsSceneSettings floorsSettings;
     }
        

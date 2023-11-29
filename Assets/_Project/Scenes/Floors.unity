@@ -2585,7 +2585,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1958631500}
-  - component: {fileID: 1958631499}
   - component: {fileID: 1958631501}
   m_Layer: 0
   m_Name: Scene context
@@ -2594,20 +2593,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1958631499
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1958631498}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b9bc1c4c3694fff48afa0a6255905034, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _towerBuilder: {fileID: 1762470247}
-  _floorHUDView: {fileID: 1507741057}
 --- !u!4 &1958631500
 Transform:
   m_ObjectHideFlags: 0
@@ -2635,10 +2620,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0fca030d07da445bb47ea0435f8ebd52, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mainCamera: {fileID: 0}
-  mainCanvas: {fileID: 0}
-  uiParent: {fileID: 0}
-  _buildingBuilder: {fileID: 0}
+  mainCamera: {fileID: 1362733336}
+  mainCanvas: {fileID: 1455346723}
+  uiParent: {fileID: 1507741056}
+  _towerBuilder: {fileID: 1762470247}
+  _floorHUDView: {fileID: 1507741057}
+  _settings: {fileID: 11400000, guid: eaa3e68dcbbb9984bb50d8fb53ebe319, type: 2}
 --- !u!1 &1976754790
 GameObject:
   m_ObjectHideFlags: 0
@@ -2789,7 +2776,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c96936d338612264d9d0636df3c5e8ca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _floorsSceneContext: {fileID: 1958631499}
+  _debug: 1
+  _floorsContextView: {fileID: 1958631501}
   _settings: {fileID: 11400000, guid: eaa3e68dcbbb9984bb50d8fb53ebe319, type: 2}
 --- !u!23 &2118718224
 MeshRenderer:

@@ -5,10 +5,12 @@ namespace SceneLogic
 {
     public class FloorsContextView : SceneContextView
     {
+        [SerializeField] private TowerBuilderView _towerBuilder;
+        [SerializeField] private FloorHUDView _floorHUDView;
+        [SerializeField] private FloorsSceneSettings _settings;
         //исползовать этот вместо floors scene context
 
-        [SerializeField] private TowerBuilderView _buildingBuilder;
-
-        public TowerBuilderView BuildingBuilder => _buildingBuilder;
+        public TowerBuilderView TowerBuilderView => _towerBuilder;
+        public FloorHUDView FloorHUDView => _floorHUDView;
     }
 }
