@@ -1,5 +1,5 @@
+using BezierSolution;
 using Core;
-using System.Collections.Generic;
 using Tools.Extensions;
 using UnityEngine;
 
@@ -17,9 +17,14 @@ public class TowerBuilderPm : BaseDisposable
     private readonly Ctx _ctx;
 
     private FloorView _floorToPlace;
-    //private int _availableFloors;
-    //private List<Transform> _floors = new List<Transform>();
-    //private float _floorOffsetY = 3f;
+    private Vector3 _additionalForceToFloor = new Vector3(0f, -9.81f, 0f);
+    private float _initialXImpulse = 6.5f;
+    private bool _floorReleased = false;
+    private float _offsetYFloor = 3f;
+    private float _targetYPos = 0f;
+    private BezierWalkerWithSpeed _bezierWalkerWithSpeed;
+    private bool _canPlaceFloor = true;
+    private bool _gameLoose = true;
 
     public TowerBuilderPm(Ctx ctx)
     {
@@ -30,8 +35,11 @@ public class TowerBuilderPm : BaseDisposable
 
         });
 
+        _bezierWalkerWithSpeed = _ctx.towerBuilderView.CableStart.GetComponent<BezierWalkerWithSpeed>();
+
         AddDispose(_ctx.onReleaseFloor.SubscribeWithSkip(PlaceFloor));
         AddDispose(ReactiveExtensions.StartFixedUpdate(FixedUpdate));
+        AddDispose(_ctx.towerBuilderView.DeathZone.OnFloorFallInDeathZone.SubscribeOnceWithSkip(OnFloorFallInDeathZone));
 
         //_availableFloors = _ctx.userDataLoader.CountFloors;
 
@@ -63,13 +71,6 @@ public class TowerBuilderPm : BaseDisposable
             _ctx.towerBuilderView.Crane.transform.position += new Vector3(0f, _offsetYFloor, 0f);
         }
     }
-    
-    //private Vector3 _floorOffsetRayCast = new Vector3(-2f, 0f, -2f);   
-    private Vector3 _additionalForceToFloor = new Vector3(0f, -9.81f, 0f);
-    private float _initialXImpulse = 0.5f;
-    private bool _floorReleased = false;
-    private float _offsetYFloor = 3f;
-    private float _targetYPos = 0f;
 
     private void FixedUpdate()
     {
@@ -93,9 +94,10 @@ public class TowerBuilderPm : BaseDisposable
 
     private void PlaceFloor()
     {
-        if (!_floorToPlace.Rigidbody)
+        if (!_floorToPlace.Rigidbody || !_canPlaceFloor)
             return;
 
+        _canPlaceFloor = false;
         _floorToPlace.transform.SetParent(_ctx.towerBuilderView.transform);
         _floorToPlace.Rigidbody.isKinematic = false;
         _floorToPlace.Rigidbody.useGravity = true;
@@ -104,9 +106,9 @@ public class TowerBuilderPm : BaseDisposable
         float impulseX = 0f;
 
         if (_floorToPlace.transform.position.x > 0f)
-            impulseX = Mathf.Lerp(0f, 7.61f, _floorToPlace.transform.position.x);
+            impulseX = _bezierWalkerWithSpeed.MovingForward ? 1f : -1f * Mathf.InverseLerp(0f, 7.61f, _floorToPlace.transform.position.x);
         else if (_floorToPlace.transform.position.x < 0f)
-            impulseX = -Mathf.Lerp(-7.61f, 0f, _floorToPlace.transform.position.x);
+            impulseX = _bezierWalkerWithSpeed.MovingForward ? 1f : -1f * Mathf.InverseLerp(-7.61f, 0f, _floorToPlace.transform.position.x);
 
         _floorToPlace.Rigidbody.AddForce(new Vector3(impulseX * _initialXImpulse, 0f, 0f), ForceMode.Impulse);
 
@@ -156,5 +158,12 @@ public class TowerBuilderPm : BaseDisposable
         _floorToPlace.transform.position = new Vector3(_floorToPlace.transform.position.x, _targetYPos, _floorToPlace.transform.position.z);
         _targetYPos += _offsetYFloor;
         CreateNewFloor(true);
+        _ctx.towerBuilderView.PlayFloorPlaceEffect();
+        _canPlaceFloor = true;
+    }
+
+    private void OnFloorFallInDeathZone()
+    {
+        _gameLoose = true;
     }
 }
