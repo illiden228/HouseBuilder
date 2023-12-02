@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using BezierSolution;
 using Core;
 using TMPro;
+using Tools.Extensions;
 using UniRx;
 using UnityEngine;
 using UnityEngine.UI;
@@ -13,6 +14,7 @@ public class TowerBuilderView : BaseMonobehaviour
     {
         public UserDataLoader userDataLoader;
         public ReactiveProperty<Scenes> currentScene;
+        public ReactiveEvent onFloorFallInDeathZone;
     }
 
     [SerializeField] private Transform _crane;
@@ -25,12 +27,12 @@ public class TowerBuilderView : BaseMonobehaviour
 
     public Transform Crane => _crane;
     public Transform CableStart => _cableStart;
-    public BezierSpline BezierSpline => _bezierSpline;
-    public DeathZone DeathZone => _deathZone;
+    public BezierSpline BezierSpline => _bezierSpline;   
 
     public void Init(Ctx ctx)
     {
         _ctx = ctx;
+        _deathZone.Init(_ctx.onFloorFallInDeathZone);
     }    
 
     public void PlayFloorPlaceEffect()

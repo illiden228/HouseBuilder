@@ -3,13 +3,18 @@ using UnityEngine;
 
 public class DeathZone : MonoBehaviour
 {
-    public ReactiveEvent OnFloorFallInDeathZone;
+    private ReactiveEvent onFloorFallInDeathZone;
+
+    public void Init(ReactiveEvent reactiveEvent)
+    {
+        onFloorFallInDeathZone = reactiveEvent;
+    }
 
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.TryGetComponent(out FloorView floorView))
         {
-            OnFloorFallInDeathZone.Notify();
+            onFloorFallInDeathZone.Notify();
         }
     }
 }

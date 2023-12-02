@@ -24,22 +24,24 @@ public class TowerBuilderPm : BaseDisposable
     private float _targetYPos = 0f;
     private BezierWalkerWithSpeed _bezierWalkerWithSpeed;
     private bool _canPlaceFloor = true;
-    private bool _gameLoose = true;
+    private bool _gameLoose = false;
 
     public TowerBuilderPm(Ctx ctx)
     {
         _ctx = ctx;
 
+        ReactiveEvent floorFailEvent = new ReactiveEvent();
+
         _ctx.towerBuilderView.Init(new TowerBuilderView.Ctx
         {
-
+            onFloorFallInDeathZone = floorFailEvent
         });
 
         _bezierWalkerWithSpeed = _ctx.towerBuilderView.CableStart.GetComponent<BezierWalkerWithSpeed>();
 
         AddDispose(_ctx.onReleaseFloor.SubscribeWithSkip(PlaceFloor));
         AddDispose(ReactiveExtensions.StartFixedUpdate(FixedUpdate));
-        AddDispose(_ctx.towerBuilderView.DeathZone.OnFloorFallInDeathZone.SubscribeOnceWithSkip(OnFloorFallInDeathZone));
+        AddDispose(floorFailEvent.SubscribeOnceWithSkip(OnFloorFallInDeathZone));
 
         //_availableFloors = _ctx.userDataLoader.CountFloors;
 
