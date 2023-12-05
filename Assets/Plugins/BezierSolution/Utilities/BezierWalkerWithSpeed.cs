@@ -32,15 +32,15 @@ namespace BezierSolution
 		public override bool MovingForward { get { return ( speed > 0f ) == isGoingForward; } }
 
 		public UnityEvent onPathCompleted = new UnityEvent();
-		private bool onPathCompletedCalledAt1 = false;
-		private bool onPathCompletedCalledAt0 = false;
+        private bool onPathCompletedCalledAt1 = false;
+        private bool onPathCompletedCalledAt0 = false;
 
-		private void Update()
-		{
-			Execute( Time.deltaTime );
-		}
+        private void Update()
+        {
+            Execute(Time.deltaTime);
+        }
 
-		public override void Execute( float deltaTime )
+        public override void Execute( float deltaTime )
 		{
 			float targetSpeed = ( isGoingForward ) ? speed : -speed;
 
