@@ -3,7 +3,7 @@ using Logic.Idle.Workers;
 using UniRx;
 using UnityEngine;
 
-namespace Logic.Idle.Monitor_and_Cheat
+namespace Logic.Idle.Monitors
 {
     public class WorkerMonitorRowPm : BaseDisposable
     {

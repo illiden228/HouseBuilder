@@ -41,8 +41,8 @@ namespace Logic.Model
                 workerModel.CurrentIncomeTime.Value += Time.deltaTime;
                 if (workerModel.TimeSpeed.Value <= workerModel.CurrentIncomeTime.Value)
                 {
-                    _ctx.moneys.Value += workerModel.MoneyIncome.Value;
-                    _ctx.currentBuild.Value.CurrentFloor.Value.CurrentWorkCount.Value += workerModel.WorkIncome.Value;
+                    _ctx.moneys.Value += workerModel.MoneyIncome.Value * workerModel.Grade.Value.number;
+                    _ctx.currentBuild.Value.CurrentFloor.Value.CurrentWorkCount.Value += workerModel.WorkIncome.Value * workerModel.Grade.Value.number;
                     workerModel.CurrentIncomeTime.Value = 0;
                 }
             });

@@ -22,6 +22,8 @@ namespace Logic.Profile
         public IReactiveCollection<ModificatorInfo> Modificators { get; }
         public ReactiveProperty<BuildProgressModel> CurrentBuilding { get; }
         public ReactiveProperty<Scenes> CurrentScene { get; }
+        public IReactiveProperty<int> CurrentEffectiencyLevel { get; }
+        public IReactiveProperty<int> CurrentSpeedLevel { get; }
 
         public ProfileClient(Ctx ctx)
         {
@@ -33,6 +35,8 @@ namespace Logic.Profile
             Buildings = new ReactiveCollection<BuildingModel>();
             CurrentScene = new ReactiveProperty<Scenes>();
             CurrentBuilding = new ReactiveProperty<BuildProgressModel>();
+            CurrentEffectiencyLevel = new ReactiveProperty<int>();
+            CurrentSpeedLevel = new ReactiveProperty<int>();
         }
     }
 }

@@ -5,7 +5,7 @@ using UniRx;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace Logic.Idle.Monitor_and_Cheat
+namespace Logic.Idle.Monitors
 {
     public class WorkerMonitorRowView : BaseMonobehaviour
     {
@@ -36,10 +36,9 @@ namespace Logic.Idle.Monitor_and_Cheat
             SubscribeText(_ctx.moneyIncome, _moneyIncomeText);
             SubscribeText(_ctx.workIncome, _workIncomeText);
             SubscribeText(_ctx.grade, _gradeText);
-            SubscribeText(_ctx.currentIncomeTime, _currentTimeIncomeText);
             SubscribeText(_ctx.timeSpeed, _progressIncomeText);
-
-            _ctx.currentIncomeTime.Subscribe(value => ChangeSliderValue(value / _ctx.timeSpeed.Value)).AddTo(_ctx.viewDisposable);
+            
+            _ctx.currentIncomeTime.Subscribe(IncomeTimeChanged).AddTo(_ctx.viewDisposable);
         }
 
         private void SubscribeText<T>(IReadOnlyReactiveProperty<T> property, TMP_Text field)
@@ -47,9 +46,10 @@ namespace Logic.Idle.Monitor_and_Cheat
             property.Subscribe(value => field.text = value.ToString()).AddTo(_ctx.viewDisposable);
         }
 
-        private void ChangeSliderValue(float value)
+        private void IncomeTimeChanged(float value)
         {
-            _sliderIncomeProgress.value = value;
+            _currentTimeIncomeText.text = value.ToString("F0");
+            _sliderIncomeProgress.value = value / _ctx.timeSpeed.Value;
         }
     }
 }
