@@ -1894,15 +1894,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 7577737700779301804}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 024ce61814e2456e89331ad8ba42f8ff, type: 3}
+  m_Script: {fileID: 11500000, guid: d38dbadac8ca31149be370ac70fe95a0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _timeSpeedText: {fileID: 2556956669345460851}
   _moneyIncomeText: {fileID: 3019328874485927552}
   _workIncomeText: {fileID: 3239833351315480181}
   _gradeText: {fileID: 8946100970836826247}
-  _currentTimeIncomeText: {fileID: 2832935572996581956}
-  _progressIncomeText: {fileID: 8211090703655443557}
+  _currentTimeIncomeText: {fileID: 8211090703655443557}
+  _progressIncomeText: {fileID: 2832935572996581956}
   _sliderIncomeProgress: {fileID: 4258502129639912624}
 --- !u!1 &7713647770824810871
 GameObject:

@@ -23,6 +23,7 @@ namespace Logic.Idle.Monitors
             public IResourceLoader resourceLoader;
             public GameConfig gameConfig;
             public IReadOnlyProfile profile;
+            public ReactiveProperty<bool> isOpen;
         }
 
         private readonly Ctx _ctx;
@@ -36,6 +37,7 @@ namespace Logic.Idle.Monitors
             _monitors = new Dictionary<MonitorType, IMonitor>();
             
             AddDispose(_ctx.resourceLoader.LoadPrefab("fakebundles", VIEW_PREFAB_NAME, OnPrefabLoaded));
+            AddDispose(_ctx.isOpen.Subscribe(OnMainMonitorOpen));
         }
 
         private void OnPrefabLoaded(GameObject prefab)
@@ -48,13 +50,23 @@ namespace Logic.Idle.Monitors
                 close = Close,
                 openMonitor = OpenMonitor
             });
+            
+            _view.Close();
+        }
+
+        private void OnMainMonitorOpen(bool isOpen)
+        {
+            if(isOpen)
+                _view.Open();
+            else
+                _view.Close();
         }
 
         private void OpenMonitor(MonitorType monitorType)
         {
             IMonitor monitor;
             if (!_monitors.TryGetValue(monitorType, out monitor))
-                monitor = CreateMonitor(monitorType);
+                monitor = _monitors[monitorType] = CreateMonitor(monitorType);
                 
             monitor.Open();
             Close();
@@ -136,6 +148,7 @@ namespace Logic.Idle.Monitors
         
         private void Close()
         {
+            _ctx.isOpen.Value = false;
             _view.Close();
         }
 

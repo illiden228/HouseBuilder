@@ -1,10 +1,8 @@
-﻿using System;
-using _Project.Scripts.Logic.Factories;
+﻿using _Project.Scripts.Logic.Factories;
 using Containers.Data;
 using Core;
-using Logic.Idle.Monitors;
-using Logic.Idle.Workers;
 using Logic.Profile;
+using UI;
 using UniRx;
 
 namespace SceneLogic
@@ -35,14 +33,15 @@ namespace SceneLogic
             };
             AddDispose(new FactorySystem(factorySystemCtx));
 
-            MainMonitorPm.Ctx monitorCtx = new MainMonitorPm.Ctx
+            MainMenuPm.Ctx mainMenuCtx = new MainMenuPm.Ctx
             {
                 resourceLoader = _ctx.resourceLoader,
-                gameConfig = _ctx.gameConfig,
                 uiParent = _ctx.sceneContext.UiParent.transform,
+                viewTestUI = true,
+                gameConfig = _ctx.gameConfig,
                 profile = _ctx.profile
             };
-            AddDispose(new MainMonitorPm(monitorCtx));
+            AddDispose(new MainMenuPm(mainMenuCtx));
             
             _ctx.sceneContext.FloorBuilder.Init(new FloorBuilder.Ctx
             {
