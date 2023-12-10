@@ -14,7 +14,8 @@ public class DeathZone : MonoBehaviour
     {
         if (other.gameObject.TryGetComponent(out FloorView floorView))
         {
-            onFloorFallInDeathZone.Notify();
+            if (floorView.CanCheckCollision)
+                onFloorFallInDeathZone.Notify();
         }
     }
 }
