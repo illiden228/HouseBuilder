@@ -3,26 +3,17 @@ using Core;
 using System;
 using System.Collections.Generic;
 using Tools.Extensions;
+using UniRx;
 using UnityEngine;
-using UnityEngine.UIElements;
 
 public class TowerBuilderPm : BaseDisposable
 {
-    public class Floor
-    {
-        public FloorView floorView;
-        public float installationCoefficient;
-        public float installationPointX;
-        public float floorTowerRockingOffsetX;
-    }
-
     public struct Ctx
     {
         public TowerBuilderView towerBuilderView;
-        //public UserDataLoader userDataLoader;
-        //public ISceneLoader sceneLoader;
-        public FloorView floorViewPrefab;
+        public IResourceLoader resourceLoader;
         public ReactiveEvent onReleaseFloor;
+        public Action onBackToIdleScene;
     }
 
     private readonly Ctx _ctx;
@@ -38,6 +29,8 @@ public class TowerBuilderPm : BaseDisposable
     private float _maxAmplitudeTowerRocking = 2.61f;    
     private float _speedTowerRocking = 1f;
 
+    private const string FloorViewPrefabName = "FloorView";
+    private FloorView _floorViewPrefab;
     private float _averageTowerRockingOffsetX;
     private float _targetYPos = 0f;
     private bool _floorReleased = false;
@@ -73,12 +66,16 @@ public class TowerBuilderPm : BaseDisposable
                 
         _installedFloors = new List<Floor>();
 
+        _ctx.resourceLoader.LoadPrefab("fakebundles", FloorViewPrefabName, OnResourcesLoaded);
+
         CreateNewFloor();
     }
 
+    private void OnResourcesLoaded(GameObject prefab) => _floorViewPrefab = prefab.GetComponent<FloorView>();
+
     private void CreateNewFloor(bool moveCrane = false)
     {
-        _floorToReleaseInstance = GameObject.Instantiate(_ctx.floorViewPrefab, _ctx.towerBuilderView.transform);
+        _floorToReleaseInstance = GameObject.Instantiate(_floorViewPrefab, _ctx.towerBuilderView.transform);
         _floorToReleaseInstance.transform.SetParent(_ctx.towerBuilderView.CableStart);        
         _ctx.towerBuilderView.CableStart.SetParent(_floorToReleaseInstance.transform);
         _floorToReleaseInstance.transform.localPosition = new Vector3(0f, -3.25f, 0f);
@@ -235,5 +232,13 @@ public class TowerBuilderPm : BaseDisposable
             _destroyFailFloorDisposable.Dispose();
         });
         AddDispose(_destroyFailFloorDisposable);
+    }
+
+    public class Floor
+    {
+        public FloorView floorView;
+        public float installationCoefficient;
+        public float installationPointX;
+        public float floorTowerRockingOffsetX;
     }
 }

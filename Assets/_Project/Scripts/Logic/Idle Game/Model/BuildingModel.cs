@@ -1,5 +1,5 @@
 ﻿using Containers;
-using Core;
+using System.Numerics;
 using UniRx;
 
 namespace Logic.Model
@@ -15,7 +15,7 @@ namespace Logic.Model
         {
             Info = new ReactiveProperty<BuildingInfo>();
             TimeSpeed = new ReactiveProperty<float>();
-            MoneyIncome = new ReactiveProperty<int>();
+            MoneyIncome = new ReactiveProperty<int>();            
             CurrentFloorsCount = new ReactiveProperty<int>();
         }
     }

@@ -1,5 +1,3 @@
-using BezierSolution;
-using System;
 using Tools.Extensions;
 using UnityEngine;
 

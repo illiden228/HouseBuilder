@@ -9,15 +9,14 @@ public class FloorsSceneEntryPoint : MonoBehaviour
     [SerializeField] private FloorsContextView _floorsContextView;
     [SerializeField] private FloorsSceneSettings _settings;
 
-    private FloorsRoot _root;
+    private FloorsScenePm _root;
 
     private void Awake()
     {
         if (_debug)
-            _root = new FloorsRoot(new FloorsRoot.Ctx
+            _root = new FloorsScenePm(new FloorsScenePm.Ctx
             {
-                sceneContext = _floorsContextView,
-                floorsSettings = _settings
+                sceneContext = _floorsContextView               
             });
     }
 }
