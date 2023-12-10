@@ -2,7 +2,7 @@
 using _Project.Scripts.Logic.Factories;
 using Containers.Data;
 using Core;
-using Logic.Idle.Monitor_and_Cheat;
+using Logic.Idle.Monitors;
 using Logic.Idle.Workers;
 using Logic.Profile;
 using UniRx;
@@ -17,7 +17,7 @@ namespace SceneLogic
             public ReactiveProperty<Scenes> currentScene;
             public UserDataLoader userDataLoader;
             public IResourceLoader resourceLoader;
-            public IReactiveCollection<WorkerModel> workers;
+            public IReadOnlyProfile profile;
             public GameConfig gameConfig;
         }
 
@@ -30,19 +30,19 @@ namespace SceneLogic
             FactorySystem.Ctx factorySystemCtx = new FactorySystem.Ctx
             {
                 resourceLoader = _ctx.resourceLoader,
-                workers = _ctx.workers,
+                workers = _ctx.profile.Workers,
                 sceneContext = _ctx.sceneContext
             };
             AddDispose(new FactorySystem(factorySystemCtx));
 
-            WorkerMonitorPm.Ctx workerMonitorCtx = new WorkerMonitorPm.Ctx
+            MainMonitorPm.Ctx monitorCtx = new MainMonitorPm.Ctx
             {
                 resourceLoader = _ctx.resourceLoader,
-                workers = _ctx.workers,
                 gameConfig = _ctx.gameConfig,
-                uiParent = _ctx.sceneContext.UiParent.transform
+                uiParent = _ctx.sceneContext.UiParent.transform,
+                profile = _ctx.profile
             };
-            AddDispose(new WorkerMonitorPm(workerMonitorCtx));
+            AddDispose(new MainMonitorPm(monitorCtx));
             
             _ctx.sceneContext.FloorBuilder.Init(new FloorBuilder.Ctx
             {

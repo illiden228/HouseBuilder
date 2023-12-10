@@ -73,7 +73,7 @@ namespace Logic.Intro
                 userDataLoader = _ctx.userDataLoader,
                 sceneContext = idleContextView,
                 resourceLoader = _ctx.resourceLoader,
-                workers = _ctx.workers,
+                profile = _ctx.profile,
                 gameConfig = _ctx.gameConfig
             };
             AddDispose(new IdleScenePm(idleSceneCtx));

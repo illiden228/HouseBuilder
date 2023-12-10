@@ -1,15 +1,18 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using Containers;
 using Containers.Data;
+using Containers.Modificators;
 using Core;
 using Logic.Idle.Workers;
+using Logic.Model;
 using UniRx;
 using UnityEngine;
 
-namespace Logic.Idle.Monitor_and_Cheat
+namespace Logic.Idle.Monitors
 {
-    public class WorkerMonitorPm : BaseDisposable
+    public class WorkerMonitorPm : BaseDisposable, IMonitor
     {
         public struct Ctx
         {
@@ -17,6 +20,9 @@ namespace Logic.Idle.Monitor_and_Cheat
             public IResourceLoader resourceLoader;
             public Action back;
             public IReactiveCollection<WorkerModel> workers;
+            public IReactiveProperty<int> currentEffectiencyLevel;
+            public IReactiveProperty<int> currentSpeedLevel;
+            public IReactiveProperty<int> moneys;
             public GameConfig gameConfig;
         }
 
@@ -24,15 +30,29 @@ namespace Logic.Idle.Monitor_and_Cheat
         private const string VIEW_PREFAB_NAME = "WorkerMonitorView";
         
         private WorkerMonitorView _view;
-        private List<WorkerMonitorRowPm> _workerRows;
+        private Dictionary<WorkerModel, WorkerMonitorRowPm> _workerRows;
+        private ReactiveProperty<int> _workersCount;
         
         public WorkerMonitorPm(Ctx ctx)
         {
             _ctx = ctx;
-            _workerRows = new List<WorkerMonitorRowPm>();
+            _workerRows = new Dictionary<WorkerModel, WorkerMonitorRowPm>();
+            _workersCount = new ReactiveProperty<int>();
 
             AddDispose(_ctx.resourceLoader.LoadPrefab("fakebundles", VIEW_PREFAB_NAME, OnPrefabLoaded));
             AddDispose(_ctx.workers.ObserveAdd().Subscribe(OnAddWorker));
+            AddDispose(_ctx.workers.ObserveRemove().Subscribe(OnRemoveWorker));
+            AddDispose(_ctx.workers.ObserveCountChanged().Subscribe(count => _workersCount.Value = count));
+        }
+
+        public void Open()
+        {
+            _view.gameObject.SetActive(true);
+        }
+
+        public void Close()
+        {
+            _view.gameObject.SetActive(false);
         }
 
         private void OnPrefabLoaded(GameObject prefab)
@@ -43,7 +63,14 @@ namespace Logic.Idle.Monitor_and_Cheat
             {
                 viewDisposable = AddDispose(new CompositeDisposable()),
                 back = _ctx.back,
-                addWorker = AddWorker
+                addWorker = AddWorker,
+                effectiencyUp = () => _ctx.currentEffectiencyLevel.Value++,
+                speedUp = () => _ctx.currentSpeedLevel.Value++,
+                merge = () => Debug.Log("Try Merge"),
+                effectiencyLevel = _ctx.currentEffectiencyLevel,
+                speedLevel = _ctx.currentSpeedLevel,
+                moneys = _ctx.moneys,
+                workersCount = _workersCount
             });
             
             foreach (var workerModel in _ctx.workers)
@@ -72,6 +99,12 @@ namespace Logic.Idle.Monitor_and_Cheat
         {
             CreateWorkerMonitorRow(addEvent.Value);
         }
+        
+        private void OnRemoveWorker(CollectionRemoveEvent<WorkerModel> removeEvent)
+        {
+            if(_workerRows.ContainsKey(removeEvent.Value))
+                _workerRows[removeEvent.Value]?.Dispose();
+        }
 
         private void CreateWorkerMonitorRow(WorkerModel model)
         {
@@ -82,14 +115,15 @@ namespace Logic.Idle.Monitor_and_Cheat
                 uiParent = _view.Container
             };
             
-            _workerRows.Add(new WorkerMonitorRowPm(workerMonitorRowCtx));
+            _workerRows[model] = new WorkerMonitorRowPm(workerMonitorRowCtx);
         }
 
         protected override void OnDispose()
         {
-            for (int i = 0; i < _workerRows.Count; i++)
+            var rows = _workerRows.Values.ToArray();
+            for (int i = 0; i < rows.Length; i++)
             {
-                _workerRows[_workerRows.Count - 1 - i].Dispose();
+                rows[_workerRows.Count - 1 - i].Dispose();
             }
             base.OnDispose();
         }
