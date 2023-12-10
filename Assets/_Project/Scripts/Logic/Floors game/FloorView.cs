@@ -1,5 +1,6 @@
 using BezierSolution;
 using System;
+using Tools.Extensions;
 using UnityEngine;
 
 public class FloorView : MonoBehaviour
@@ -8,10 +9,21 @@ public class FloorView : MonoBehaviour
 
     public Rigidbody Rigidbody => _rigidbody;
 
-    public Action OnCollision;
+    public bool CanCheckCollision = false;
+
+    private ReactiveEvent _onFloorCollision;
+
+    public void SetCollisionEvent(ReactiveEvent onFloorCollisionEvent)
+    {
+        _onFloorCollision = onFloorCollisionEvent;
+    }
 
     private void OnCollisionEnter(Collision collision)
     {
-        OnCollision?.Invoke();
+        if (collision.gameObject.TryGetComponent(out FloorView floorView)) 
+        { 
+            if (CanCheckCollision)
+                _onFloorCollision?.Notify();
+        }            
     }
 }

@@ -14,12 +14,14 @@ public class FloorsRoot : BaseDisposable
         public FloorsContextView sceneContext;
         public FloorsSceneSettings floorsSettings;
     }
-       
+
     public FloorsRoot(Ctx ctx)
     {
         _ctx = ctx;
 
         ReactiveEvent onClickReleaseFloorButton = new ReactiveEvent();
+
+        AddDispose(onClickReleaseFloorButton);
 
         FloorHUDPm mainHUD = AddDispose(new FloorHUDPm(new FloorHUDPm.Ctx
         {
@@ -29,11 +31,11 @@ public class FloorsRoot : BaseDisposable
             releaseFloorButton = onClickReleaseFloorButton
         }));
 
-        TowerBuilderPm towerBuilderPm = AddDispose(new TowerBuilderPm(new TowerBuilderPm.Ctx 
-        { 
-            towerBuilderView = _ctx.sceneContext.TowerBuilderView,            
+        TowerBuilderPm towerBuilderPm = AddDispose(new TowerBuilderPm(new TowerBuilderPm.Ctx
+        {
+            towerBuilderView = _ctx.sceneContext.TowerBuilderView,
             onReleaseFloor = onClickReleaseFloorButton,
             floorViewPrefab = _ctx.floorsSettings.FloorPrefab
-        }));        
-    }   
+        }));
+    }
 }
