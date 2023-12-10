@@ -2259,7 +2259,7 @@ GameObject:
   - component: {fileID: 1762470246}
   - component: {fileID: 1762470247}
   m_Layer: 0
-  m_Name: Tower builder
+  m_Name: Tower builder view
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
