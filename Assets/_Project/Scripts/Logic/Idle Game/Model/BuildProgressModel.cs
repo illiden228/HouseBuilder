@@ -1,5 +1,6 @@
 ﻿using Containers;
 using UniRx;
+using UnityEngine;
 
 namespace Logic.Model
 {
@@ -9,6 +10,8 @@ namespace Logic.Model
         public IReactiveCollection<FloorInfo> NeededFloors { get; }
         public IReactiveProperty<FloorModel> CurrentFloor { get; }
         public IReactiveProperty<int> CurrentFloorIndex { get; }
+        public IReactiveProperty<BuildingModel> Building { get; set; }
+        public IReactiveProperty<FloorsProgressModel> FloorsProgress { get; set; }
 
         public BuildProgressModel()
         {

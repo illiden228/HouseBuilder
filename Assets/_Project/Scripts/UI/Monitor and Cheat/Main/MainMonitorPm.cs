@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Containers.Data;
-using Containers.Modificators;
 using Core;
-using Logic.Idle.Workers;
-using Logic.Model;
 using Logic.Profile;
 using UniRx;
 using UnityEngine;

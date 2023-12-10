@@ -51,6 +51,7 @@ public class TowerBuilderPm : BaseDisposable
         RigidbodyConstraints.FreezePositionZ |
         RigidbodyConstraints.FreezeRotationX |
         RigidbodyConstraints.FreezeRotationY;
+    
 
     public TowerBuilderPm(Ctx ctx)
     {
