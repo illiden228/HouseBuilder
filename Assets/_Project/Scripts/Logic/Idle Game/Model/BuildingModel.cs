@@ -6,10 +6,10 @@ namespace Logic.Model
 {
     public class BuildingModel
     {
-        public ReactiveProperty<BuildingInfo> Info { get; }
+        public ReactiveProperty<BuildingInfo> Info { get; } // здесь награды
         public ReactiveProperty<float> TimeSpeed { get; }
         public ReactiveProperty<int> MoneyIncome { get; }
-        public ReactiveProperty<int> CurrentFloorsCount { get; }
+        public ReactiveProperty<int> CurrentFloorsCount { get; } // этажи для постройки, отнять когда ставится этаж
 
         public BuildingModel()
         {

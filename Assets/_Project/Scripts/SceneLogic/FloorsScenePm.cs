@@ -20,7 +20,8 @@ namespace SceneLogic
             public FloorsContextView sceneContext;
             public Action onBackToIdleScene;
             public IResourceLoader resourceLoader;
-            public ReactiveProperty<BuildingModel> building;
+            public IReactiveProperty<BuildingModel> building; // модель строящегося здания
+            public IReactiveProperty<FloorsProgressModel> floorsProgress; // прогресс строящегося здания
         }
 
         private readonly Ctx _ctx;

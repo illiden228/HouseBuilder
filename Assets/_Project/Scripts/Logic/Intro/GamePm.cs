@@ -17,7 +17,6 @@ namespace Logic.Intro
         {
             public ISceneLoader sceneLoader;
             public IResourceLoader resourceLoader;
-            public IReactiveCollection<WorkerModel> workers;
             public IReadOnlyProfile profile;
             //public ReactiveProperty<Scenes> currentScene;
             public UserDataLoader userDataLoader;
@@ -92,7 +91,11 @@ namespace Logic.Intro
             {
                 currentScene = _ctx.profile.CurrentScene,
                 userDataLoader = _ctx.userDataLoader,
-                sceneContext = floorsContextView
+                sceneContext = floorsContextView,
+                building = _ctx.profile.CurrentBuilding.Value.Building,
+                floorsProgress = _ctx.profile.CurrentBuilding.Value.FloorsProgress,
+                resourceLoader = _ctx.resourceLoader,
+                onBackToIdleScene = () => _ctx.profile.CurrentScene.Value = Scenes.IdleScene
             };
             AddDispose(new FloorsScenePm(floorsSceneCtx));
         }
