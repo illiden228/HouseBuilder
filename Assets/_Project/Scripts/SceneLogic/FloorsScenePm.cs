@@ -48,7 +48,6 @@ namespace SceneLogic
                 onReleaseFloor = onClickReleaseFloorButton,
                 resourceLoader = _ctx.resourceLoader,
                 onBackToIdleScene = _ctx.onBackToIdleScene,
-
             }));
         }
     }

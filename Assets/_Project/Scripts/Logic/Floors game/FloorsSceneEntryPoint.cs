@@ -1,6 +1,10 @@
+using Core;
+using Logic.Idle;
 using SceneLogic;
+using System;
 using UnityEngine;
 
+[Obsolete]
 public class FloorsSceneEntryPoint : MonoBehaviour
 {
     // для теста
@@ -16,7 +20,7 @@ public class FloorsSceneEntryPoint : MonoBehaviour
         if (_debug)
             _root = new FloorsScenePm(new FloorsScenePm.Ctx
             {
-                sceneContext = _floorsContextView               
+                sceneContext = _floorsContextView             
             });
     }
 }
