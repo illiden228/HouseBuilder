@@ -6,7 +6,6 @@ using Containers.Data;
 using Containers.Modificators;
 using Core;
 using Logic.Idle.Workers;
-using Logic.Model;
 using UniRx;
 using UnityEngine;
 
@@ -58,11 +57,15 @@ namespace Logic.Idle.Monitors
         private void OnPrefabLoaded(GameObject prefab)
         {
             _view = GameObject.Instantiate(prefab, _ctx.uiParent).GetComponent<WorkerMonitorView>();
-            
-            _view.Init(new WorkerMonitorView.Ctx
+
+            MonitorPanelView.BaseCtx basePanelCtx = new MonitorPanelView.BaseCtx
             {
                 viewDisposable = AddDispose(new CompositeDisposable()),
-                back = _ctx.back,
+                back = _ctx.back
+            };
+            
+            _view.Init(basePanelCtx, new WorkerMonitorView.Ctx
+            {
                 addWorker = AddWorker,
                 effectiencyUp = () => _ctx.currentEffectiencyLevel.Value++,
                 speedUp = () => _ctx.currentSpeedLevel.Value++,
@@ -81,15 +84,7 @@ namespace Logic.Idle.Monitors
 
         private void AddWorker()
         {
-            WorkerInfo workerInfo = new WorkerInfo
-            {
-                id = "worker_test",
-                grade = _ctx.gameConfig.Grades[0],
-                baseIncomeMoney = _ctx.gameConfig.BaseWorkerMoneyIncome,
-                baseIncomeWork = _ctx.gameConfig.BaseWorkerWorkIncome,
-                baseTimeToWork = _ctx.gameConfig.BaseWorkerTimeSpeed,
-            };
-
+            WorkerInfo workerInfo = _ctx.gameConfig.GetStartWorkerInfo();
             WorkerModel model = new WorkerModel(workerInfo);
             
             _ctx.workers.Add(model);

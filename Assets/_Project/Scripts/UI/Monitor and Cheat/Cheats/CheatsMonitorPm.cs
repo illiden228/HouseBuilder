@@ -1,4 +1,5 @@
-﻿using Core;
+﻿using System;
+using Core;
 using Logic.Idle.Monitors;
 using UniRx;
 using UnityEngine;
@@ -11,6 +12,7 @@ namespace Logic.Idle.Monitors
         {
             public Transform uiParent;
             public IResourceLoader resourceLoader;
+            public Action back;
         }
 
         private readonly Ctx _ctx;
@@ -28,10 +30,24 @@ namespace Logic.Idle.Monitors
         {
             _view = GameObject.Instantiate(prefab, _ctx.uiParent).GetComponent<CheatsMonitorView>();
             
-            _view.Init(new CheatsMonitorView.Ctx
+            MonitorPanelView.BaseCtx basePanelCtx = new MonitorPanelView.BaseCtx
             {
-                viewDisposable = AddDispose(new CompositeDisposable())
+                viewDisposable = AddDispose(new CompositeDisposable()),
+                back = _ctx.back
+            };
+            
+            _view.Init(basePanelCtx, new CheatsMonitorView.Ctx
+            {
+                
             });
+
+            TimeSpeedCheatPm.Ctx timeSpeedCheatCtx = new TimeSpeedCheatPm.Ctx
+            {
+                maxValue = 10,
+                minValue = 1,
+                view = _view.TimeSpeedCheatView
+            };
+            AddDispose(new TimeSpeedCheatPm(timeSpeedCheatCtx));
         }
 
         public void Open()

@@ -1,0 +1,2128 @@
+{
+  "MainSettings": {},
+  "workerInfos": [
+    {
+      "baseTimeToWork": 6,
+      "baseIncomeWork": 500,
+      "baseIncomeMoney": 500
+    },
+    {
+      "baseTimeToWork": 5.97,
+      "baseIncomeWork": 520,
+      "baseIncomeMoney": 520
+    },
+    {
+      "baseTimeToWork": 5.94,
+      "baseIncomeWork": 540,
+      "baseIncomeMoney": 540
+    },
+    {
+      "baseTimeToWork": 5.91,
+      "baseIncomeWork": 560,
+      "baseIncomeMoney": 560
+    },
+    {
+      "baseTimeToWork": 5.88,
+      "baseIncomeWork": 580,
+      "baseIncomeMoney": 580
+    },
+    {
+      "baseTimeToWork": 5.851,
+      "baseIncomeWork": 600,
+      "baseIncomeMoney": 600
+    },
+    {
+      "baseTimeToWork": 5.822,
+      "baseIncomeWork": 620,
+      "baseIncomeMoney": 620
+    },
+    {
+      "baseTimeToWork": 5.793,
+      "baseIncomeWork": 640,
+      "baseIncomeMoney": 640
+    },
+    {
+      "baseTimeToWork": 5.764,
+      "baseIncomeWork": 660,
+      "baseIncomeMoney": 660
+    },
+    {
+      "baseTimeToWork": 5.735,
+      "baseIncomeWork": 680,
+      "baseIncomeMoney": 680
+    },
+    {
+      "baseTimeToWork": 5.706,
+      "baseIncomeWork": 700,
+      "baseIncomeMoney": 700
+    },
+    {
+      "baseTimeToWork": 5.677,
+      "baseIncomeWork": 720,
+      "baseIncomeMoney": 720
+    },
+    {
+      "baseTimeToWork": 5.649,
+      "baseIncomeWork": 740,
+      "baseIncomeMoney": 740
+    },
+    {
+      "baseTimeToWork": 5.621,
+      "baseIncomeWork": 760,
+      "baseIncomeMoney": 760
+    },
+    {
+      "baseTimeToWork": 5.593,
+      "baseIncomeWork": 780,
+      "baseIncomeMoney": 780
+    },
+    {
+      "baseTimeToWork": 5.565,
+      "baseIncomeWork": 800,
+      "baseIncomeMoney": 800
+    },
+    {
+      "baseTimeToWork": 5.537,
+      "baseIncomeWork": 820,
+      "baseIncomeMoney": 820
+    },
+    {
+      "baseTimeToWork": 5.509,
+      "baseIncomeWork": 840,
+      "baseIncomeMoney": 840
+    },
+    {
+      "baseTimeToWork": 5.481,
+      "baseIncomeWork": 860,
+      "baseIncomeMoney": 860
+    },
+    {
+      "baseTimeToWork": 5.454,
+      "baseIncomeWork": 880,
+      "baseIncomeMoney": 880
+    },
+    {
+      "baseTimeToWork": 5.427,
+      "baseIncomeWork": 900,
+      "baseIncomeMoney": 900
+    },
+    {
+      "baseTimeToWork": 5.4,
+      "baseIncomeWork": 920,
+      "baseIncomeMoney": 920
+    },
+    {
+      "baseTimeToWork": 5.373,
+      "baseIncomeWork": 940,
+      "baseIncomeMoney": 940
+    },
+    {
+      "baseTimeToWork": 5.346,
+      "baseIncomeWork": 960,
+      "baseIncomeMoney": 960
+    },
+    {
+      "baseTimeToWork": 5.319,
+      "baseIncomeWork": 980,
+      "baseIncomeMoney": 980
+    },
+    {
+      "baseTimeToWork": 5.292,
+      "baseIncomeWork": 1000,
+      "baseIncomeMoney": 1000
+    },
+    {
+      "baseTimeToWork": 5.266,
+      "baseIncomeWork": 1020,
+      "baseIncomeMoney": 1020
+    },
+    {
+      "baseTimeToWork": 5.24,
+      "baseIncomeWork": 1040,
+      "baseIncomeMoney": 1040
+    },
+    {
+      "baseTimeToWork": 5.214,
+      "baseIncomeWork": 1060,
+      "baseIncomeMoney": 1060
+    },
+    {
+      "baseTimeToWork": 5.188,
+      "baseIncomeWork": 1080,
+      "baseIncomeMoney": 1080
+    },
+    {
+      "baseTimeToWork": 5.162,
+      "baseIncomeWork": 1100,
+      "baseIncomeMoney": 1100
+    },
+    {
+      "baseTimeToWork": 5.136,
+      "baseIncomeWork": 1120,
+      "baseIncomeMoney": 1120
+    },
+    {
+      "baseTimeToWork": 5.11,
+      "baseIncomeWork": 1140,
+      "baseIncomeMoney": 1140
+    },
+    {
+      "baseTimeToWork": 5.084,
+      "baseIncomeWork": 1160,
+      "baseIncomeMoney": 1160
+    },
+    {
+      "baseTimeToWork": 5.059,
+      "baseIncomeWork": 1180,
+      "baseIncomeMoney": 1180
+    },
+    {
+      "baseTimeToWork": 5.034,
+      "baseIncomeWork": 1200,
+      "baseIncomeMoney": 1200
+    },
+    {
+      "baseTimeToWork": 5.009,
+      "baseIncomeWork": 1220,
+      "baseIncomeMoney": 1220
+    },
+    {
+      "baseTimeToWork": 4.984,
+      "baseIncomeWork": 1240,
+      "baseIncomeMoney": 1240
+    },
+    {
+      "baseTimeToWork": 4.959,
+      "baseIncomeWork": 1260,
+      "baseIncomeMoney": 1260
+    },
+    {
+      "baseTimeToWork": 4.934,
+      "baseIncomeWork": 1280,
+      "baseIncomeMoney": 1280
+    },
+    {
+      "baseTimeToWork": 4.909,
+      "baseIncomeWork": 1300,
+      "baseIncomeMoney": 1300
+    },
+    {
+      "baseTimeToWork": 4.884,
+      "baseIncomeWork": 1320,
+      "baseIncomeMoney": 1320
+    },
+    {
+      "baseTimeToWork": 4.86,
+      "baseIncomeWork": 1340,
+      "baseIncomeMoney": 1340
+    },
+    {
+      "baseTimeToWork": 4.836,
+      "baseIncomeWork": 1360,
+      "baseIncomeMoney": 1360
+    },
+    {
+      "baseTimeToWork": 4.812,
+      "baseIncomeWork": 1380,
+      "baseIncomeMoney": 1380
+    },
+    {
+      "baseTimeToWork": 4.788,
+      "baseIncomeWork": 1400,
+      "baseIncomeMoney": 1400
+    },
+    {
+      "baseTimeToWork": 4.764,
+      "baseIncomeWork": 1420,
+      "baseIncomeMoney": 1420
+    },
+    {
+      "baseTimeToWork": 4.74,
+      "baseIncomeWork": 1440,
+      "baseIncomeMoney": 1440
+    },
+    {
+      "baseTimeToWork": 4.716,
+      "baseIncomeWork": 1460,
+      "baseIncomeMoney": 1460
+    },
+    {
+      "baseTimeToWork": 4.692,
+      "baseIncomeWork": 1480,
+      "baseIncomeMoney": 1480
+    },
+    {
+      "baseTimeToWork": 4.669,
+      "baseIncomeWork": 1500,
+      "baseIncomeMoney": 1500
+    },
+    {
+      "baseTimeToWork": 4.646,
+      "baseIncomeWork": 1520,
+      "baseIncomeMoney": 1520
+    },
+    {
+      "baseTimeToWork": 4.623,
+      "baseIncomeWork": 1540,
+      "baseIncomeMoney": 1540
+    },
+    {
+      "baseTimeToWork": 4.6,
+      "baseIncomeWork": 1560,
+      "baseIncomeMoney": 1560
+    },
+    {
+      "baseTimeToWork": 4.577,
+      "baseIncomeWork": 1580,
+      "baseIncomeMoney": 1580
+    },
+    {
+      "baseTimeToWork": 4.554,
+      "baseIncomeWork": 1600,
+      "baseIncomeMoney": 1600
+    },
+    {
+      "baseTimeToWork": 4.531,
+      "baseIncomeWork": 1620,
+      "baseIncomeMoney": 1620
+    },
+    {
+      "baseTimeToWork": 4.508,
+      "baseIncomeWork": 1640,
+      "baseIncomeMoney": 1640
+    },
+    {
+      "baseTimeToWork": 4.485,
+      "baseIncomeWork": 1660,
+      "baseIncomeMoney": 1660
+    },
+    {
+      "baseTimeToWork": 4.463,
+      "baseIncomeWork": 1680,
+      "baseIncomeMoney": 1680
+    },
+    {
+      "baseTimeToWork": 4.441,
+      "baseIncomeWork": 1700,
+      "baseIncomeMoney": 1700
+    },
+    {
+      "baseTimeToWork": 4.419,
+      "baseIncomeWork": 1720,
+      "baseIncomeMoney": 1720
+    },
+    {
+      "baseTimeToWork": 4.397,
+      "baseIncomeWork": 1740,
+      "baseIncomeMoney": 1740
+    },
+    {
+      "baseTimeToWork": 4.375,
+      "baseIncomeWork": 1760,
+      "baseIncomeMoney": 1760
+    },
+    {
+      "baseTimeToWork": 4.353,
+      "baseIncomeWork": 1780,
+      "baseIncomeMoney": 1780
+    },
+    {
+      "baseTimeToWork": 4.331,
+      "baseIncomeWork": 1800,
+      "baseIncomeMoney": 1800
+    },
+    {
+      "baseTimeToWork": 4.309,
+      "baseIncomeWork": 1820,
+      "baseIncomeMoney": 1820
+    },
+    {
+      "baseTimeToWork": 4.287,
+      "baseIncomeWork": 1840,
+      "baseIncomeMoney": 1840
+    },
+    {
+      "baseTimeToWork": 4.266,
+      "baseIncomeWork": 1860,
+      "baseIncomeMoney": 1860
+    },
+    {
+      "baseTimeToWork": 4.245,
+      "baseIncomeWork": 1880,
+      "baseIncomeMoney": 1880
+    },
+    {
+      "baseTimeToWork": 4.224,
+      "baseIncomeWork": 1900,
+      "baseIncomeMoney": 1900
+    },
+    {
+      "baseTimeToWork": 4.203,
+      "baseIncomeWork": 1920,
+      "baseIncomeMoney": 1920
+    },
+    {
+      "baseTimeToWork": 4.182,
+      "baseIncomeWork": 1940,
+      "baseIncomeMoney": 1940
+    },
+    {
+      "baseTimeToWork": 4.161,
+      "baseIncomeWork": 1960,
+      "baseIncomeMoney": 1960
+    },
+    {
+      "baseTimeToWork": 4.14,
+      "baseIncomeWork": 1980,
+      "baseIncomeMoney": 1980
+    },
+    {
+      "baseTimeToWork": 4.119,
+      "baseIncomeWork": 2000,
+      "baseIncomeMoney": 2000
+    },
+    {
+      "baseTimeToWork": 4.098,
+      "baseIncomeWork": 2020,
+      "baseIncomeMoney": 2020
+    },
+    {
+      "baseTimeToWork": 4.078,
+      "baseIncomeWork": 2040,
+      "baseIncomeMoney": 2040
+    },
+    {
+      "baseTimeToWork": 4.058,
+      "baseIncomeWork": 2060,
+      "baseIncomeMoney": 2060
+    }
+  ],
+  "levelUpCosts": [
+    {
+      "nextLevelCost": 500,
+      "nextMergeLevelCost": 5000
+    },
+    {
+      "nextLevelCost": 5000,
+      "nextMergeLevelCost": 15000
+    },
+    {
+      "nextLevelCost": 10000,
+      "nextMergeLevelCost": 27300
+    },
+    {
+      "nextLevelCost": 15000,
+      "nextMergeLevelCost": 46000
+    },
+    {
+      "nextLevelCost": 21000,
+      "nextMergeLevelCost": 66240
+    },
+    {
+      "nextLevelCost": 27300,
+      "nextMergeLevelCost": 75838
+    },
+    {
+      "nextLevelCost": 35500,
+      "nextMergeLevelCost": 86827
+    },
+    {
+      "nextLevelCost": 46000,
+      "nextMergeLevelCost": 99408
+    },
+    {
+      "nextLevelCost": 55200,
+      "nextMergeLevelCost": 113813
+    },
+    {
+      "nextLevelCost": 66200,
+      "nextMergeLevelCost": 130305
+    },
+    {
+      "nextLevelCost": 70900,
+      "nextMergeLevelCost": 149186
+    },
+    {
+      "nextLevelCost": 75800,
+      "nextMergeLevelCost": 170803
+    },
+    {
+      "nextLevelCost": 81100,
+      "nextMergeLevelCost": 195552
+    },
+    {
+      "nextLevelCost": 86800,
+      "nextMergeLevelCost": 223888
+    },
+    {
+      "nextLevelCost": 92900,
+      "nextMergeLevelCost": 256329
+    },
+    {
+      "nextLevelCost": 99400,
+      "nextMergeLevelCost": 293471
+    },
+    {
+      "nextLevelCost": 106000,
+      "nextMergeLevelCost": 335995
+    },
+    {
+      "nextLevelCost": 114000,
+      "nextMergeLevelCost": 384681
+    },
+    {
+      "nextLevelCost": 122000,
+      "nextMergeLevelCost": 440422
+    },
+    {
+      "nextLevelCost": 130000,
+      "nextMergeLevelCost": 504240
+    },
+    {
+      "nextLevelCost": 139000,
+      "nextMergeLevelCost": 577305
+    },
+    {
+      "nextLevelCost": 149000,
+      "nextMergeLevelCost": 660956
+    },
+    {
+      "nextLevelCost": 160000,
+      "nextMergeLevelCost": 756729
+    },
+    {
+      "nextLevelCost": 171000,
+      "nextMergeLevelCost": 866379
+    },
+    {
+      "nextLevelCost": 183000,
+      "nextMergeLevelCost": 991918
+    },
+    {
+      "nextLevelCost": 196000,
+      "nextMergeLevelCost": 1135647
+    },
+    {
+      "nextLevelCost": 209000,
+      "nextMergeLevelCost": 1300202
+    },
+    {
+      "nextLevelCost": 224000,
+      "nextMergeLevelCost": 1488601
+    },
+    {
+      "nextLevelCost": 240000,
+      "nextMergeLevelCost": 1704299
+    },
+    {
+      "nextLevelCost": 256000,
+      "nextMergeLevelCost": 1951252
+    },
+    {
+      "nextLevelCost": 274000,
+      "nextMergeLevelCost": 2233989
+    },
+    {
+      "nextLevelCost": 293000,
+      "nextMergeLevelCost": 2557694
+    },
+    {
+      "nextLevelCost": 314000,
+      "nextMergeLevelCost": 2928304
+    },
+    {
+      "nextLevelCost": 336000,
+      "nextMergeLevelCost": 3352615
+    },
+    {
+      "nextLevelCost": 360000,
+      "nextMergeLevelCost": 3838409
+    },
+    {
+      "nextLevelCost": 385000,
+      "nextMergeLevelCost": 4394595
+    },
+    {
+      "nextLevelCost": 412000,
+      "nextMergeLevelCost": 5031372
+    },
+    {
+      "nextLevelCost": 440000,
+      "nextMergeLevelCost": 5760418
+    },
+    {
+      "nextLevelCost": 471000,
+      "nextMergeLevelCost": 6595102
+    },
+    {
+      "nextLevelCost": 504000,
+      "nextMergeLevelCost": 7550732
+    },
+    {
+      "nextLevelCost": 540000,
+      "nextMergeLevelCost": 8644833
+    },
+    {
+      "nextLevelCost": 577000,
+      "nextMergeLevelCost": 9897469
+    },
+    {
+      "nextLevelCost": 618000,
+      "nextMergeLevelCost": 11331612
+    },
+    {
+      "nextLevelCost": 661000,
+      "nextMergeLevelCost": 12973563
+    },
+    {
+      "nextLevelCost": 707000,
+      "nextMergeLevelCost": 14853432
+    },
+    {
+      "nextLevelCost": 757000,
+      "nextMergeLevelCost": 17005694
+    },
+    {
+      "nextLevelCost": 810000,
+      "nextMergeLevelCost": 19469820
+    },
+    {
+      "nextLevelCost": 866000,
+      "nextMergeLevelCost": 22290996
+    },
+    {
+      "nextLevelCost": 927000,
+      "nextMergeLevelCost": 25520962
+    },
+    {
+      "nextLevelCost": 992000,
+      "nextMergeLevelCost": 29218949
+    },
+    {
+      "nextLevelCost": 1060000,
+      "nextMergeLevelCost": 33452774
+    },
+    {
+      "nextLevelCost": 1140000,
+      "nextMergeLevelCost": 38300081
+    },
+    {
+      "nextLevelCost": 1220000,
+      "nextMergeLevelCost": 43849763
+    },
+    {
+      "nextLevelCost": 1300000,
+      "nextMergeLevelCost": 50203593
+    },
+    {
+      "nextLevelCost": 1390000,
+      "nextMergeLevelCost": 57478094
+    },
+    {
+      "nextLevelCost": 1490000,
+      "nextMergeLevelCost": 65806670
+    },
+    {
+      "nextLevelCost": 1590000,
+      "nextMergeLevelCost": 75342057
+    },
+    {
+      "nextLevelCost": 1700000,
+      "nextMergeLevelCost": 86259121
+    },
+    {
+      "nextLevelCost": 1820000,
+      "nextMergeLevelCost": 98758067
+    },
+    {
+      "nextLevelCost": 1950000,
+      "nextMergeLevelCost": 113068111
+    },
+    {
+      "nextLevelCost": 2090000,
+      "nextMergeLevelCost": 129451681
+    },
+    {
+      "nextLevelCost": 2230000,
+      "nextMergeLevelCost": 148209230
+    },
+    {
+      "nextLevelCost": 2390000,
+      "nextMergeLevelCost": 169684747
+    },
+    {
+      "nextLevelCost": 2560000,
+      "nextMergeLevelCost": 194272067
+    },
+    {
+      "nextLevelCost": 2740000,
+      "nextMergeLevelCost": 222422090
+    },
+    {
+      "nextLevelCost": 2930000,
+      "nextMergeLevelCost": 254651051
+    },
+    {
+      "nextLevelCost": 3130000,
+      "nextMergeLevelCost": 291549989
+    },
+    {
+      "nextLevelCost": 3350000,
+      "nextMergeLevelCost": 333795582
+    },
+    {
+      "nextLevelCost": 3590000,
+      "nextMergeLevelCost": 382162562
+    },
+    {
+      "nextLevelCost": 3840000,
+      "nextMergeLevelCost": 437537917
+    },
+    {
+      "nextLevelCost": 4110000,
+      "nextMergeLevelCost": 500937161
+    },
+    {
+      "nextLevelCost": 4390000,
+      "nextMergeLevelCost": 573522955
+    },
+    {
+      "nextLevelCost": 4700000,
+      "nextMergeLevelCost": 656626431
+    },
+    {
+      "nextLevelCost": 5030000,
+      "nextMergeLevelCost": 751771601
+    },
+    {
+      "nextLevelCost": 5380000,
+      "nextMergeLevelCost": 860703306
+    },
+    {
+      "nextLevelCost": 5760000,
+      "nextMergeLevelCost": 985419215
+    },
+    {
+      "nextLevelCost": 6160000,
+      "nextMergeLevelCost": 1128206459
+    },
+    {
+      "nextLevelCost": 6600000,
+      "nextMergeLevelCost": 1291683575
+    },
+    {
+      "nextLevelCost": 7060000,
+      "nextMergeLevelCost": 1478848525
+    }
+  ],
+  "buildingInfos": [
+    {
+      "floorsCount": 5,
+      "income": 50,
+      "timeSpeed": 1,
+      "minReward": 20,
+      "maxReward": 100
+    },
+    {
+      "floorsCount": 7,
+      "income": 63,
+      "timeSpeed": 1,
+      "minReward": 20,
+      "maxReward": 100
+    },
+    {
+      "floorsCount": 10,
+      "income": 79,
+      "timeSpeed": 1,
+      "minReward": 20,
+      "maxReward": 100
+    },
+    {
+      "floorsCount": 10,
+      "income": 99,
+      "timeSpeed": 1,
+      "minReward": 20,
+      "maxReward": 100
+    },
+    {
+      "floorsCount": 10,
+      "income": 124,
+      "timeSpeed": 1,
+      "minReward": 20,
+      "maxReward": 100
+    },
+    {
+      "floorsCount": 15,
+      "income": 155,
+      "timeSpeed": 1,
+      "minReward": 20,
+      "maxReward": 100
+    },
+    {
+      "floorsCount": 15,
+      "income": 194,
+      "timeSpeed": 1,
+      "minReward": 20,
+      "maxReward": 100
+    },
+    {
+      "floorsCount": 15,
+      "income": 243,
+      "timeSpeed": 1,
+      "minReward": 20,
+      "maxReward": 100
+    },
+    {
+      "floorsCount": 15,
+      "income": 304,
+      "timeSpeed": 1,
+      "minReward": 20,
+      "maxReward": 100
+    },
+    {
+      "floorsCount": 15,
+      "income": 380,
+      "timeSpeed": 1,
+      "minReward": 20,
+      "maxReward": 100
+    },
+    {
+      "floorsCount": 15,
+      "income": 475,
+      "timeSpeed": 1,
+      "minReward": 20,
+      "maxReward": 100
+    },
+    {
+      "floorsCount": 15,
+      "income": 594,
+      "timeSpeed": 1,
+      "minReward": 20,
+      "maxReward": 100
+    },
+    {
+      "floorsCount": 20,
+      "income": 743,
+      "timeSpeed": 1,
+      "minReward": 20,
+      "maxReward": 100
+    },
+    {
+      "floorsCount": 20,
+      "income": 929,
+      "timeSpeed": 1,
+      "minReward": 20,
+      "maxReward": 100
+    },
+    {
+      "floorsCount": 20,
+      "income": 1161,
+      "timeSpeed": 1,
+      "minReward": 20,
+      "maxReward": 100
+    },
+    {
+      "floorsCount": 20,
+      "income": 1451,
+      "timeSpeed": 1,
+      "minReward": 20,
+      "maxReward": 100
+    },
+    {
+      "floorsCount": 20,
+      "income": 1814,
+      "timeSpeed": 1,
+      "minReward": 20,
+      "maxReward": 100
+    },
+    {
+      "floorsCount": 25,
+      "income": 2268,
+      "timeSpeed": 1,
+      "minReward": 20,
+      "maxReward": 100
+    },
+    {
+      "floorsCount": 25,
+      "income": 2835,
+      "timeSpeed": 1,
+      "minReward": 20,
+      "maxReward": 100
+    },
+    {
+      "floorsCount": 25,
+      "income": 3544,
+      "timeSpeed": 1,
+      "minReward": 20,
+      "maxReward": 100
+    },
+    {
+      "floorsCount": 25,
+      "income": 4430,
+      "timeSpeed": 1,
+      "minReward": 20,
+      "maxReward": 100
+    },
+    {
+      "floorsCount": 25,
+      "income": 5538,
+      "timeSpeed": 1,
+      "minReward": 20,
+      "maxReward": 100
+    },
+    {
+      "floorsCount": 30,
+      "income": 6923,
+      "timeSpeed": 1,
+      "minReward": 20,
+      "maxReward": 100
+    },
+    {
+      "floorsCount": 30,
+      "income": 8654,
+      "timeSpeed": 1,
+      "minReward": 20,
+      "maxReward": 100
+    },
+    {
+      "floorsCount": 30,
+      "income": 10818,
+      "timeSpeed": 1,
+      "minReward": 20,
+      "maxReward": 100
+    },
+    {
+      "floorsCount": 30,
+      "income": 13523,
+      "timeSpeed": 1,
+      "minReward": 20,
+      "maxReward": 100
+    },
+    {
+      "floorsCount": 30,
+      "income": 16904,
+      "timeSpeed": 1,
+      "minReward": 20,
+      "maxReward": 100
+    },
+    {
+      "floorsCount": 30,
+      "income": 21130,
+      "timeSpeed": 1,
+      "minReward": 20,
+      "maxReward": 100
+    },
+    {
+      "floorsCount": 30,
+      "income": 26413,
+      "timeSpeed": 1,
+      "minReward": 20,
+      "maxReward": 100
+    },
+    {
+      "floorsCount": 35,
+      "income": 33016,
+      "timeSpeed": 1,
+      "minReward": 20,
+      "maxReward": 100
+    },
+    {
+      "floorsCount": 35,
+      "income": 41270,
+      "timeSpeed": 1,
+      "minReward": 20,
+      "maxReward": 100
+    },
+    {
+      "floorsCount": 35,
+      "income": 51588,
+      "timeSpeed": 1,
+      "minReward": 20,
+      "maxReward": 100
+    },
+    {
+      "floorsCount": 35,
+      "income": 64485,
+      "timeSpeed": 1,
+      "minReward": 20,
+      "maxReward": 100
+    },
+    {
+      "floorsCount": 35,
+      "income": 80606,
+      "timeSpeed": 1,
+      "minReward": 20,
+      "maxReward": 100
+    },
+    {
+      "floorsCount": 40,
+      "income": 100758,
+      "timeSpeed": 1,
+      "minReward": 20,
+      "maxReward": 100
+    },
+    {
+      "floorsCount": 40,
+      "income": 125948,
+      "timeSpeed": 1,
+      "minReward": 20,
+      "maxReward": 100
+    },
+    {
+      "floorsCount": 40,
+      "income": 157435,
+      "timeSpeed": 1,
+      "minReward": 20,
+      "maxReward": 100
+    },
+    {
+      "floorsCount": 40,
+      "income": 196794,
+      "timeSpeed": 1,
+      "minReward": 20,
+      "maxReward": 100
+    },
+    {
+      "floorsCount": 40,
+      "income": 245993,
+      "timeSpeed": 1,
+      "minReward": 20,
+      "maxReward": 100
+    },
+    {
+      "floorsCount": 45,
+      "income": 307491,
+      "timeSpeed": 1,
+      "minReward": 20,
+      "maxReward": 100
+    },
+    {
+      "floorsCount": 45,
+      "income": 384364,
+      "timeSpeed": 1,
+      "minReward": 20,
+      "maxReward": 100
+    },
+    {
+      "floorsCount": 45,
+      "income": 480455,
+      "timeSpeed": 1,
+      "minReward": 20,
+      "maxReward": 100
+    },
+    {
+      "floorsCount": 45,
+      "income": 600569,
+      "timeSpeed": 1,
+      "minReward": 20,
+      "maxReward": 100
+    },
+    {
+      "floorsCount": 45,
+      "income": 750711,
+      "timeSpeed": 1,
+      "minReward": 20,
+      "maxReward": 100
+    },
+    {
+      "floorsCount": 50,
+      "income": 938389,
+      "timeSpeed": 1,
+      "minReward": 20,
+      "maxReward": 100
+    },
+    {
+      "floorsCount": 60,
+      "income": 1172986,
+      "timeSpeed": 1,
+      "minReward": 20,
+      "maxReward": 100
+    },
+    {
+      "floorsCount": 70,
+      "income": 1466233,
+      "timeSpeed": 1,
+      "minReward": 20,
+      "maxReward": 100
+    },
+    {
+      "floorsCount": 80,
+      "income": 1832791,
+      "timeSpeed": 1,
+      "minReward": 20,
+      "maxReward": 100
+    },
+    {
+      "floorsCount": 90,
+      "income": 2290989,
+      "timeSpeed": 1,
+      "minReward": 20,
+      "maxReward": 100
+    },
+    {
+      "floorsCount": 100,
+      "income": 2863736,
+      "timeSpeed": 1,
+      "minReward": 20,
+      "maxReward": 100
+    }
+  ],
+  "floorInfos": [
+    {
+      "maxWorkCount": 4000
+    },
+    {
+      "maxWorkCount": 5000
+    },
+    {
+      "maxWorkCount": 6000
+    },
+    {
+      "maxWorkCount": 7000
+    },
+    {
+      "maxWorkCount": 8000
+    },
+    {
+      "maxWorkCount": 9000
+    },
+    {
+      "maxWorkCount": 10000
+    },
+    {
+      "maxWorkCount": 12000
+    },
+    {
+      "maxWorkCount": 15000
+    },
+    {
+      "maxWorkCount": 15500
+    },
+    {
+      "maxWorkCount": 16100
+    },
+    {
+      "maxWorkCount": 16600
+    },
+    {
+      "maxWorkCount": 17200
+    },
+    {
+      "maxWorkCount": 17800
+    },
+    {
+      "maxWorkCount": 18400
+    },
+    {
+      "maxWorkCount": 19100
+    },
+    {
+      "maxWorkCount": 19800
+    },
+    {
+      "maxWorkCount": 20400
+    },
+    {
+      "maxWorkCount": 21200
+    },
+    {
+      "maxWorkCount": 21900
+    },
+    {
+      "maxWorkCount": 22700
+    },
+    {
+      "maxWorkCount": 23500
+    },
+    {
+      "maxWorkCount": 24300
+    },
+    {
+      "maxWorkCount": 25100
+    },
+    {
+      "maxWorkCount": 26000
+    },
+    {
+      "maxWorkCount": 26900
+    },
+    {
+      "maxWorkCount": 27900
+    },
+    {
+      "maxWorkCount": 28800
+    },
+    {
+      "maxWorkCount": 29800
+    },
+    {
+      "maxWorkCount": 30900
+    },
+    {
+      "maxWorkCount": 32000
+    },
+    {
+      "maxWorkCount": 33100
+    },
+    {
+      "maxWorkCount": 34200
+    },
+    {
+      "maxWorkCount": 35400
+    },
+    {
+      "maxWorkCount": 36700
+    },
+    {
+      "maxWorkCount": 38000
+    },
+    {
+      "maxWorkCount": 39300
+    },
+    {
+      "maxWorkCount": 40700
+    },
+    {
+      "maxWorkCount": 42100
+    },
+    {
+      "maxWorkCount": 43600
+    },
+    {
+      "maxWorkCount": 45100
+    },
+    {
+      "maxWorkCount": 46700
+    },
+    {
+      "maxWorkCount": 48300
+    },
+    {
+      "maxWorkCount": 50000
+    },
+    {
+      "maxWorkCount": 51700
+    },
+    {
+      "maxWorkCount": 53600
+    },
+    {
+      "maxWorkCount": 55400
+    },
+    {
+      "maxWorkCount": 57400
+    },
+    {
+      "maxWorkCount": 59400
+    },
+    {
+      "maxWorkCount": 61500
+    },
+    {
+      "maxWorkCount": 63600
+    },
+    {
+      "maxWorkCount": 65800
+    },
+    {
+      "maxWorkCount": 68100
+    },
+    {
+      "maxWorkCount": 70500
+    },
+    {
+      "maxWorkCount": 73000
+    },
+    {
+      "maxWorkCount": 75500
+    },
+    {
+      "maxWorkCount": 78200
+    },
+    {
+      "maxWorkCount": 80900
+    },
+    {
+      "maxWorkCount": 83800
+    },
+    {
+      "maxWorkCount": 86700
+    },
+    {
+      "maxWorkCount": 89700
+    },
+    {
+      "maxWorkCount": 92900
+    },
+    {
+      "maxWorkCount": 96100
+    },
+    {
+      "maxWorkCount": 99500
+    },
+    {
+      "maxWorkCount": 103000
+    },
+    {
+      "maxWorkCount": 107000
+    },
+    {
+      "maxWorkCount": 110000
+    },
+    {
+      "maxWorkCount": 114000
+    },
+    {
+      "maxWorkCount": 118000
+    },
+    {
+      "maxWorkCount": 122000
+    },
+    {
+      "maxWorkCount": 127000
+    },
+    {
+      "maxWorkCount": 131000
+    },
+    {
+      "maxWorkCount": 136000
+    },
+    {
+      "maxWorkCount": 140000
+    },
+    {
+      "maxWorkCount": 145000
+    },
+    {
+      "maxWorkCount": 150000
+    },
+    {
+      "maxWorkCount": 156000
+    },
+    {
+      "maxWorkCount": 161000
+    },
+    {
+      "maxWorkCount": 167000
+    },
+    {
+      "maxWorkCount": 172000
+    },
+    {
+      "maxWorkCount": 179000
+    },
+    {
+      "maxWorkCount": 185000
+    },
+    {
+      "maxWorkCount": 191000
+    },
+    {
+      "maxWorkCount": 198000
+    },
+    {
+      "maxWorkCount": 205000
+    },
+    {
+      "maxWorkCount": 212000
+    },
+    {
+      "maxWorkCount": 219000
+    },
+    {
+      "maxWorkCount": 227000
+    },
+    {
+      "maxWorkCount": 235000
+    },
+    {
+      "maxWorkCount": 243000
+    },
+    {
+      "maxWorkCount": 252000
+    },
+    {
+      "maxWorkCount": 261000
+    },
+    {
+      "maxWorkCount": 270000
+    },
+    {
+      "maxWorkCount": 279000
+    },
+    {
+      "maxWorkCount": 289000
+    },
+    {
+      "maxWorkCount": 299000
+    },
+    {
+      "maxWorkCount": 310000
+    },
+    {
+      "maxWorkCount": 320000
+    },
+    {
+      "maxWorkCount": 332000
+    },
+    {
+      "maxWorkCount": 343000
+    },
+    {
+      "maxWorkCount": 355000
+    },
+    {
+      "maxWorkCount": 368000
+    },
+    {
+      "maxWorkCount": 381000
+    },
+    {
+      "maxWorkCount": 394000
+    },
+    {
+      "maxWorkCount": 408000
+    },
+    {
+      "maxWorkCount": 422000
+    },
+    {
+      "maxWorkCount": 437000
+    },
+    {
+      "maxWorkCount": 452000
+    },
+    {
+      "maxWorkCount": 468000
+    },
+    {
+      "maxWorkCount": 484000
+    },
+    {
+      "maxWorkCount": 501000
+    },
+    {
+      "maxWorkCount": 519000
+    },
+    {
+      "maxWorkCount": 537000
+    },
+    {
+      "maxWorkCount": 556000
+    },
+    {
+      "maxWorkCount": 575000
+    },
+    {
+      "maxWorkCount": 595000
+    },
+    {
+      "maxWorkCount": 616000
+    },
+    {
+      "maxWorkCount": 638000
+    },
+    {
+      "maxWorkCount": 660000
+    },
+    {
+      "maxWorkCount": 683000
+    },
+    {
+      "maxWorkCount": 707000
+    },
+    {
+      "maxWorkCount": 732000
+    },
+    {
+      "maxWorkCount": 757000
+    },
+    {
+      "maxWorkCount": 784000
+    },
+    {
+      "maxWorkCount": 811000
+    },
+    {
+      "maxWorkCount": 839000
+    },
+    {
+      "maxWorkCount": 869000
+    },
+    {
+      "maxWorkCount": 899000
+    },
+    {
+      "maxWorkCount": 931000
+    },
+    {
+      "maxWorkCount": 963000
+    },
+    {
+      "maxWorkCount": 997000
+    },
+    {
+      "maxWorkCount": 1030000
+    },
+    {
+      "maxWorkCount": 1070000
+    },
+    {
+      "maxWorkCount": 1110000
+    },
+    {
+      "maxWorkCount": 1140000
+    },
+    {
+      "maxWorkCount": 1180000
+    },
+    {
+      "maxWorkCount": 1230000
+    },
+    {
+      "maxWorkCount": 1270000
+    },
+    {
+      "maxWorkCount": 1310000
+    },
+    {
+      "maxWorkCount": 1360000
+    },
+    {
+      "maxWorkCount": 1410000
+    },
+    {
+      "maxWorkCount": 1460000
+    },
+    {
+      "maxWorkCount": 1510000
+    },
+    {
+      "maxWorkCount": 1560000
+    },
+    {
+      "maxWorkCount": 1610000
+    },
+    {
+      "maxWorkCount": 1670000
+    },
+    {
+      "maxWorkCount": 1730000
+    },
+    {
+      "maxWorkCount": 1790000
+    },
+    {
+      "maxWorkCount": 1850000
+    },
+    {
+      "maxWorkCount": 1920000
+    },
+    {
+      "maxWorkCount": 1980000
+    },
+    {
+      "maxWorkCount": 2050000
+    },
+    {
+      "maxWorkCount": 2130000
+    },
+    {
+      "maxWorkCount": 2200000
+    },
+    {
+      "maxWorkCount": 2280000
+    },
+    {
+      "maxWorkCount": 2360000
+    },
+    {
+      "maxWorkCount": 2440000
+    },
+    {
+      "maxWorkCount": 2520000
+    },
+    {
+      "maxWorkCount": 2610000
+    },
+    {
+      "maxWorkCount": 2700000
+    },
+    {
+      "maxWorkCount": 2800000
+    },
+    {
+      "maxWorkCount": 2900000
+    },
+    {
+      "maxWorkCount": 3000000
+    },
+    {
+      "maxWorkCount": 3100000
+    },
+    {
+      "maxWorkCount": 3210000
+    },
+    {
+      "maxWorkCount": 3320000
+    },
+    {
+      "maxWorkCount": 3440000
+    },
+    {
+      "maxWorkCount": 3560000
+    },
+    {
+      "maxWorkCount": 3690000
+    },
+    {
+      "maxWorkCount": 3810000
+    },
+    {
+      "maxWorkCount": 3950000
+    },
+    {
+      "maxWorkCount": 4090000
+    },
+    {
+      "maxWorkCount": 4230000
+    },
+    {
+      "maxWorkCount": 4380000
+    },
+    {
+      "maxWorkCount": 4530000
+    },
+    {
+      "maxWorkCount": 4690000
+    },
+    {
+      "maxWorkCount": 4850000
+    },
+    {
+      "maxWorkCount": 5020000
+    },
+    {
+      "maxWorkCount": 5200000
+    },
+    {
+      "maxWorkCount": 5380000
+    },
+    {
+      "maxWorkCount": 5570000
+    },
+    {
+      "maxWorkCount": 5760000
+    },
+    {
+      "maxWorkCount": 5970000
+    },
+    {
+      "maxWorkCount": 6170000
+    },
+    {
+      "maxWorkCount": 6390000
+    },
+    {
+      "maxWorkCount": 6610000
+    },
+    {
+      "maxWorkCount": 6850000
+    },
+    {
+      "maxWorkCount": 7080000
+    },
+    {
+      "maxWorkCount": 7330000
+    },
+    {
+      "maxWorkCount": 7590000
+    },
+    {
+      "maxWorkCount": 7850000
+    },
+    {
+      "maxWorkCount": 8130000
+    },
+    {
+      "maxWorkCount": 8410000
+    },
+    {
+      "maxWorkCount": 8710000
+    },
+    {
+      "maxWorkCount": 9010000
+    },
+    {
+      "maxWorkCount": 9330000
+    },
+    {
+      "maxWorkCount": 9660000
+    },
+    {
+      "maxWorkCount": 9990000
+    },
+    {
+      "maxWorkCount": 10300000
+    },
+    {
+      "maxWorkCount": 10700000
+    },
+    {
+      "maxWorkCount": 11100000
+    },
+    {
+      "maxWorkCount": 11500000
+    },
+    {
+      "maxWorkCount": 11900000
+    },
+    {
+      "maxWorkCount": 12300000
+    },
+    {
+      "maxWorkCount": 12700000
+    },
+    {
+      "maxWorkCount": 13200000
+    },
+    {
+      "maxWorkCount": 13600000
+    },
+    {
+      "maxWorkCount": 14100000
+    },
+    {
+      "maxWorkCount": 14600000
+    },
+    {
+      "maxWorkCount": 15100000
+    },
+    {
+      "maxWorkCount": 15600000
+    },
+    {
+      "maxWorkCount": 16200000
+    },
+    {
+      "maxWorkCount": 16700000
+    },
+    {
+      "maxWorkCount": 17300000
+    },
+    {
+      "maxWorkCount": 17900000
+    },
+    {
+      "maxWorkCount": 18600000
+    },
+    {
+      "maxWorkCount": 19200000
+    },
+    {
+      "maxWorkCount": 19900000
+    },
+    {
+      "maxWorkCount": 20600000
+    },
+    {
+      "maxWorkCount": 21300000
+    },
+    {
+      "maxWorkCount": 22000000
+    },
+    {
+      "maxWorkCount": 22800000
+    },
+    {
+      "maxWorkCount": 23600000
+    },
+    {
+      "maxWorkCount": 24400000
+    },
+    {
+      "maxWorkCount": 25300000
+    },
+    {
+      "maxWorkCount": 26200000
+    },
+    {
+      "maxWorkCount": 27100000
+    },
+    {
+      "maxWorkCount": 28100000
+    },
+    {
+      "maxWorkCount": 29000000
+    },
+    {
+      "maxWorkCount": 30000000
+    },
+    {
+      "maxWorkCount": 31100000
+    },
+    {
+      "maxWorkCount": 32200000
+    },
+    {
+      "maxWorkCount": 33300000
+    },
+    {
+      "maxWorkCount": 34500000
+    },
+    {
+      "maxWorkCount": 35700000
+    },
+    {
+      "maxWorkCount": 36900000
+    },
+    {
+      "maxWorkCount": 38200000
+    },
+    {
+      "maxWorkCount": 39600000
+    },
+    {
+      "maxWorkCount": 41000000
+    },
+    {
+      "maxWorkCount": 42400000
+    },
+    {
+      "maxWorkCount": 43900000
+    },
+    {
+      "maxWorkCount": 45400000
+    },
+    {
+      "maxWorkCount": 47000000
+    },
+    {
+      "maxWorkCount": 48600000
+    },
+    {
+      "maxWorkCount": 50300000
+    },
+    {
+      "maxWorkCount": 52100000
+    },
+    {
+      "maxWorkCount": 53900000
+    },
+    {
+      "maxWorkCount": 55800000
+    },
+    {
+      "maxWorkCount": 57800000
+    },
+    {
+      "maxWorkCount": 59800000
+    },
+    {
+      "maxWorkCount": 61900000
+    },
+    {
+      "maxWorkCount": 64000000
+    },
+    {
+      "maxWorkCount": 66300000
+    },
+    {
+      "maxWorkCount": 68600000
+    },
+    {
+      "maxWorkCount": 71000000
+    },
+    {
+      "maxWorkCount": 73500000
+    },
+    {
+      "maxWorkCount": 76100000
+    },
+    {
+      "maxWorkCount": 78700000
+    },
+    {
+      "maxWorkCount": 81500000
+    },
+    {
+      "maxWorkCount": 84300000
+    },
+    {
+      "maxWorkCount": 87300000
+    },
+    {
+      "maxWorkCount": 90300000
+    },
+    {
+      "maxWorkCount": 93500000
+    },
+    {
+      "maxWorkCount": 96800000
+    },
+    {
+      "maxWorkCount": 100000000
+    },
+    {
+      "maxWorkCount": 104000000
+    },
+    {
+      "maxWorkCount": 107000000
+    },
+    {
+      "maxWorkCount": 111000000
+    },
+    {
+      "maxWorkCount": 115000000
+    },
+    {
+      "maxWorkCount": 119000000
+    },
+    {
+      "maxWorkCount": 123000000
+    },
+    {
+      "maxWorkCount": 127000000
+    },
+    {
+      "maxWorkCount": 132000000
+    },
+    {
+      "maxWorkCount": 137000000
+    },
+    {
+      "maxWorkCount": 141000000
+    },
+    {
+      "maxWorkCount": 146000000
+    },
+    {
+      "maxWorkCount": 151000000
+    },
+    {
+      "maxWorkCount": 157000000
+    },
+    {
+      "maxWorkCount": 162000000
+    },
+    {
+      "maxWorkCount": 168000000
+    },
+    {
+      "maxWorkCount": 174000000
+    },
+    {
+      "maxWorkCount": 180000000
+    },
+    {
+      "maxWorkCount": 186000000
+    },
+    {
+      "maxWorkCount": 193000000
+    },
+    {
+      "maxWorkCount": 199000000
+    },
+    {
+      "maxWorkCount": 206000000
+    },
+    {
+      "maxWorkCount": 214000000
+    },
+    {
+      "maxWorkCount": 221000000
+    },
+    {
+      "maxWorkCount": 229000000
+    },
+    {
+      "maxWorkCount": 237000000
+    },
+    {
+      "maxWorkCount": 245000000
+    },
+    {
+      "maxWorkCount": 254000000
+    },
+    {
+      "maxWorkCount": 262000000
+    },
+    {
+      "maxWorkCount": 272000000
+    },
+    {
+      "maxWorkCount": 281000000
+    },
+    {
+      "maxWorkCount": 291000000
+    },
+    {
+      "maxWorkCount": 301000000
+    },
+    {
+      "maxWorkCount": 312000000
+    },
+    {
+      "maxWorkCount": 323000000
+    },
+    {
+      "maxWorkCount": 334000000
+    },
+    {
+      "maxWorkCount": 346000000
+    },
+    {
+      "maxWorkCount": 358000000
+    },
+    {
+      "maxWorkCount": 370000000
+    },
+    {
+      "maxWorkCount": 383000000
+    },
+    {
+      "maxWorkCount": 397000000
+    },
+    {
+      "maxWorkCount": 410000000
+    },
+    {
+      "maxWorkCount": 425000000
+    },
+    {
+      "maxWorkCount": 440000000
+    },
+    {
+      "maxWorkCount": 455000000
+    },
+    {
+      "maxWorkCount": 471000000
+    },
+    {
+      "maxWorkCount": 488000000
+    },
+    {
+      "maxWorkCount": 505000000
+    },
+    {
+      "maxWorkCount": 522000000
+    },
+    {
+      "maxWorkCount": 541000000
+    },
+    {
+      "maxWorkCount": 559000000
+    },
+    {
+      "maxWorkCount": 579000000
+    },
+    {
+      "maxWorkCount": 599000000
+    },
+    {
+      "maxWorkCount": 620000000
+    },
+    {
+      "maxWorkCount": 642000000
+    },
+    {
+      "maxWorkCount": 664000000
+    },
+    {
+      "maxWorkCount": 688000000
+    },
+    {
+      "maxWorkCount": 712000000
+    },
+    {
+      "maxWorkCount": 737000000
+    },
+    {
+      "maxWorkCount": 762000000
+    },
+    {
+      "maxWorkCount": 789000000
+    },
+    {
+      "maxWorkCount": 817000000
+    },
+    {
+      "maxWorkCount": 845000000
+    },
+    {
+      "maxWorkCount": 875000000
+    },
+    {
+      "maxWorkCount": 906000000
+    },
+    {
+      "maxWorkCount": 937000000
+    },
+    {
+      "maxWorkCount": 970000000
+    },
+    {
+      "maxWorkCount": 1000000000
+    },
+    {
+      "maxWorkCount": 1040000000
+    },
+    {
+      "maxWorkCount": 1080000000
+    },
+    {
+      "maxWorkCount": 1110000000
+    },
+    {
+      "maxWorkCount": 1150000000
+    },
+    {
+      "maxWorkCount": 1190000000
+    },
+    {
+      "maxWorkCount": 1230000000
+    },
+    {
+      "maxWorkCount": 1280000000
+    },
+    {
+      "maxWorkCount": 1320000000
+    },
+    {
+      "maxWorkCount": 1370000000
+    },
+    {
+      "maxWorkCount": 1420000000
+    },
+    {
+      "maxWorkCount": 1470000000
+    },
+    {
+      "maxWorkCount": 1520000000
+    },
+    {
+      "maxWorkCount": 1570000000
+    },
+    {
+      "maxWorkCount": 1630000000
+    },
+    {
+      "maxWorkCount": 1680000000
+    },
+    {
+      "maxWorkCount": 1740000000
+    },
+    {
+      "maxWorkCount": 1800000000
+    },
+    {
+      "maxWorkCount": 1860000000
+    },
+    {
+      "maxWorkCount": 1930000000
+    },
+    {
+      "maxWorkCount": 2000000000
+    }
+  ]
+}

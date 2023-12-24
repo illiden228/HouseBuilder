@@ -32,7 +32,7 @@ namespace Logic.Model
                 if(_ctx.modificators[i].duration < 0)
                     continue;
                 
-                float timebeToEnd = currentTime.Subtract(_ctx.modificators[i].start).Seconds;
+                float timebeToEnd = currentTime.Subtract(_ctx.modificators[i].start).Seconds; // TODO: откуда этот старт берется? Задавать при осздании?
                 if (timebeToEnd > _ctx.modificators[i].duration)
                 {
                     _ctx.modificators.RemoveAt(i);
@@ -47,7 +47,7 @@ namespace Logic.Model
 
             foreach (var workerModel in _ctx.workers)
             {
-                ApplyAllModificators(workerModel);
+                ApplyAllModificatorsToWorker(workerModel);
 
                 if (!_workerSubs.ContainsKey(workerModel))
                     _workerSubs[workerModel] = new List<IDisposable>();
@@ -57,6 +57,7 @@ namespace Logic.Model
 
             AddDispose(_ctx.workers.ObserveAdd().Subscribe(OnAddWorer));
             AddDispose(_ctx.modificators.ObserveAdd().Subscribe(OnAddModificator));
+            AddDispose(_ctx.modificators.ObserveRemove().Subscribe(OnRemoveModificator));
         }
 
         private void OnAddWorer(CollectionAddEvent<WorkerModel> addEvent)
@@ -64,29 +65,65 @@ namespace Logic.Model
             if (!_workerSubs.ContainsKey(addEvent.Value))
                 _workerSubs[addEvent.Value] = new List<IDisposable>();
             
-            foreach (var modificatorInfo in _ctx.modificators)
-            {
-                ApplyModificatorToWorker(addEvent.Value, modificatorInfo);
-            }
+            ApplyAllModificatorsToWorker(addEvent.Value);
+        }
+        
+        private void OnRemoveModificator(CollectionRemoveEvent<ModificatorInfo> removeEvent)
+        {
+            RemoveModificatorFromAllWorker(removeEvent.Value);
         }
         
         private void OnAddModificator(CollectionAddEvent<ModificatorInfo> addEvent)
         {
-            foreach (var workerModel in _ctx.workers)
+            if (_ctx.modificators.TryGetValueById(addEvent.Value, out var existModificatorInfo))
             {
-                ApplyModificatorToWorker(workerModel,addEvent.Value);
+                _ctx.modificators.Remove(existModificatorInfo);
+                if(_modificatorSubs.TryGetValue(existModificatorInfo, out var disposable))
+                    disposable?.Dispose();
             }
+
+            if (addEvent.Value.duration > -1)
+            {
+                // IDisposable disposable = ReactiveExtensions.DelayedCall(addEvent.Value.duration, 
+                //     () => OnModificatorTimeEnded(_ctx.modificators[i]));
+                //
+                // _modificatorSubs[addEvent.Value] = disposable; // TODO: тут бы применить время модификатора (когда временные модификаторы доделаю). Временный модификатор - нужна модель + в отдельный класс
+            }
+                
+
+            ApplyModificatorToAllWorker(addEvent.Value);
         }
 
         private void OnModificatorTimeEnded(ModificatorInfo modificatorInfo)
+        {
+            RemoveModificatorFromAllWorker(modificatorInfo);
+        }
+        
+        private void RemoveModificatorFromAllWorker(ModificatorInfo modificatorInfo)
         {
             foreach (var workerModel in _ctx.workers)
             {
                 RemoveModificatorFromWorker(workerModel, modificatorInfo);
             }
         }
+        
+        private void ApplyModificatorToAllWorker(ModificatorInfo modificatorInfo)
+        {
+            foreach (var workerModel in _ctx.workers)
+            {
+                ApplyModificatorToWorker(workerModel, modificatorInfo);
+            }
+        }
+        
+        private void ApplyAllModificatorsToAllWorker()
+        {
+            foreach (var workerModel in _ctx.workers)
+            {
+                ApplyAllModificatorsToWorker(workerModel);
+            }
+        }
 
-        private void ApplyAllModificators(WorkerModel workerModel)
+        private void ApplyAllModificatorsToWorker(WorkerModel workerModel)
         {
             foreach (var modificator in _ctx.modificators)
             {

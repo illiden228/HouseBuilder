@@ -33,9 +33,12 @@ namespace Logic.Idle
         private DataLoader _dataLoader;
         private GamePm _game;
         private CoreIdleLogic _coreLogic;
+        private GameConfigLoader _gameConfigLoader;
 
         private void Awake()
         {
+            float test = 250000000000f;
+            Debug.Log(test + 2500025000);
             DontDestroyOnLoad(gameObject);
 
             _resourceLoader = CreateResourceLoader(_resourceLoadType);
@@ -44,6 +47,12 @@ namespace Logic.Idle
             _userDataLoader = new UserDataLoader(_storageService); // TODO: изжил себя, нужен только для поддержания старого кода
             
             ProfileClient profile = new ProfileClient(new ProfileClient.Ctx { });
+
+            GameConfigLoader.Ctx gameConfigLoaderCtx = new GameConfigLoader.Ctx
+            {
+                config = _gameConfig
+            };
+            _gameConfigLoader = new GameConfigLoader(gameConfigLoaderCtx);
 
             DataLoader.Ctx dataLoaderCtx = new DataLoader.Ctx
             {
@@ -120,6 +129,7 @@ namespace Logic.Idle
             _game.Dispose();
             _dataLoader.Dispose();
             _coreLogic.Dispose();
+            _gameConfigLoader.Dispose();
             base.OnDestroy();
         }
     }

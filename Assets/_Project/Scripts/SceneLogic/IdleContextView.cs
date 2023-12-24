@@ -1,8 +1,6 @@
 ﻿using System.Collections.Generic;
-using Core;
 using Logic.Idle.Workers;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 namespace SceneLogic
 {

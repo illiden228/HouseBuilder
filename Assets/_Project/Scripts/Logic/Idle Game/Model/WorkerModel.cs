@@ -13,7 +13,7 @@ namespace Logic.Idle.Workers
         public ReactiveProperty<float> TimeSpeed { get; }
         public ReactiveProperty<int> MoneyIncome { get; }
         public ReactiveProperty<int> WorkIncome { get; }
-        public ReactiveProperty<Grade> Grade { get; }
+        public ReactiveProperty<int> Grade { get; }
         public ReactiveProperty<float> CurrentIncomeTime;
 
         public WorkerModel(WorkerInfo info)
@@ -25,7 +25,7 @@ namespace Logic.Idle.Workers
             BaseTimeSpeed = new ReactiveProperty<float>(info.baseTimeToWork);
             BaseMoneyIncome = new ReactiveProperty<int>(info.baseIncomeMoney);
             BaseWorkIncome = new ReactiveProperty<int>(info.baseIncomeWork);
-            Grade = new ReactiveProperty<Grade>(info.grade);
+            Grade = new ReactiveProperty<int>(info.grade);
             CurrentIncomeTime = new ReactiveProperty<float>(0);
         }
     }

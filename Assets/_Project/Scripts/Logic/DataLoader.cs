@@ -49,20 +49,13 @@ namespace Logic.Idle
                 buildings = new List<BuildingInfo>(),
                 modificators = new List<ModificatorInfo>
                 {
-                    new EffectiencyModificatorInfo(),
-                    new TimeSpeedModificatorInfo()
+                    new EffectiencyModificatorInfo("base"),
+                    new TimeSpeedModificatorInfo("base")
                 },
                 moneys = 0,
                 workers = new List<WorkerInfo>
                 {
-                    new WorkerInfo
-                    {
-                        id = "worker_test",
-                        grade = _ctx.gameConfig.Grades[0],
-                        baseIncomeMoney = _ctx.gameConfig.BaseWorkerMoneyIncome,
-                        baseIncomeWork = _ctx.gameConfig.BaseWorkerWorkIncome,
-                        baseTimeToWork = _ctx.gameConfig.BaseWorkerTimeSpeed,
-                    }
+                    _ctx.gameConfig.GetStartWorkerInfo()
                 },
                 currentBuildingInfo = _ctx.gameConfig.CurrentBuildInfo,
                 currentFloorsCount = 0,

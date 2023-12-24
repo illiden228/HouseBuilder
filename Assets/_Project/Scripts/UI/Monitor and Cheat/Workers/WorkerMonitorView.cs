@@ -7,9 +7,8 @@ using UnityEngine.UI;
 
 namespace Logic.Idle.Monitors
 {
-    public class WorkerMonitorView : BaseMonobehaviour
+    public class WorkerMonitorView : MonitorPanelView
     {
-        [SerializeField] private Button _backButton;
         [SerializeField] private Button _addWorkerButton;
         [SerializeField] private Button _effectiencyUpButton;
         [SerializeField] private Button _speedUpButton;
@@ -22,8 +21,6 @@ namespace Logic.Idle.Monitors
         
         public struct Ctx
         {
-            public CompositeDisposable viewDisposable;
-            public Action back;
             public Action addWorker;
             public Action effectiencyUp;
             public Action speedUp;
@@ -38,11 +35,11 @@ namespace Logic.Idle.Monitors
 
         public Transform Container => _container;
 
-        public void Init(Ctx ctx)
+        public void Init(BaseCtx baseCtx, Ctx ctx)
         {
+            BaseInit(baseCtx);
             _ctx = ctx;
 
-            SubscribeButton(_backButton, _ctx.back);
             SubscribeButton(_addWorkerButton, _ctx.addWorker);
             SubscribeButton(_effectiencyUpButton, _ctx.effectiencyUp);
             SubscribeButton(_speedUpButton, _ctx.speedUp);
@@ -52,16 +49,6 @@ namespace Logic.Idle.Monitors
             SubscribeText(_speedLevelText, _ctx.speedLevel);
             SubscribeText(_effectiencyLevelText, _ctx.effectiencyLevel);
             SubscribeText(_workersCountText, _ctx.workersCount);
-        }
-
-        public void SubscribeButton(Button button, Action action)
-        {
-            button.OnClickAsObservable().Subscribe(_ => action?.Invoke()).AddTo(_ctx.viewDisposable);
-        }
-
-        public void SubscribeText(TMP_Text field, IReadOnlyReactiveProperty<int> value)
-        {
-            value.Subscribe(value => field.text = value.ToString()).AddTo(_ctx.viewDisposable);
         }
     }
 }

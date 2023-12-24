@@ -3,19 +3,22 @@ using UniRx;
 
 namespace Logic.Idle.Monitors
 {
-    public class ProfileMonitorView : BaseMonobehaviour
+    public class ProfileMonitorView : MonitorPanelView
     {
         public struct Ctx
         {
-            public CompositeDisposable viewDisposable;
+            
         }
 
         private Ctx _ctx;
 
-        public void Init(Ctx ctx)
+        public void Init(BaseCtx baseCtx, Ctx ctx)
         {
+            BaseInit(baseCtx);
             _ctx = ctx;
         }
+        
+        
     }
 }
 

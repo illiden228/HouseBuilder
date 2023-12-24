@@ -1,4 +1,5 @@
-﻿using Core;
+﻿using System;
+using Core;
 using UniRx;
 using UnityEngine;
 
@@ -10,6 +11,7 @@ namespace Logic.Idle.Monitors
         {
             public Transform uiParent;
             public IResourceLoader resourceLoader;
+            public Action back;
         }
 
         private readonly Ctx _ctx;
@@ -27,9 +29,15 @@ namespace Logic.Idle.Monitors
         {
             _view = GameObject.Instantiate(prefab, _ctx.uiParent).GetComponent<ProfileMonitorView>();
             
-            _view.Init(new ProfileMonitorView.Ctx
+            MonitorPanelView.BaseCtx basePanelCtx = new MonitorPanelView.BaseCtx
             {
-                viewDisposable = AddDispose(new CompositeDisposable())
+                viewDisposable = AddDispose(new CompositeDisposable()),
+                back = _ctx.back,
+            };
+            
+            _view.Init(basePanelCtx, new ProfileMonitorView.Ctx
+            {
+                
             });
         }
 

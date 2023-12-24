@@ -7,6 +7,6 @@ namespace Containers
         public float baseTimeToWork;
         public int baseIncomeWork;
         public int baseIncomeMoney;
-        public Grade grade;
+        public int grade;
     }
 }

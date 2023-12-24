@@ -92,7 +92,8 @@ namespace Logic.Idle.Monitors
             return new ProfileMonitorPm(new ProfileMonitorPm.Ctx
             {
                 resourceLoader = _ctx.resourceLoader,
-                uiParent = _ctx.uiParent
+                uiParent = _ctx.uiParent,
+                back = () => OnMonitorBackClick(MonitorType.Profile),
             });
         }
         
@@ -102,16 +103,12 @@ namespace Logic.Idle.Monitors
             {
                 uiParent = _ctx.uiParent,
                 resourceLoader = _ctx.resourceLoader,
-                back = () =>
-                {
-                    Open();
-                    _monitors[MonitorType.Workers].Close();
-                },
+                back = () => OnMonitorBackClick(MonitorType.Workers),
                 workers = _ctx.profile.Workers,
                 gameConfig = _ctx.gameConfig,
                 currentEffectiencyLevel = _ctx.profile.CurrentEffectiencyLevel,
                 currentSpeedLevel = _ctx.profile.CurrentSpeedLevel,
-                moneys = _ctx.profile.Moneys
+                moneys = _ctx.profile.Moneys,
             });
         }
 
@@ -120,7 +117,8 @@ namespace Logic.Idle.Monitors
             return new BuildingsMonitorPm(new BuildingsMonitorPm.Ctx
             {
                 resourceLoader = _ctx.resourceLoader,
-                uiParent = _ctx.uiParent
+                uiParent = _ctx.uiParent,
+                back = () => OnMonitorBackClick(MonitorType.Buildings),
             });
         }
 
@@ -129,7 +127,8 @@ namespace Logic.Idle.Monitors
             return new BuildingProgressMonitorPm(new BuildingProgressMonitorPm.Ctx
             {
                 resourceLoader = _ctx.resourceLoader,
-                uiParent = _ctx.uiParent
+                uiParent = _ctx.uiParent,
+                back = () => OnMonitorBackClick(MonitorType.BuildProgress),
             });
         }
 
@@ -138,8 +137,15 @@ namespace Logic.Idle.Monitors
             return new CheatsMonitorPm(new CheatsMonitorPm.Ctx
             {
                 resourceLoader = _ctx.resourceLoader,
-                uiParent = _ctx.uiParent
+                uiParent = _ctx.uiParent,
+                back = () => OnMonitorBackClick(MonitorType.Cheats),
             });
+        }
+
+        private void OnMonitorBackClick(MonitorType monitorType)
+        {
+            Open();
+            _monitors[monitorType].Close();
         }
         
         private void Close()

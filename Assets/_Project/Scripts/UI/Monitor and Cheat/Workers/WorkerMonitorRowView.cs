@@ -22,7 +22,7 @@ namespace Logic.Idle.Monitors
             public IReadOnlyReactiveProperty<float> timeSpeed;
             public IReadOnlyReactiveProperty<int> moneyIncome;
             public IReadOnlyReactiveProperty<int> workIncome;
-            public IReadOnlyReactiveProperty<Grade> grade;
+            public IReadOnlyReactiveProperty<int> grade;
             public IReadOnlyReactiveProperty<float> currentIncomeTime;
         }
 
