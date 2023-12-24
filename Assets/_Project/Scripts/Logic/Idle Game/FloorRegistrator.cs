@@ -12,7 +12,7 @@ public class FloorRegistrator : BaseMonobehaviour
     public struct Ctx
     {
         public UserDataLoader userDataLoader;
-        public ReactiveProperty<Scenes> currentScene;
+        public IReactiveProperty<Scenes> currentScene;
     }
     
     [SerializeField] private FloorBuilder _floorBuilder;

@@ -55,11 +55,15 @@ namespace Logic.Idle
                 moneys = 0,
                 workers = new List<WorkerInfo>
                 {
-                    _ctx.gameConfig.GetStartWorkerInfo()
+                    _ctx.gameConfig.workerConfig.GetStartWorkerInfo()
                 },
-                currentBuildingInfo = _ctx.gameConfig.CurrentBuildInfo,
+                currentBuildingInfo = _ctx.gameConfig.buildingsConfig.buildings[0],
                 currentFloorsCount = 0,
-                currentFloor = _ctx.gameConfig.CurrentBuildInfo.floors[0]
+                currentFloor = _ctx.gameConfig.buildingsConfig.floors[0],
+                effectiencyPrice = _ctx.gameConfig.prices.nextLevelPrices[0],
+                timeSpeedPrice = _ctx.gameConfig.prices.nextLevelPrices[0],
+                addWorkerPrice = _ctx.gameConfig.prices.nextLevelPrices[0],
+                mergePrice = _ctx.gameConfig.prices.mergeUpPrices[0],
             };
         }
 
@@ -67,6 +71,10 @@ namespace Logic.Idle
         {
             _ctx.profile.CurrentScene.Value = Scenes.IdleScene;
             _ctx.profile.Moneys.Value = info.moneys;
+            _ctx.profile.UpgradeModel.CurrentEffectiencyUpPrice.Value = info.effectiencyPrice;
+            _ctx.profile.UpgradeModel.CurrentTimeSpeedUpPrice.Value = info.timeSpeedPrice;
+            _ctx.profile.UpgradeModel.CurrentAddWorkerPrice.Value = info.addWorkerPrice;
+            _ctx.profile.UpgradeModel.CurrentMergePrice.Value = info.mergePrice;
             
             foreach (var buildingInfo in info.buildings)
             {

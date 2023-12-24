@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing.Printing;
 using Containers.Modificators;
 using Core;
 using Logic.Idle.Workers;
@@ -47,12 +48,7 @@ namespace Logic.Model
 
             foreach (var workerModel in _ctx.workers)
             {
-                ApplyAllModificatorsToWorker(workerModel);
-
-                if (!_workerSubs.ContainsKey(workerModel))
-                    _workerSubs[workerModel] = new List<IDisposable>();
-                
-                // TODO: дописать случаи, когда изменилась базовая скорость, нужно заново перерасчет для модели 
+                InitWorker(workerModel);
             }
 
             AddDispose(_ctx.workers.ObserveAdd().Subscribe(OnAddWorer));
@@ -62,10 +58,46 @@ namespace Logic.Model
 
         private void OnAddWorer(CollectionAddEvent<WorkerModel> addEvent)
         {
-            if (!_workerSubs.ContainsKey(addEvent.Value))
-                _workerSubs[addEvent.Value] = new List<IDisposable>();
+            InitWorker(addEvent.Value);
+        }
+
+        private void InitWorker(WorkerModel workerModel)
+        {
+            if (!_workerSubs.ContainsKey(workerModel))
+                _workerSubs[workerModel] = new List<IDisposable>();
+
+            BaseChangedSubs(workerModel);
+        }
+
+        private void BaseChangedSubs(WorkerModel workerModel)
+        {
+            IDisposable baseIncomeMoneyDisposable = workerModel.BaseMoneyIncome.Subscribe(_ =>
+            {
+                ReApply();
+            });
             
-            ApplyAllModificatorsToWorker(addEvent.Value);
+            IDisposable baseIncomeWorkDisposable = workerModel.BaseWorkIncome.Skip(1).Subscribe(_ =>
+            {
+                ReApply();
+            });
+            
+            IDisposable baseTimeSpeedDisposable = workerModel.BaseTimeSpeed.Skip(1).Subscribe(_ =>
+            {
+                ReApply();
+            });
+            
+            _workerSubs[workerModel].Add(baseIncomeMoneyDisposable);
+            _workerSubs[workerModel].Add(baseIncomeWorkDisposable);
+            _workerSubs[workerModel].Add(baseTimeSpeedDisposable);
+            
+            void ReApply()
+            {
+                RemoveAllModificatorsFromWorker(workerModel);
+                workerModel.MoneyIncome.Value = workerModel.BaseMoneyIncome.Value;
+                workerModel.WorkIncome.Value = workerModel.BaseWorkIncome.Value;
+                workerModel.TimeSpeed.Value = workerModel.BaseTimeSpeed.Value;
+                ApplyAllModificatorsToWorker(workerModel);
+            }
         }
         
         private void OnRemoveModificator(CollectionRemoveEvent<ModificatorInfo> removeEvent)
@@ -122,12 +154,28 @@ namespace Logic.Model
                 ApplyAllModificatorsToWorker(workerModel);
             }
         }
+        
+        private void RemoveAllModificatorsFromAllWorker()
+        {
+            foreach (var workerModel in _ctx.workers)
+            {
+                RemoveAllModificatorsFromWorker(workerModel);
+            }
+        }
 
         private void ApplyAllModificatorsToWorker(WorkerModel workerModel)
         {
             foreach (var modificator in _ctx.modificators)
             {
                 ApplyModificatorToWorker(workerModel, modificator);
+            }
+        }
+        
+        private void RemoveAllModificatorsFromWorker(WorkerModel workerModel)
+        {
+            foreach (var modificator in _ctx.modificators)
+            {
+                RemoveModificatorFromWorker(workerModel, modificator);
             }
         }
         
@@ -199,7 +247,7 @@ namespace Logic.Model
             {
                 if(!_workerSubs.TryGetValue(worker, out var subs))
                     continue;
-                for (int i = subs.Count; i > 0; i--)
+                for (int i = subs.Count - 1; i > 0; i--)
                 {
                     subs[i]?.Dispose();
                 }

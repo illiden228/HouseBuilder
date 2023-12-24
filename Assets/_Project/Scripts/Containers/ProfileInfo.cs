@@ -12,5 +12,9 @@ namespace Containers
         public BuildingInfo currentBuildingInfo;
         public int currentFloorsCount;
         public FloorInfo currentFloor;
+        public int effectiencyPrice;
+        public int timeSpeedPrice;
+        public int addWorkerPrice;
+        public int mergePrice;
     }
 }

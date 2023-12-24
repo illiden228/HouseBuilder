@@ -9,6 +9,7 @@ namespace UI
     public class MainMenuView : BaseMonobehaviour
     {
         [SerializeField] private Button _openMonitor;
+        [SerializeField] private UpgradeButtonsView _upgradeButtonsView;
         
         public struct Ctx
         {
@@ -18,6 +19,8 @@ namespace UI
         }
 
         private Ctx _ctx;
+
+        public UpgradeButtonsView UpgradeButtonsView => _upgradeButtonsView;
 
         public void Init(Ctx ctx)
         {

@@ -5,10 +5,10 @@ namespace Containers.Data
 {
     public class ConfigData
     {
-        public MainSettings Main;
-        public List<WorkerData> workerInfos;
+        public MainSettings main;
+        public List<WorkerData> workerData;
         public List<LevelUpConstData> levelUpCosts;
-        public List<BuildingData> buildingInfos;
-        public List<FloorData> floorInfos;
+        public List<BuildingData> buildingData;
+        public List<FloorData> floorData;
     }
 }

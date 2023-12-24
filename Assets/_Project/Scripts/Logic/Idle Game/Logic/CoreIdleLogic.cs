@@ -1,4 +1,5 @@
 ﻿using Containers;
+using Containers.Data;
 using Core;
 using Logic.Profile;
 using Tools.Extensions;
@@ -11,7 +12,8 @@ namespace Logic.Model
         public struct Ctx
         {
             public ProfileClient profile;
-            public ReactiveEvent<BuildingInfo> buildinReadyEvent;
+            public ReactiveEvent<BuildingInfo> buildingReadyEvent;
+            public GameConfig config;
         }
 
         private readonly Ctx _ctx;
@@ -45,9 +47,16 @@ namespace Logic.Model
             BuildProgressLogic.Ctx buildProgressLogicCtx = new BuildProgressLogic.Ctx
             {
                 currentBuild = _ctx.profile.CurrentBuilding,
-                buildinReadyEvent = _ctx.buildinReadyEvent
+                buildinReadyEvent = _ctx.buildingReadyEvent
             };
             AddDispose(new BuildProgressLogic(buildProgressLogicCtx));
+
+            UpgradeLogic.Ctx upgradeCtx = new UpgradeLogic.Ctx
+            {
+                profile = _ctx.profile,
+                config = _ctx.config
+            };
+            AddDispose(new UpgradeLogic(upgradeCtx));
         }
     }
 }

@@ -15,7 +15,7 @@ namespace SceneLogic
 
         public struct Ctx
         {
-            public ReactiveProperty<Scenes> currentScene;
+            public IReactiveProperty<Scenes> currentScene;
             public UserDataLoader userDataLoader;
             public FloorsContextView sceneContext;
             public Action onBackToIdleScene;

@@ -2,6 +2,7 @@
 using System;
 using System.IO;
 using System.Threading.Tasks;
+using Containers.Data;
 using UnityEngine;
 
 public class JsonToFileStorageService : IStorageService
@@ -25,22 +26,36 @@ public class JsonToFileStorageService : IStorageService
         File.Delete(path);
     }
 
-    public void Load<T>(string key, Action<T> callBack)
+    public ConfigData LoadConfig(string key)
+    {
+        string path = Path.Combine(Application.streamingAssetsPath, key);
+
+        return Load<ConfigData>(path);
+    }
+
+    public void Load<T>(string key, Action<T> callBack) where T : class
     {
         string path = BuildPath(key);
 
+        var data = Load<T>(path);
+        callBack?.Invoke(data);        
+    }
+
+    private T Load<T>(string path) where T : class
+    {
         if (!File.Exists(path))
-            return;
+            return null;
 
         using (var fileStream = new StreamReader(path))
         {
             var json = fileStream.ReadToEnd();
             if (!string.IsNullOrEmpty(json))
             {
-                var data = JsonConvert.DeserializeObject<T>(json);
-                callBack?.Invoke(data);
+                return JsonConvert.DeserializeObject<T>(json);
             }
         }
+
+        return null;
     }
 
     public void LoadAndPopulate<T>(string key, T dataToPopulate, Action callBack = null)

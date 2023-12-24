@@ -1,6 +1,7 @@
 ﻿using Containers.Data;
 using Core;
 using Logic.Idle.Monitors;
+using Logic.Model;
 using Logic.Profile;
 using UniRx;
 using UnityEngine;
@@ -42,6 +43,13 @@ namespace UI
                 openMonitor = OpenMainMonitor,
                 viewTestUI = _ctx.viewTestUI
             });
+
+            UpgradeButtonsPm.Ctx upgradesCtx = new UpgradeButtonsPm.Ctx
+            {
+                view = _view.UpgradeButtonsView,
+                profile = _ctx.profile,
+            };
+            AddDispose(new UpgradeButtonsPm(upgradesCtx));
         }
 
         private void OpenMainMonitor()

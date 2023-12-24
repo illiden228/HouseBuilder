@@ -23,7 +23,6 @@ namespace Logic.Idle
 
         [SerializeField] private ResourceLoadType _resourceLoadType;
         [SerializeField] private LocalStorageType _localStorageType;
-        [SerializeField] private GameConfig _gameConfig;
 
         private IResourceLoader _resourceLoader;
         private IStorageService _storageService;
@@ -33,25 +32,30 @@ namespace Logic.Idle
         private GamePm _game;
         private CoreIdleLogic _coreLogic;
         private GameConfigLoader _gameConfigLoader;
+        private GameConfig _gameConfig;
 
         private void Awake()
         {
-            float test = 250000000000f;
-            Debug.Log(test + 2500025000);
             DontDestroyOnLoad(gameObject);
 
             _resourceLoader = CreateResourceLoader(_resourceLoadType);
             _storageService = CreateStorageService(_localStorageType);
             _sceneLoader = CreateSceneLoader(_resourceLoadType);
             _userDataLoader = new UserDataLoader(_storageService); // TODO: изжил себя, нужен только для поддержания старого кода
+            _gameConfig = new GameConfig();
             
-            ProfileClient profile = new ProfileClient(new ProfileClient.Ctx { });
-
             GameConfigLoader.Ctx gameConfigLoaderCtx = new GameConfigLoader.Ctx
             {
-                config = _gameConfig
+                config = _gameConfig,
+                storageService = _storageService
             };
             _gameConfigLoader = new GameConfigLoader(gameConfigLoaderCtx);
+            
+            ProfileClient profile = new ProfileClient(new ProfileClient.Ctx
+            {
+                maxGrade = _gameConfig.mainSettings.maxGrade,
+                workerCountForMerge = _gameConfig.mainSettings.workerCountForMerge
+            });
 
             DataLoader.Ctx dataLoaderCtx = new DataLoader.Ctx
             {
@@ -64,7 +68,8 @@ namespace Logic.Idle
             _coreLogic = new CoreIdleLogic(new CoreIdleLogic.Ctx
             {
                 profile = profile,
-                buildinReadyEvent = new ReactiveEvent<BuildingInfo>() // TODO: пока что заглушка
+                buildingReadyEvent = new ReactiveEvent<BuildingInfo>(), // TODO: пока что заглушка
+                config = _gameConfig
             });
             
             _game = new GamePm(new GamePm.Ctx

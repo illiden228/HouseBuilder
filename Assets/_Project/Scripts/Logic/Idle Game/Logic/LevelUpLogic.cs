@@ -8,9 +8,9 @@ namespace Logic.Model
     {
         public struct Ctx
         {
-            public ReactiveProperty<int> curerntLevel;
+            public IReactiveProperty<int> curerntLevel;
             public ReactiveProperty<int> currentPrice;
-            public ReactiveProperty<T> currentProperty; 
+            public IReactiveProperty<T> currentProperty; 
             public List<int> priceConfig;
             public List<T> valuesConfig;
         }
@@ -21,13 +21,29 @@ namespace Logic.Model
         {
             _ctx = ctx;
 
-            AddDispose(_ctx.curerntLevel.Subscribe(OnLevelChanged));
+            AddDispose(_ctx.curerntLevel.Skip(1).Subscribe(OnLevelChanged));
         }
 
         private void OnLevelChanged(int newLevel)
         {
-            _ctx.currentPrice.Value = _ctx.priceConfig[newLevel];
-            _ctx.currentProperty.Value = _ctx.valuesConfig[newLevel];
+            if (_ctx.currentPrice != null)
+            {
+                if (_ctx.priceConfig != null)
+                {
+                    _ctx.currentPrice.Value = _ctx.priceConfig[newLevel];
+                }
+            }
+
+            if (_ctx.currentProperty != null)
+            {
+                if (_ctx.valuesConfig != null)
+                    _ctx.currentProperty.Value = _ctx.valuesConfig[newLevel];
+                else
+                {
+                    if (_ctx.currentProperty is IReactiveProperty<int> property)
+                        property.Value++;
+                }
+            }
         }
     }
 }

@@ -11,19 +11,24 @@ namespace Core
         public struct Ctx
         {
             public GameConfig config;
+            public IStorageService storageService;
         }
 
         private readonly Ctx _ctx;
-        private const string CONFIG_NAME = "HouseBuilder Config";
+        private const string CONFIG_NAME = "HouseBuilder Config.json";
 
         public GameConfigLoader(Ctx ctx)
         {
             _ctx = ctx;
             
-            var json = Resources.Load<TextAsset>(CONFIG_NAME);
-            ConfigData data = JsonConvert.DeserializeObject<ConfigData>(json.text);
-            Debug.Log(data);
-            _ctx.config.SetConfigData(data);
+            ConfigData data = _ctx.storageService.LoadConfig(CONFIG_NAME);
+
+            ConfigConverter.Ctx configConverteCtx = new ConfigConverter.Ctx
+            {
+                config = _ctx.config,
+                data = data
+            };
+            AddDispose(new ConfigConverter(configConverteCtx));
         }
     }
 }

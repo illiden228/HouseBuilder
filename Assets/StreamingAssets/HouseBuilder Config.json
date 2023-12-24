@@ -1,6 +1,11 @@
 {
-  "MainSettings": {},
-  "workerInfos": [
+  "mainSettings": {
+    "startWorkers": 1,
+    "maxWorkers": 15,
+    "workerCountForMerge": 3,
+    "maxGrade": 5
+  },
+  "workerData": [
     {
       "baseTimeToWork": 6,
       "baseIncomeWork": 500,
@@ -715,7 +720,7 @@
       "nextMergeLevelCost": 1478848525
     }
   ],
-  "buildingInfos": [
+  "buildingData": [
     {
       "floorsCount": 5,
       "income": 50,
@@ -1067,7 +1072,7 @@
       "maxReward": 100
     }
   ],
-  "floorInfos": [
+  "floorData": [
     {
       "maxWorkCount": 4000
     },

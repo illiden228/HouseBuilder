@@ -107,7 +107,7 @@ namespace Logic.Idle.Monitors
                 workers = _ctx.profile.Workers,
                 gameConfig = _ctx.gameConfig,
                 currentEffectiencyLevel = _ctx.profile.CurrentEffectiencyLevel,
-                currentSpeedLevel = _ctx.profile.CurrentSpeedLevel,
+                currentSpeedLevel = _ctx.profile.CurrentTimeSpeedLevel,
                 moneys = _ctx.profile.Moneys,
             });
         }

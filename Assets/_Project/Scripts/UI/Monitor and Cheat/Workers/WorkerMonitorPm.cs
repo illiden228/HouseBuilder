@@ -84,7 +84,7 @@ namespace Logic.Idle.Monitors
 
         private void AddWorker()
         {
-            WorkerInfo workerInfo = _ctx.gameConfig.GetStartWorkerInfo();
+            WorkerInfo workerInfo = _ctx.gameConfig.workerConfig.GetStartWorkerInfo();
             WorkerModel model = new WorkerModel(workerInfo);
             
             _ctx.workers.Add(model);

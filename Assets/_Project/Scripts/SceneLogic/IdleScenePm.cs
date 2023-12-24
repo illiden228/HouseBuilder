@@ -12,7 +12,7 @@ namespace SceneLogic
         public struct Ctx
         {
             public IdleContextView sceneContext;
-            public ReactiveProperty<Scenes> currentScene;
+            public IReactiveProperty<Scenes> currentScene;
             public UserDataLoader userDataLoader;
             public IResourceLoader resourceLoader;
             public IReadOnlyProfile profile;
