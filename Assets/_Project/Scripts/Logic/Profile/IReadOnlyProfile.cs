@@ -26,5 +26,6 @@ namespace Logic.Profile
         public IReactiveCollection<BuildProgressModel> QueueBuildProgress { get; }
         public bool CanMerge(out int grade);
         public List<WorkerModel> GetWorkersForMerge(int grade);
+        public IReactiveProperty<int> CurrentAddWorkerLevel { get; }
     }
 }

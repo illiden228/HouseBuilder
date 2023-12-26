@@ -18,7 +18,6 @@ namespace Logic.Model
         }
 
         private readonly Ctx _ctx;
-        private ReactiveProperty<int> _workerLevel;
         private int _currentGradeForMerge;
 
         private UpgradeModel UpgradeModel => _ctx.profile.UpgradeModel;
@@ -30,7 +29,6 @@ namespace Logic.Model
         public UpgradeLogic(Ctx ctx)
         {
             _ctx = ctx;
-            _workerLevel = new ReactiveProperty<int>();
 
             LevelUpLogic<int>.Ctx effectiencyUpLogicCtx = new LevelUpLogic<int>.Ctx
             {
@@ -54,7 +52,7 @@ namespace Logic.Model
             
             LevelUpLogic<int>.Ctx addWorkerUpLogicCtx = new LevelUpLogic<int>.Ctx
             {
-                curerntLevel = _workerLevel,
+                curerntLevel = _ctx.profile.CurrentAddWorkerLevel,
                 currentPrice = UpgradeModel.CurrentAddWorkerPrice,
                 priceConfig = _ctx.config.prices.nextLevelPrices,
             };
@@ -81,7 +79,7 @@ namespace Logic.Model
             
             AddDispose(_ctx.profile.CurrentEffectiency.Skip(1).Subscribe(ChangeBaseEffectiency));
             AddDispose(_ctx.profile.CurrentTimeSpeed.Skip(1).Subscribe(ChangeBaseSpeed));
-            AddDispose(_workerLevel.Skip(1).Subscribe(AddWorker));
+            AddDispose(_ctx.profile.CurrentAddWorkerLevel.Skip(1).Subscribe(AddWorker));
             AddDispose(_ctx.profile.CurrentMergeLevel.Skip(1).Subscribe(_ => Merge()));
         }
 
@@ -97,17 +95,17 @@ namespace Logic.Model
         
         private void OnAddWorker()
         {
-            TryUpgradeProperty(_workerLevel, AddWorkerCost);
+            TryUpgradeProperty(_ctx.profile.CurrentAddWorkerLevel, AddWorkerCost);
         }
         
         private void OnMerge()
         {
             if (!_ctx.profile.CanMerge(out int grade))
                 return;
+            _currentGradeForMerge = grade;
             if(!TryUpgradeProperty(_ctx.profile.CurrentMergeLevel, MergeCost))
                 return;
 
-            _currentGradeForMerge = grade;
         }
 
         private bool TryUpgradeProperty(IReactiveProperty<int> upgradeProperty, IReactiveProperty<int> cost)
@@ -123,9 +121,6 @@ namespace Logic.Model
 
         private void AddWorker(int count)
         {
-            if(count <= _ctx.profile.Workers.Count)
-                return;
-            
             WorkerInfo workerInfo = _ctx.config.workerConfig.GetStartWorkerInfo();
             WorkerModel model = new WorkerModel(workerInfo);
             
@@ -152,6 +147,13 @@ namespace Logic.Model
         private void Merge()
         {
             IReactiveCollection<WorkerModel> allWorkers = _ctx.profile.Workers;
+
+            if (_currentGradeForMerge == 0)
+            {
+                if(!_ctx.profile.CanMerge(out _currentGradeForMerge))
+                    return;
+            }
+            
             List<WorkerModel> mergeWorkers = _ctx.profile.GetWorkersForMerge(_currentGradeForMerge);
 
             if (mergeWorkers == null)
@@ -169,6 +171,7 @@ namespace Logic.Model
             }
             
             allWorkers.Add(newGradeWorker);
+            _currentGradeForMerge = 0;
         }
 
         

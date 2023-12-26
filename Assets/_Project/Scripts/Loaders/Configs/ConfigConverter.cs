@@ -72,6 +72,8 @@ namespace Core
                 
                 _ctx.config.buildingsConfig.buildings.Add(newBuildingInfo);
             }
+            
+            _ctx.config.mainSettings = _ctx.data.mainSettings;
         }
     }
 }

@@ -39,5 +39,12 @@ namespace Logic.Idle.Monitors
                 currentIncomeTime = _ctx.model.CurrentIncomeTime
             });
         }
+
+        protected override void OnDispose()
+        {
+            if(_view != null)
+                GameObject.Destroy(_view.gameObject);
+            base.OnDispose();
+        }
     }
 }

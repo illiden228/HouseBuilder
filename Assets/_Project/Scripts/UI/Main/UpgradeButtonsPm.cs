@@ -19,9 +19,6 @@ namespace UI
         public UpgradeButtonsPm(Ctx ctx)
         {
             _ctx = ctx;
-            ReactiveProperty<int> addWorkerLevel = new ReactiveProperty<int>();
-
-            AddDispose(_ctx.profile.Workers.ObserveCountChanged().Subscribe(addWorkerLevel.SetValueAndForceNotify));
 
             UpgradeButtonPm.Ctx effectiencyUpgradeCtx = new UpgradeButtonPm.Ctx
             {
@@ -36,7 +33,7 @@ namespace UI
             {
                 view = _ctx.view.AddWorkerButton,
                 cost = _ctx.profile.UpgradeModel.AddWorkerCost,
-                currentLevel = addWorkerLevel,
+                currentLevel = _ctx.profile.CurrentAddWorkerLevel,
                 upgradeClick = _ctx.profile.UpgradeModel.AddWorker.Notify
             };
             AddDispose(new UpgradeButtonPm(addWorkerUpgradeCtx));

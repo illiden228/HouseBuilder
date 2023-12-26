@@ -30,6 +30,7 @@ namespace Logic.Profile
         public IReactiveProperty<int> CurrentEffectiencyLevel { get; }
         public IReactiveProperty<int> CurrentTimeSpeedLevel { get; }
         public IReactiveProperty<int> CurrentMergeLevel { get; }
+        public IReactiveProperty<int> CurrentAddWorkerLevel { get; }
         public IReactiveProperty<int> CurrentBuildIndex { get; }
 
         public UpgradeModel UpgradeModel { get; }
@@ -66,17 +67,17 @@ namespace Logic.Profile
             CurrentTimeSpeed = new ReactiveProperty<float>();
             CurrentBuildIndex = new ReactiveProperty<int>();
             QueueBuildProgress = new ReactiveCollection<BuildProgressModel>();
+            CurrentAddWorkerLevel = new ReactiveProperty<int>();
         }
 
         public bool CanMerge(out int grade)
         {
-            if(_cashWorkersCount != Workers.Count)
-                CalcWorkerGrades();
+            CalcWorkerGrades();
             
             grade = 0;
             foreach (var workerGrade in _workerGrades)
             {
-                if (workerGrade.Value.Count > _ctx.workerCountForMerge)
+                if (workerGrade.Value.Count >= _ctx.workerCountForMerge)
                 {
                     grade = workerGrade.Key;
                     return true;
@@ -88,10 +89,7 @@ namespace Logic.Profile
 
         public List<WorkerModel> GetWorkersForMerge(int grade)
         {
-            if (!CanMerge(out int canGrade))
-                return null;
-
-            if (canGrade != grade)
+            if (!_workerGrades.ContainsKey(grade))
                 return null;
 
             List<WorkerModel> result = new List<WorkerModel>();
@@ -99,12 +97,13 @@ namespace Logic.Profile
             {
                 result.Add(_workerGrades[grade][i]);
             }
-
+            
             return result;
         }
 
         private void CalcWorkerGrades()
         {
+            _workerGrades.Clear();
             foreach (var worker in Workers)
             {
                 if(worker.Grade.Value >= _ctx.maxGrade)

@@ -105,10 +105,11 @@ namespace Logic.Idle.Monitors
                 resourceLoader = _ctx.resourceLoader,
                 back = () => OnMonitorBackClick(MonitorType.Workers),
                 workers = _ctx.profile.Workers,
-                gameConfig = _ctx.gameConfig,
                 currentEffectiencyLevel = _ctx.profile.CurrentEffectiencyLevel,
                 currentSpeedLevel = _ctx.profile.CurrentTimeSpeedLevel,
                 moneys = _ctx.profile.Moneys,
+                currentMergeLevel = _ctx.profile.CurrentMergeLevel,
+                currentAddWorkerLevel = _ctx.profile.CurrentAddWorkerLevel
             });
         }
 

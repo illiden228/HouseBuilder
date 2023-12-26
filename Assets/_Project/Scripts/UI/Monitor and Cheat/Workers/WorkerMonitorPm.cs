@@ -21,8 +21,9 @@ namespace Logic.Idle.Monitors
             public IReactiveCollection<WorkerModel> workers;
             public IReactiveProperty<int> currentEffectiencyLevel;
             public IReactiveProperty<int> currentSpeedLevel;
+            public IReactiveProperty<int> currentMergeLevel;
+            public IReactiveProperty<int> currentAddWorkerLevel;
             public IReactiveProperty<int> moneys;
-            public GameConfig gameConfig;
         }
 
         private readonly Ctx _ctx;
@@ -30,18 +31,15 @@ namespace Logic.Idle.Monitors
         
         private WorkerMonitorView _view;
         private Dictionary<WorkerModel, WorkerMonitorRowPm> _workerRows;
-        private ReactiveProperty<int> _workersCount;
         
         public WorkerMonitorPm(Ctx ctx)
         {
             _ctx = ctx;
             _workerRows = new Dictionary<WorkerModel, WorkerMonitorRowPm>();
-            _workersCount = new ReactiveProperty<int>();
 
             AddDispose(_ctx.resourceLoader.LoadPrefab("fakebundles", VIEW_PREFAB_NAME, OnPrefabLoaded));
             AddDispose(_ctx.workers.ObserveAdd().Subscribe(OnAddWorker));
             AddDispose(_ctx.workers.ObserveRemove().Subscribe(OnRemoveWorker));
-            AddDispose(_ctx.workers.ObserveCountChanged().Subscribe(count => _workersCount.Value = count));
         }
 
         public void Open()
@@ -66,28 +64,20 @@ namespace Logic.Idle.Monitors
             
             _view.Init(basePanelCtx, new WorkerMonitorView.Ctx
             {
-                addWorker = AddWorker,
+                addWorker = () => _ctx.currentAddWorkerLevel.Value++,
                 effectiencyUp = () => _ctx.currentEffectiencyLevel.Value++,
                 speedUp = () => _ctx.currentSpeedLevel.Value++,
-                merge = () => Debug.Log("Try Merge"),
+                merge = () => _ctx.currentMergeLevel.Value++,
                 effectiencyLevel = _ctx.currentEffectiencyLevel,
                 speedLevel = _ctx.currentSpeedLevel,
                 moneys = _ctx.moneys,
-                workersCount = _workersCount
+                workersCount = _ctx.currentAddWorkerLevel
             });
             
             foreach (var workerModel in _ctx.workers)
             {
                 CreateWorkerMonitorRow(workerModel);
             }
-        }
-
-        private void AddWorker()
-        {
-            WorkerInfo workerInfo = _ctx.gameConfig.workerConfig.GetStartWorkerInfo();
-            WorkerModel model = new WorkerModel(workerInfo);
-            
-            _ctx.workers.Add(model);
         }
 
         private void OnAddWorker(CollectionAddEvent<WorkerModel> addEvent)
