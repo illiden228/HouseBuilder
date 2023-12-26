@@ -63,7 +63,7 @@ namespace Core
                     timeSpeed = buildingData.timeSpeed
                 };
                 
-                for (int i = 0; i < floors.Count; i++)
+                for (int i = 0; i < buildingData.floorsCount; i++)
                 {
                     if (currentFloor == floors.Count)
                         currentFloor = floors.Count - 1;

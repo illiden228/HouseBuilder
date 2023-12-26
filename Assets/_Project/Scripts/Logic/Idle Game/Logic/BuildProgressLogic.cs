@@ -1,4 +1,6 @@
-﻿using Containers;
+﻿using System;
+using System.Collections.Generic;
+using Containers;
 using Core;
 using Tools.Extensions;
 using UniRx;
@@ -10,18 +12,27 @@ namespace Logic.Model
     {
         public struct Ctx
         {
+            public List<BuildingInfo> config;
+            public IReactiveProperty<int> currentBuildIndex;
             public IReactiveProperty<BuildProgressModel> currentBuild;
-            public ReactiveEvent<BuildingInfo> buildinReadyEvent;
+            public IReactiveCollection<BuildProgressModel> queueBuildProgress;
         }
 
         private readonly Ctx _ctx;
+        private IDisposable _workSub;
+        private IDisposable _floorSub;
 
         public BuildProgressLogic(Ctx ctx)
         {
             _ctx = ctx;
 
-            AddDispose(_ctx.currentBuild.Value.CurrentFloor.Value.CurrentWorkCount.Subscribe(OnCurrentWorkCountAddeed));
-            AddDispose(_ctx.currentBuild.Value.CurrentFloorIndex.Subscribe(OnFloorsCountChanged));
+            AddDispose(_ctx.currentBuild.Subscribe(build =>
+            {
+                _workSub?.Dispose();
+                _floorSub?.Dispose();
+                _workSub = _ctx.currentBuild.Value.CurrentFloor.Value.CurrentWorkCount.Subscribe(OnCurrentWorkCountAddeed);
+                _floorSub = _ctx.currentBuild.Value.CurrentFloorIndex.Skip(1).Subscribe(OnFloorsCountChanged);
+            }));
         }
 
         private void OnCurrentWorkCountAddeed(int currentCount)
@@ -36,17 +47,31 @@ namespace Logic.Model
 
         private void OnFloorsCountChanged(int currentCount)
         {
-            if (currentCount < _ctx.currentBuild.Value.BuildingInfo.Value.floors.Count)
+            if (currentCount < _ctx.currentBuild.Value.Building.Value.Info.Value.floors.Count)
             {
-                FloorInfo info = _ctx.currentBuild.Value.BuildingInfo.Value.floors[currentCount];
+                _ctx.currentBuild.Value.CurrentFloor.Value.CurrentWorkCount.Value -= _ctx.currentBuild.Value.CurrentFloor.Value.Info.Value.maxWorkCount;
+                FloorInfo info = _ctx.currentBuild.Value.Building.Value.Info.Value.floors[currentCount];
                 _ctx.currentBuild.Value.CurrentFloor.Value.Info.Value = info;
-                _ctx.currentBuild.Value.CurrentFloor.Value.CurrentWorkCount.Value = 0;
             }
             else
             {
-                _ctx.buildinReadyEvent.Notify(_ctx.currentBuild.Value.BuildingInfo.Value);
-                Debug.Log($"Building {_ctx.currentBuild.Value.BuildingInfo.Value.id} ended");
+                _ctx.queueBuildProgress.Add(_ctx.currentBuild.Value);
+                _ctx.currentBuildIndex.Value++;
+                BuildProgressModel newModel = new BuildProgressModel();
+                newModel.Building.Value = new BuildingModel();
+                newModel.Building.Value.Info.Value = _ctx.config[_ctx.currentBuildIndex.Value];
+                newModel.CurrentFloor.Value = new FloorModel();
+                newModel.CurrentFloor.Value.Info.Value = newModel.Building.Value.Info.Value.floors[0];
+                _ctx.currentBuild.Value = newModel;
+                Debug.Log($"Building {_ctx.currentBuild.Value.Building.Value.Info.Value.id} ended");
             }
+        }
+
+        protected override void OnDispose()
+        {
+            _workSub?.Dispose();
+            _floorSub?.Dispose();
+            base.OnDispose();
         }
     }
 }

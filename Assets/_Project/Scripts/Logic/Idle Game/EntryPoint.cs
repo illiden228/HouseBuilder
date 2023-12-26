@@ -68,8 +68,7 @@ namespace Logic.Idle
             _coreLogic = new CoreIdleLogic(new CoreIdleLogic.Ctx
             {
                 profile = profile,
-                buildingReadyEvent = new ReactiveEvent<BuildingInfo>(), // TODO: пока что заглушка
-                config = _gameConfig
+                config = _gameConfig,
             });
             
             _game = new GamePm(new GamePm.Ctx

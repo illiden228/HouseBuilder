@@ -32,7 +32,7 @@ namespace Logic.Idle.Monitors
             _slider.minValue = _ctx.minValue.Value;
             _slider.maxValue = _ctx.maxValue.Value;
 
-            _minValueText.text = _ctx.maxValue.Value.ToString();
+            _minValueText.text = _ctx.minValue.Value.ToString();
             _maxValueText.text = _ctx.maxValue.Value.ToString();
             
             _slider.ObserveEveryValueChanged(x => x.value)

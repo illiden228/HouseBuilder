@@ -30,6 +30,8 @@ namespace Logic.Model
             {
                 if (_ctx.priceConfig != null)
                 {
+                    if(newLevel >= _ctx.priceConfig.Count)
+                        return;
                     _ctx.currentPrice.Value = _ctx.priceConfig[newLevel];
                 }
             }
@@ -37,7 +39,11 @@ namespace Logic.Model
             if (_ctx.currentProperty != null)
             {
                 if (_ctx.valuesConfig != null)
+                {
+                    if(newLevel >= _ctx.valuesConfig.Count)
+                        return;
                     _ctx.currentProperty.Value = _ctx.valuesConfig[newLevel];
+                }
                 else
                 {
                     if (_ctx.currentProperty is IReactiveProperty<int> property)

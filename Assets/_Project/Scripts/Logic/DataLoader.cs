@@ -57,13 +57,15 @@ namespace Logic.Idle
                 {
                     _ctx.gameConfig.workerConfig.GetStartWorkerInfo()
                 },
-                currentBuildingInfo = _ctx.gameConfig.buildingsConfig.buildings[0],
+                currentBuildIndex = 0,
                 currentFloorsCount = 0,
                 currentFloor = _ctx.gameConfig.buildingsConfig.floors[0],
                 effectiencyPrice = _ctx.gameConfig.prices.nextLevelPrices[0],
                 timeSpeedPrice = _ctx.gameConfig.prices.nextLevelPrices[0],
                 addWorkerPrice = _ctx.gameConfig.prices.nextLevelPrices[0],
                 mergePrice = _ctx.gameConfig.prices.mergeUpPrices[0],
+                currentEffectiency = _ctx.gameConfig.workerConfig.workIncomeValues[0],
+                currentTimeSpeed = _ctx.gameConfig.workerConfig.timeSpeedValues[0],
             };
         }
 
@@ -92,10 +94,11 @@ namespace Logic.Idle
             }
 
             BuildProgressModel progressModel = new BuildProgressModel();
-            progressModel.BuildingInfo.Value = info.currentBuildingInfo;
+            progressModel.Building.Value = new BuildingModel();
+            progressModel.Building.Value.Info.Value = _ctx.gameConfig.buildingsConfig.buildings[info.currentBuildIndex];
             progressModel.CurrentFloorIndex.Value = info.currentFloorsCount;
 
-            foreach (var floorInfo in info.currentBuildingInfo.floors)
+            foreach (var floorInfo in progressModel.Building.Value.Info.Value.floors)
             {
                 progressModel.NeededFloors.Add(floorInfo);
             }
@@ -103,6 +106,9 @@ namespace Logic.Idle
             progressModel.CurrentFloor.Value = CreateFloorModel(progressModel.NeededFloors[progressModel.CurrentFloorIndex.Value]);
             
             _ctx.profile.CurrentBuilding.Value = progressModel;
+
+            _ctx.profile.CurrentEffectiency.Value = info.currentEffectiency;
+            _ctx.profile.CurrentTimeSpeed.Value = info.currentTimeSpeed;
         }
 
         private WorkerModel CreateWorkerModel(WorkerInfo info)

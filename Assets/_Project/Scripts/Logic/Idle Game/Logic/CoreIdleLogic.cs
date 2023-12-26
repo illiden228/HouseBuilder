@@ -12,7 +12,6 @@ namespace Logic.Model
         public struct Ctx
         {
             public ProfileClient profile;
-            public ReactiveEvent<BuildingInfo> buildingReadyEvent;
             public GameConfig config;
         }
 
@@ -21,11 +20,21 @@ namespace Logic.Model
         public CoreIdleLogic(Ctx ctx)
         {
             _ctx = ctx;
+            
+            UpgradeLogic.Ctx upgradeCtx = new UpgradeLogic.Ctx
+            {
+                profile = _ctx.profile,
+                config = _ctx.config
+            };
+            AddDispose(new UpgradeLogic(upgradeCtx));
 
             ApplyModificatorLogic.Ctx applyModificatorCtx = new ApplyModificatorLogic.Ctx
             {
                 modificators = _ctx.profile.Modificators,
-                workers = _ctx.profile.Workers
+                workers = _ctx.profile.Workers,
+                currentBaseMoneyIncome = _ctx.profile.CurrentEffectiency,
+                currentBaseWorkIncome = _ctx.profile.CurrentEffectiency,
+                currentBaseTimeSpeed = _ctx.profile.CurrentTimeSpeed,
             };
             AddDispose(new ApplyModificatorLogic(applyModificatorCtx));
 
@@ -47,16 +56,11 @@ namespace Logic.Model
             BuildProgressLogic.Ctx buildProgressLogicCtx = new BuildProgressLogic.Ctx
             {
                 currentBuild = _ctx.profile.CurrentBuilding,
-                buildinReadyEvent = _ctx.buildingReadyEvent
+                config = _ctx.config.buildingsConfig.buildings,
+                currentBuildIndex = _ctx.profile.CurrentBuildIndex,
+                queueBuildProgress = _ctx.profile.QueueBuildProgress
             };
             AddDispose(new BuildProgressLogic(buildProgressLogicCtx));
-
-            UpgradeLogic.Ctx upgradeCtx = new UpgradeLogic.Ctx
-            {
-                profile = _ctx.profile,
-                config = _ctx.config
-            };
-            AddDispose(new UpgradeLogic(upgradeCtx));
         }
     }
 }

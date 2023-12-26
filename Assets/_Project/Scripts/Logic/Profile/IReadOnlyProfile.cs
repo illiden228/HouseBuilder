@@ -22,6 +22,8 @@ namespace Logic.Profile
         public IReactiveProperty<int> CurrentEffectiency { get; }
         public IReactiveProperty<float> CurrentTimeSpeed { get; }
         public UpgradeModel UpgradeModel { get; }
+        public IReactiveProperty<int> CurrentBuildIndex { get; }
+        public IReactiveCollection<BuildProgressModel> QueueBuildProgress { get; }
         public bool CanMerge(out int grade);
         public List<WorkerModel> GetWorkersForMerge(int grade);
     }

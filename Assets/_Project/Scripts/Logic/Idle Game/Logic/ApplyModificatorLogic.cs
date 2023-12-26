@@ -13,6 +13,9 @@ namespace Logic.Model
     {
         public struct Ctx
         {
+            public IReactiveProperty<int> currentBaseMoneyIncome;
+            public IReactiveProperty<int> currentBaseWorkIncome;
+            public IReactiveProperty<float> currentBaseTimeSpeed;
             public IReadOnlyReactiveCollection<WorkerModel> workers;
             public IReactiveCollection<ModificatorInfo> modificators;
         }
@@ -93,9 +96,9 @@ namespace Logic.Model
             void ReApply()
             {
                 RemoveAllModificatorsFromWorker(workerModel);
-                workerModel.MoneyIncome.Value = workerModel.BaseMoneyIncome.Value;
-                workerModel.WorkIncome.Value = workerModel.BaseWorkIncome.Value;
-                workerModel.TimeSpeed.Value = workerModel.BaseTimeSpeed.Value;
+                workerModel.MoneyIncome.Value = _ctx.currentBaseMoneyIncome.Value;
+                workerModel.WorkIncome.Value = _ctx.currentBaseWorkIncome.Value;
+                workerModel.TimeSpeed.Value = _ctx.currentBaseTimeSpeed.Value;
                 ApplyAllModificatorsToWorker(workerModel);
             }
         }

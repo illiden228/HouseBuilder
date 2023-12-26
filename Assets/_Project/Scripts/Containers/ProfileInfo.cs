@@ -9,12 +9,15 @@ namespace Containers
         public List<WorkerInfo> workers;
         public List<BuildingInfo> buildings;
         public List<ModificatorInfo> modificators;
-        public BuildingInfo currentBuildingInfo;
         public int currentFloorsCount;
         public FloorInfo currentFloor;
         public int effectiencyPrice;
         public int timeSpeedPrice;
         public int addWorkerPrice;
         public int mergePrice;
+        public int currentBuildIndex;
+        public List<BuildProgressInfo> queueBuildProgress;
+        public int currentEffectiency;
+        public float currentTimeSpeed;
     }
 }
