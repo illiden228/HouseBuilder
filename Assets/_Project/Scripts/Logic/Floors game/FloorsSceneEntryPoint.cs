@@ -7,8 +7,8 @@ using UnityEngine;
 [Obsolete]
 public class FloorsSceneEntryPoint : MonoBehaviour
 {
-    // для теста
-    // в проде будет GamePm будет инитить
+    // РґР»СЏ С‚РµСЃС‚Р°
+    // РІ РїСЂРѕРґРµ Р±СѓРґРµС‚ GamePm Р±СѓРґРµС‚ РёРЅРёС‚РёС‚СЊ
     [SerializeField] private bool _debug = false;
     [SerializeField] private FloorsContextView _floorsContextView;
     [SerializeField] private FloorsSceneSettings _settings;
