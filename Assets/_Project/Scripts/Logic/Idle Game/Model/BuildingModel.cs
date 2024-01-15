@@ -6,7 +6,7 @@ namespace Logic.Model
 {
     public class BuildingModel
     {
-        public ReactiveProperty<BuildingInfo> Info { get; } // здесь награды
+        public ReactiveProperty<BuildingInfo> Info { get; } // тут только инфу с наградами для расчета результата постройки
         public ReactiveProperty<float> TimeSpeed { get; }
         public ReactiveProperty<int> MoneyIncome { get; }
         public ReactiveProperty<int> CurrentFloorsCount { get; } // этажи для постройки, отнять когда ставится этаж
