@@ -18,10 +18,10 @@ namespace SceneLogic
             public IReactiveProperty<Scenes> currentScene;
             public UserDataLoader userDataLoader;
             public FloorsContextView sceneContext;
-            public Action onBackToIdleScene;
+            public Action onBackToIdleScene; // когда мы достроили здание, то вызываем экшон
             public IResourceLoader resourceLoader;
             public IReactiveProperty<BuildingModel> building; // модель строящегося здания
-            public IReactiveProperty<FloorsProgressModel> floorsProgress; // прогресс строящегося здания
+            public IReactiveProperty<FloorsProgressModel> floorsProgress; // прогресс строящегося здания, подписывают на проперти и делаю что хочу)
         }
 
         private readonly Ctx _ctx;
