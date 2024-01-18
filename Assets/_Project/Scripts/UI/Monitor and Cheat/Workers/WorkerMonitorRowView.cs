@@ -13,9 +13,7 @@ namespace Logic.Idle.Monitors
         [SerializeField] private TMP_Text _moneyIncomeText;
         [SerializeField] private TMP_Text _workIncomeText;
         [SerializeField] private TMP_Text _gradeText;
-        [SerializeField] private TMP_Text _currentTimeIncomeText;
-        [SerializeField] private TMP_Text _progressIncomeText;
-        [SerializeField] private Slider _sliderIncomeProgress;
+        [SerializeField] private FloatProgressSliderView _progressSlider;
         public struct Ctx
         {
             public CompositeDisposable viewDisposable;
@@ -36,20 +34,18 @@ namespace Logic.Idle.Monitors
             SubscribeText(_ctx.moneyIncome, _moneyIncomeText);
             SubscribeText(_ctx.workIncome, _workIncomeText);
             SubscribeText(_ctx.grade, _gradeText);
-            SubscribeText(_ctx.timeSpeed, _progressIncomeText);
             
-            _ctx.currentIncomeTime.Subscribe(IncomeTimeChanged).AddTo(_ctx.viewDisposable);
+            _progressSlider.Init(new FloatProgressSliderView.Ctx
+            {
+                viewDisposable = _ctx.viewDisposable,
+                current = _ctx.currentIncomeTime,
+                max = _ctx.timeSpeed
+            });
         }
 
         private void SubscribeText<T>(IReadOnlyReactiveProperty<T> property, TMP_Text field)
         {
             property.Subscribe(value => field.text = value.ToString()).AddTo(_ctx.viewDisposable);
-        }
-
-        private void IncomeTimeChanged(float value)
-        {
-            _currentTimeIncomeText.text = value.ToString("F0");
-            _sliderIncomeProgress.value = value / _ctx.timeSpeed.Value;
         }
     }
 }

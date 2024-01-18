@@ -34,13 +34,13 @@ namespace Logic.Model
 
         private void OnAddBuilding(BuildingModel buildingModel)
         {
-            float time = Time.time + buildingModel.TimeSpeed.Value;
             IDisposable sub = ReactiveExtensions.StartUpdate(() =>
             {
-                if (Time.time >= time)
+                buildingModel.CurrentIncomeTime.Value += Time.deltaTime;
+                if (buildingModel.TimeSpeed.Value <= buildingModel.CurrentIncomeTime.Value)
                 {
                     _ctx.moneys.Value += buildingModel.MoneyIncome.Value;
-                    time = Time.time + buildingModel.TimeSpeed.Value;
+                    buildingModel.CurrentIncomeTime.Value = 0;
                     Debug.Log($"Income from buildong {buildingModel.Info.Value.id} {buildingModel.MoneyIncome.Value} moneys");
                 }
             });

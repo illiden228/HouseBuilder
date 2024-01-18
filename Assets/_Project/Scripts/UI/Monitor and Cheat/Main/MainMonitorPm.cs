@@ -130,6 +130,9 @@ namespace Logic.Idle.Monitors
                 resourceLoader = _ctx.resourceLoader,
                 uiParent = _ctx.uiParent,
                 back = () => OnMonitorBackClick(MonitorType.BuildProgress),
+                queueBuildProgress = _ctx.profile.QueueBuildProgress,
+                currentBuilding = _ctx.profile.CurrentBuildingWorkProgress,
+                buildings = _ctx.profile.Buildings
             });
         }
 

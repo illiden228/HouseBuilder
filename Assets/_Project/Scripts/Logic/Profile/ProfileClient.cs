@@ -22,7 +22,8 @@ namespace Logic.Profile
         public IReactiveCollection<WorkerModel> Workers { get; }
         public IReactiveCollection<BuildingModel> Buildings { get; }
         public IReactiveCollection<ModificatorInfo> Modificators { get; }
-        public IReactiveProperty<BuildProgressModel> CurrentBuilding { get; }
+        public IReactiveProperty<BuildProgressModel> CurrentBuildingWorkProgress { get; }
+        public IReactiveProperty<BuildProgressModel> CurrentBuildingFloorProgress { get; }
         public IReactiveCollection<BuildProgressModel> QueueBuildProgress { get; }
         public IReactiveProperty<Scenes> CurrentScene { get; }
         public IReactiveProperty<int> CurrentEffectiency { get; }
@@ -58,7 +59,7 @@ namespace Logic.Profile
             Modificators = new ReactiveCollection<ModificatorInfo>();
             Buildings = new ReactiveCollection<BuildingModel>();
             CurrentScene = new ReactiveProperty<Scenes>();
-            CurrentBuilding = new ReactiveProperty<BuildProgressModel>();
+            CurrentBuildingWorkProgress = new ReactiveProperty<BuildProgressModel>();
             CurrentEffectiencyLevel = new ReactiveProperty<int>();
             CurrentTimeSpeedLevel = new ReactiveProperty<int>();
             CurrentMergeLevel = new ReactiveProperty<int>();
@@ -68,6 +69,7 @@ namespace Logic.Profile
             CurrentBuildIndex = new ReactiveProperty<int>();
             QueueBuildProgress = new ReactiveCollection<BuildProgressModel>();
             CurrentAddWorkerLevel = new ReactiveProperty<int>();
+            CurrentBuildingFloorProgress = new ReactiveProperty<BuildProgressModel>();
         }
 
         public bool CanMerge(out int grade)

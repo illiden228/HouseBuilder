@@ -1,4 +1,5 @@
-﻿using Containers.Data;
+﻿using System;
+using Containers.Data;
 using Core;
 using Logic.Idle.Monitors;
 using Logic.Model;
@@ -17,6 +18,8 @@ namespace UI
             public GameConfig gameConfig;
             public IReadOnlyProfile profile;
             public bool viewTestUI;
+            public ReactiveProperty<bool> canBuild;
+            public Action build;
         }
 
         private readonly Ctx _ctx;
@@ -43,6 +46,8 @@ namespace UI
                 openMonitor = OpenMainMonitor,
                 viewTestUI = _ctx.viewTestUI,
                 moneys = _ctx.profile.Moneys,
+                canBuild = _ctx.canBuild,
+                build = _ctx.build
             });
 
             UpgradeButtonsPm.Ctx upgradesCtx = new UpgradeButtonsPm.Ctx

@@ -10,6 +10,7 @@ namespace Logic.Model
         public ReactiveProperty<float> TimeSpeed { get; }
         public ReactiveProperty<int> MoneyIncome { get; }
         public ReactiveProperty<int> CurrentFloorsCount { get; } // этажи для постройки, отнять когда ставится этаж
+        public ReactiveProperty<float> CurrentIncomeTime { get; }
 
         public BuildingModel()
         {
@@ -17,6 +18,7 @@ namespace Logic.Model
             TimeSpeed = new ReactiveProperty<float>();
             MoneyIncome = new ReactiveProperty<int>();            
             CurrentFloorsCount = new ReactiveProperty<int>();
+            CurrentIncomeTime = new ReactiveProperty<float>();
         }
     }
 }

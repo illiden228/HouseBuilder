@@ -17,7 +17,7 @@ namespace Logic.Idle.Monitors
             public Action back;
         }
 
-        private BaseCtx _baseCtx;
+        protected BaseCtx _baseCtx;
 
         public void BaseInit(BaseCtx baseCtx)
         {

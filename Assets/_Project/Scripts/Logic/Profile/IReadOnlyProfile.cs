@@ -14,7 +14,8 @@ namespace Logic.Profile
         public IReactiveCollection<WorkerModel> Workers { get; }
         public IReactiveCollection<BuildingModel> Buildings { get; }
         public IReactiveCollection<ModificatorInfo> Modificators { get; }
-        public IReactiveProperty<BuildProgressModel> CurrentBuilding { get; }
+        public IReactiveProperty<BuildProgressModel> CurrentBuildingWorkProgress { get; }
+        public IReactiveProperty<BuildProgressModel> CurrentBuildingFloorProgress { get; }
         public IReactiveProperty<Scenes> CurrentScene { get; }
         public IReactiveProperty<int> CurrentEffectiencyLevel { get; }
         public IReactiveProperty<int> CurrentMergeLevel { get; }

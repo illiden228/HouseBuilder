@@ -94,8 +94,7 @@ namespace Logic.Idle
             }
 
             BuildProgressModel progressModel = new BuildProgressModel();
-            progressModel.Building.Value = new BuildingModel();
-            progressModel.Building.Value.Info.Value = _ctx.gameConfig.buildingsConfig.buildings[info.currentBuildIndex];
+            progressModel.Building.Value = CreateBuildingModel(_ctx.gameConfig.buildingsConfig.buildings[info.currentBuildIndex]);
             progressModel.CurrentFloorIndex.Value = info.currentFloorsCount;
 
             foreach (var floorInfo in progressModel.Building.Value.Info.Value.floors)
@@ -105,7 +104,7 @@ namespace Logic.Idle
 
             progressModel.CurrentFloor.Value = CreateFloorModel(progressModel.NeededFloors[progressModel.CurrentFloorIndex.Value]);
             
-            _ctx.profile.CurrentBuilding.Value = progressModel;
+            _ctx.profile.CurrentBuildingWorkProgress.Value = progressModel;
 
             _ctx.profile.CurrentEffectiency.Value = info.currentEffectiency;
             _ctx.profile.CurrentTimeSpeed.Value = info.currentTimeSpeed;

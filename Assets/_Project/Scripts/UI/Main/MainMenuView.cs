@@ -12,13 +12,16 @@ namespace UI
         [SerializeField] private Button _openMonitor;
         [SerializeField] private UpgradeButtonsView _upgradeButtonsView;
         [SerializeField] private TMP_Text _moneys;
+        [SerializeField] private Button _buildButton;
         
         public struct Ctx
         {
             public CompositeDisposable viewDisposable;
             public IReadOnlyReactiveProperty<int> moneys;
+            public ReactiveProperty<bool> canBuild;
             public bool viewTestUI;
             public Action openMonitor;
+            public Action build;
         }
 
         private Ctx _ctx;
@@ -37,9 +40,9 @@ namespace UI
             }
 
             _ctx.moneys.Subscribe(value => _moneys.text = value.ToString()).AddTo(_ctx.viewDisposable);
+            _ctx.canBuild.Subscribe(_buildButton.gameObject.SetActive).AddTo(_ctx.viewDisposable);
+            _buildButton.OnClickAsObservable().Subscribe(_ => _ctx.build.Invoke()).AddTo(_ctx.viewDisposable);
         }
-        
-        
     }
 }
 

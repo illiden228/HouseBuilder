@@ -42,7 +42,7 @@ namespace Logic.Model
             {
                 moneys = _ctx.profile.Moneys,
                 workers = _ctx.profile.Workers,
-                currentBuild = _ctx.profile.CurrentBuilding,
+                currentBuild = _ctx.profile.CurrentBuildingWorkProgress,
             };
             AddDispose(new WorkersLogic(workerLogicCtx));
             
@@ -55,7 +55,7 @@ namespace Logic.Model
 
             BuildProgressLogic.Ctx buildProgressLogicCtx = new BuildProgressLogic.Ctx
             {
-                currentBuild = _ctx.profile.CurrentBuilding,
+                currentBuild = _ctx.profile.CurrentBuildingWorkProgress,
                 config = _ctx.config.buildingsConfig.buildings,
                 currentBuildIndex = _ctx.profile.CurrentBuildIndex,
                 queueBuildProgress = _ctx.profile.QueueBuildProgress

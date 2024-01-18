@@ -127,12 +127,12 @@ namespace Logic.Idle
 
         protected override void OnDestroy()
         {
-            _resourceLoader.Dispose();
-            _sceneLoader.Dispose();
-            _game.Dispose();
-            _dataLoader.Dispose();
-            _coreLogic.Dispose();
-            _gameConfigLoader.Dispose();
+            _resourceLoader?.Dispose();
+            _sceneLoader?.Dispose();
+            _game?.Dispose();
+            _dataLoader?.Dispose();
+            _coreLogic?.Dispose();
+            _gameConfigLoader?.Dispose();
             base.OnDestroy();
         }
     }

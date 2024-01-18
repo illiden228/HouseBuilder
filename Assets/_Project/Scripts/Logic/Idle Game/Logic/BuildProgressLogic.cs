@@ -47,6 +47,7 @@ namespace Logic.Model
 
         private void OnFloorsCountChanged(int currentCount)
         {
+            _ctx.currentBuild.Value.Building.Value.CurrentFloorsCount.Value++;
             if (currentCount < _ctx.currentBuild.Value.Building.Value.Info.Value.floors.Count)
             {
                 _ctx.currentBuild.Value.CurrentFloor.Value.CurrentWorkCount.Value -= _ctx.currentBuild.Value.CurrentFloor.Value.Info.Value.maxWorkCount;
@@ -60,6 +61,8 @@ namespace Logic.Model
                 BuildProgressModel newModel = new BuildProgressModel();
                 newModel.Building.Value = new BuildingModel();
                 newModel.Building.Value.Info.Value = _ctx.config[_ctx.currentBuildIndex.Value];
+                newModel.Building.Value.MoneyIncome.Value = newModel.Building.Value.Info.Value.income;
+                newModel.Building.Value.TimeSpeed.Value = newModel.Building.Value.Info.Value.timeSpeed;
                 newModel.CurrentFloor.Value = new FloorModel();
                 newModel.CurrentFloor.Value.Info.Value = newModel.Building.Value.Info.Value.floors[0];
                 _ctx.currentBuild.Value = newModel;

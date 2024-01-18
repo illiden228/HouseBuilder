@@ -68,12 +68,12 @@ namespace Logic.Intro
 
             IdleScenePm.Ctx idleSceneCtx =new IdleScenePm.Ctx
             {
-                currentScene = _ctx.profile.CurrentScene,
                 userDataLoader = _ctx.userDataLoader,
                 sceneContext = idleContextView,
                 resourceLoader = _ctx.resourceLoader,
                 profile = _ctx.profile,
-                gameConfig = _ctx.gameConfig
+                gameConfig = _ctx.gameConfig,
+                moveToFloorScene = () => _ctx.profile.CurrentScene.Value = Scenes.FloorScene,
             };
             AddDispose(new IdleScenePm(idleSceneCtx));
         }
@@ -92,10 +92,10 @@ namespace Logic.Intro
                 currentScene = _ctx.profile.CurrentScene,
                 userDataLoader = _ctx.userDataLoader,
                 sceneContext = floorsContextView,
-                building = _ctx.profile.CurrentBuilding.Value.Building,
-                floorsProgress = _ctx.profile.CurrentBuilding.Value.FloorsProgress,
+                building = _ctx.profile.CurrentBuildingFloorProgress.Value.Building,
+                floorsProgress = _ctx.profile.CurrentBuildingFloorProgress.Value.FloorsProgress,
                 resourceLoader = _ctx.resourceLoader,
-                onBackToIdleScene = () => _ctx.profile.CurrentScene.Value = Scenes.IdleScene
+                onBackToIdleScene = () => _ctx.profile.CurrentScene.Value = Scenes.IdleScene,
             };
             AddDispose(new FloorsScenePm(floorsSceneCtx));
         }
