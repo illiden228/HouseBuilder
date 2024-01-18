@@ -1,4 +1,6 @@
-﻿using Core;
+﻿using System;
+using Core;
+using Tools.Extensions;
 using UniRx;
 using UnityEngine;
 
@@ -19,6 +21,7 @@ namespace Logic.Idle.Monitors
         }
 
         private Ctx _ctx;
+        private IDisposable _sub;
 
         public Transform Container => _container;
 
@@ -26,12 +29,13 @@ namespace Logic.Idle.Monitors
         {
             BaseInit(baseCtx);
             _ctx = ctx;
-
-            Observable.IntervalFrame(1).Subscribe(_ => InitSliders()).AddTo(_baseCtx.viewDisposable);
+            
+            _sub = Observable.IntervalFrame(1).Subscribe(_ => InitSliders()).AddTo(_baseCtx.viewDisposable);
         }
         
         private void InitSliders()
         {
+            _sub?.Dispose();
             _floorProgress.Init(new IntProgressSliderView.Ctx
             {
                 viewDisposable = _baseCtx.viewDisposable,
@@ -45,6 +49,12 @@ namespace Logic.Idle.Monitors
                 current = _ctx.currentFloor,
                 max = _ctx.maxFloors,
             });
+        }
+
+        protected override void OnDestroy()
+        {
+            _sub?.Dispose();
+            base.OnDestroy();
         }
     }
 }

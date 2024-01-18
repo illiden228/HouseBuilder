@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using Core;
 using Logic.Model;
 using UniRx;
@@ -139,11 +140,13 @@ namespace Logic.Idle.Monitors
         {
             _floorsCountSub?.Dispose();
             _workCountSub?.Dispose();
-            foreach (var raw in _raws)
+            var rows = _raws.Values.ToArray();
+            for (int i = 0; i < rows.Length; i++)
             {
-                raw.Value?.Dispose();
+                rows[_raws.Count - 1 - i].Dispose();
             }
-            _raws.Clear();
+            if(_view != null)
+                GameObject.Destroy(_view);
             base.OnDispose();
         }
     }

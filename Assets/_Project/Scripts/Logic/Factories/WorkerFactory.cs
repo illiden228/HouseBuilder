@@ -65,5 +65,17 @@ namespace _Project.Scripts.Logic.Factories
             _disposables[workerObject].Add(workerPm);
             _disposables[workerObject].Add(viewDisposable);
         }
+
+        protected override void OnDispose()
+        {
+            foreach (var disposableLists in _disposables)
+            {
+                foreach (var disposableList in disposableLists.Value)
+                {
+                    disposableList?.Dispose();
+                }
+            }
+            base.OnDispose();
+        }
     }
 }

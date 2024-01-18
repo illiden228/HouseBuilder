@@ -89,17 +89,17 @@ namespace Logic.Idle.Monitors
 
         private IMonitor CreateProfileMonitor()
         {
-            return new ProfileMonitorPm(new ProfileMonitorPm.Ctx
+            return AddDispose(new ProfileMonitorPm(new ProfileMonitorPm.Ctx
             {
                 resourceLoader = _ctx.resourceLoader,
                 uiParent = _ctx.uiParent,
                 back = () => OnMonitorBackClick(MonitorType.Profile),
-            });
+            }));
         }
         
         private IMonitor CreateWorkersMonitor()
         {
-            return new WorkerMonitorPm(new WorkerMonitorPm.Ctx
+            return AddDispose(new WorkerMonitorPm(new WorkerMonitorPm.Ctx
             {
                 uiParent = _ctx.uiParent,
                 resourceLoader = _ctx.resourceLoader,
@@ -110,22 +110,22 @@ namespace Logic.Idle.Monitors
                 moneys = _ctx.profile.Moneys,
                 currentMergeLevel = _ctx.profile.CurrentMergeLevel,
                 currentAddWorkerLevel = _ctx.profile.CurrentAddWorkerLevel
-            });
+            }));
         }
 
         private IMonitor CreateBuildingsMonitor()
         {
-            return new BuildingsMonitorPm(new BuildingsMonitorPm.Ctx
+            return AddDispose(new BuildingsMonitorPm(new BuildingsMonitorPm.Ctx
             {
                 resourceLoader = _ctx.resourceLoader,
                 uiParent = _ctx.uiParent,
                 back = () => OnMonitorBackClick(MonitorType.Buildings),
-            });
+            }));
         }
 
         private IMonitor CreateBuildProgressMonitor()
         {
-            return new BuildingProgressMonitorPm(new BuildingProgressMonitorPm.Ctx
+            return AddDispose(new BuildingProgressMonitorPm(new BuildingProgressMonitorPm.Ctx
             {
                 resourceLoader = _ctx.resourceLoader,
                 uiParent = _ctx.uiParent,
@@ -133,17 +133,17 @@ namespace Logic.Idle.Monitors
                 queueBuildProgress = _ctx.profile.QueueBuildProgress,
                 currentBuilding = _ctx.profile.CurrentBuildingWorkProgress,
                 buildings = _ctx.profile.Buildings
-            });
+            }));
         }
 
         private IMonitor CreateCheatsMonitor()
         {
-            return new CheatsMonitorPm(new CheatsMonitorPm.Ctx
+            return AddDispose(new CheatsMonitorPm(new CheatsMonitorPm.Ctx
             {
                 resourceLoader = _ctx.resourceLoader,
                 uiParent = _ctx.uiParent,
                 back = () => OnMonitorBackClick(MonitorType.Cheats),
-            });
+            }));
         }
 
         private void OnMonitorBackClick(MonitorType monitorType)

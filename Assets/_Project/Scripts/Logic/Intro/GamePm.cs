@@ -6,6 +6,7 @@ using Logic.Idle.Workers;
 using Logic.Profile;
 using SceneLogic;
 using UniRx;
+using UnityEditor.Build.Content;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -24,6 +25,7 @@ namespace Logic.Intro
         }
 
         private readonly Ctx _ctx;
+        private IDisposable _currentScene;
 
         public GamePm(Ctx ctx)
         {
@@ -39,7 +41,7 @@ namespace Logic.Intro
         
         private void OnSceneUnload()
         {
-            
+            _currentScene?.Dispose();
         }
 
         private void OnSceneLoaded(Scenes scene)
@@ -47,23 +49,23 @@ namespace Logic.Intro
             switch (scene)
             {
                 case Scenes.IdleScene:
-                    CreateIdleScene();
+                    _currentScene = CreateIdleScene();
                     return;
                 case Scenes.FloorScene:
-                    CreateFloorScene();
+                    _currentScene = CreateFloorScene();
                     return;
                 default:
                     throw new ArgumentOutOfRangeException();
             }
         }
 
-        private void CreateIdleScene()
+        private IDisposable CreateIdleScene()
         {
             SceneContextView sceneContext = FindContext(Scenes.IdleScene);
             if (sceneContext is not IdleContextView idleContextView)
             {
                 Debug.LogError("IdleContextView was null");
-                return;
+                return null;
             }
 
             IdleScenePm.Ctx idleSceneCtx =new IdleScenePm.Ctx
@@ -75,16 +77,16 @@ namespace Logic.Intro
                 gameConfig = _ctx.gameConfig,
                 moveToFloorScene = () => _ctx.profile.CurrentScene.Value = Scenes.FloorScene,
             };
-            AddDispose(new IdleScenePm(idleSceneCtx));
+            return new IdleScenePm(idleSceneCtx);
         }
         
-        private void CreateFloorScene()
+        private IDisposable CreateFloorScene()
         {
             SceneContextView sceneContext = FindContext(Scenes.FloorScene);
             if (sceneContext is not FloorsContextView floorsContextView)
             {
                 Debug.LogError("FloorsContextView was null");
-                return;
+                return null;
             }
             
             FloorsScenePm.Ctx floorsSceneCtx = new FloorsScenePm.Ctx
@@ -97,7 +99,7 @@ namespace Logic.Intro
                 resourceLoader = _ctx.resourceLoader,
                 onBackToIdleScene = () => _ctx.profile.CurrentScene.Value = Scenes.IdleScene,
             };
-            AddDispose(new FloorsScenePm(floorsSceneCtx));
+            return new FloorsScenePm(floorsSceneCtx);
         }
 
         private SceneContextView FindContext(Scenes scene)

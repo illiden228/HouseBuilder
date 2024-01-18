@@ -110,6 +110,8 @@ namespace Logic.Idle.Monitors
             {
                 rows[_workerRows.Count - 1 - i].Dispose();
             }
+            if(_view != null)
+                GameObject.Destroy(_view);
             base.OnDispose();
         }
     }

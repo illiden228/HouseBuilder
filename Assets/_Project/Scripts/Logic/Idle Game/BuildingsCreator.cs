@@ -34,7 +34,7 @@ namespace Logic.Idle
                 _ctx.currentBuildingFloorProgress.Value = _ctx.queueBuildProgress[0];
             }));
 
-            AddDispose(_ctx.currentScene.Subscribe(scene =>
+            AddDispose(_ctx.currentScene.Skip(1).Subscribe(scene =>
             {
                 if (scene != Scenes.IdleScene)
                     return;
