@@ -41,7 +41,8 @@ namespace UI
             {
                 viewDisposable = AddDispose(new CompositeDisposable()),
                 openMonitor = OpenMainMonitor,
-                viewTestUI = _ctx.viewTestUI
+                viewTestUI = _ctx.viewTestUI,
+                moneys = _ctx.profile.Moneys,
             });
 
             UpgradeButtonsPm.Ctx upgradesCtx = new UpgradeButtonsPm.Ctx

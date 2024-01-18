@@ -42,19 +42,6 @@ namespace SceneLogic
                 profile = _ctx.profile
             };
             AddDispose(new MainMenuPm(mainMenuCtx));
-            
-            _ctx.sceneContext.FloorBuilder.Init(new FloorBuilder.Ctx
-            {
-                userDataLoader = _ctx.userDataLoader
-            });
-
-            _ctx.sceneContext.Storage.Init();
-            
-            _ctx.sceneContext.FloorRegistrator.Init(new FloorRegistrator.Ctx
-            {
-                userDataLoader = _ctx.userDataLoader,
-                currentScene = _ctx.currentScene 
-            });
         }
     }
 }
