@@ -115,6 +115,7 @@ namespace Logic.Model
 
             upgradeProperty.Value++;
             UpgradeModel.UpgradesCount.Value++;
+            _ctx.profile.Moneys.Value -= cost.Value;
             
             return true;
         }
