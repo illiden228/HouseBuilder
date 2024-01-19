@@ -567,6 +567,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3505215802881602560}
+  - component: {fileID: 3025768762124648250}
   m_Layer: 5
   m_Name: Progress Field
   m_TagString: Untagged
@@ -598,6 +599,21 @@ RectTransform:
   m_AnchoredPosition: {x: 0.00039673, y: -158.61}
   m_SizeDelta: {x: 920.34, y: 83.5965}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &3025768762124648250
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2798084769939968701}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a1c3c99080084705b7ff7f6a58227de1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _currentValue: {fileID: 2832935572996581956}
+  _maxValue: {fileID: 8211090703655443557}
+  _slider: {fileID: 4258502129639912624}
 --- !u!1 &3235528050137551746
 GameObject:
   m_ObjectHideFlags: 0
@@ -1901,9 +1917,7 @@ MonoBehaviour:
   _moneyIncomeText: {fileID: 3019328874485927552}
   _workIncomeText: {fileID: 3239833351315480181}
   _gradeText: {fileID: 8946100970836826247}
-  _currentTimeIncomeText: {fileID: 8211090703655443557}
-  _progressIncomeText: {fileID: 2832935572996581956}
-  _sliderIncomeProgress: {fileID: 4258502129639912624}
+  _progressSlider: {fileID: 3025768762124648250}
 --- !u!1 &7713647770824810871
 GameObject:
   m_ObjectHideFlags: 0
