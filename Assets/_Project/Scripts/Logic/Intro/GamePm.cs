@@ -2,11 +2,9 @@
 using System.Linq;
 using Containers.Data;
 using Core;
-using Logic.Idle.Workers;
 using Logic.Profile;
 using SceneLogic;
 using UniRx;
-using UnityEditor.Build.Content;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
