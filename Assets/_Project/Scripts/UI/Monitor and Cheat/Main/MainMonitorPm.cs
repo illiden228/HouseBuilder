@@ -120,6 +120,7 @@ namespace Logic.Idle.Monitors
                 resourceLoader = _ctx.resourceLoader,
                 uiParent = _ctx.uiParent,
                 back = () => OnMonitorBackClick(MonitorType.Buildings),
+                buildings = _ctx.profile.Buildings,
             }));
         }
 
