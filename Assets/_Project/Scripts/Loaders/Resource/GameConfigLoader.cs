@@ -15,7 +15,7 @@ namespace Core
         }
 
         private readonly Ctx _ctx;
-        private const string CONFIG_NAME = "HouseBuilder Config.json";
+        private const string CONFIG_NAME = "HouseBuilder Config";
 
         public GameConfigLoader(Ctx ctx)
         {

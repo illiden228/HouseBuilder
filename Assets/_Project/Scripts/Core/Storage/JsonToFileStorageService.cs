@@ -7,7 +7,9 @@ using UnityEngine;
 
 public class JsonToFileStorageService : IStorageService
 {
-    public struct Ctx { }
+    public struct Ctx
+    {
+    }
 
     private readonly Ctx _ctx;
 
@@ -28,9 +30,24 @@ public class JsonToFileStorageService : IStorageService
 
     public ConfigData LoadConfig(string key)
     {
-        string path = Path.Combine(Application.streamingAssetsPath, key);
+        // TODO: закинуть конфиг в какое нибудь другое место, он будет с remote config грузиться
+        //string path = Path.Combine(Application, key);
+        string json = Resources.Load<TextAsset>(key).text;
+        ConfigData result = JsonConvert.DeserializeObject<ConfigData>(json);
+// #if UNITY_ANDROID
+//         result = Load<ConfigData>(path);
+// #else
+//         UnityEngine.Networking.UnityWebRequest www = UnityEngine.Networking.UnityWebRequest.Get(path);
+//         Debug.Log("sed request for " + path);        
+//         www.SendWebRequest();
+//         while (!www.isDone) {}
+//         string jsonString = www.downloadHandler.text;
+//         Debug.LogError("json: " + jsonString); 
+//         result = JsonConvert.DeserializeObject<ConfigData>(jsonString);
+//         Debug.LogError("DeserializeObject: " + result); 
+// #endif
 
-        return Load<ConfigData>(path);
+        return result;
     }
 
     public void Load<T>(string key, Action<T> callBack) where T : class
@@ -38,7 +55,7 @@ public class JsonToFileStorageService : IStorageService
         string path = BuildPath(key);
 
         var data = Load<T>(path);
-        callBack?.Invoke(data);        
+        callBack?.Invoke(data);
     }
 
     private T Load<T>(string path) where T : class
@@ -102,5 +119,8 @@ public class JsonToFileStorageService : IStorageService
         callBack?.Invoke(true);
     }
 
-    private string BuildPath(string key) { return Path.Combine(Application.persistentDataPath, key); }
+    private string BuildPath(string key)
+    {
+        return Path.Combine(Application.persistentDataPath, key);
+    }
 }

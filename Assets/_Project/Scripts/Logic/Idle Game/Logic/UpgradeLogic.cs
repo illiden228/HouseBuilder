@@ -113,9 +113,9 @@ namespace Logic.Model
             if(_ctx.profile.Moneys.Value < cost.Value)
                 return false;
 
+            _ctx.profile.Moneys.Value -= cost.Value;
             upgradeProperty.Value++;
             UpgradeModel.UpgradesCount.Value++;
-            _ctx.profile.Moneys.Value -= cost.Value;
             
             return true;
         }
