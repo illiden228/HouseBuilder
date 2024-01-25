@@ -21,7 +21,7 @@ namespace SceneLogic
             public Action onBackToIdleScene; // когда мы достроили здание, то вызываем экшон
             public IResourceLoader resourceLoader;
             public IReactiveProperty<BuildingModel> building; // модель строящегося здания
-            public IReactiveProperty<FloorsProgressModel> floorsProgress; // прогресс строящегося здания, подписывают на проперти и делаю что хочу)
+            public IReactiveProperty<FloorsProgressModel> floorsProgress; // прогресс строящегося здания, подписывают на проперти и делаю что хочу
         }
 
         private readonly Ctx _ctx;
@@ -33,13 +33,16 @@ namespace SceneLogic
             _ctx = ctx;
 
             ReactiveEvent onClickReleaseFloorButton = new ReactiveEvent();
+            ReactiveEvent<int> onFloorPlaced = new ReactiveEvent<int>(); 
 
             AddDispose(onClickReleaseFloorButton);
+            AddDispose(onFloorPlaced);
 
             FloorHUDPm mainHUD = AddDispose(new FloorHUDPm(new FloorHUDPm.Ctx
             {
                 viewOnScene = _ctx.sceneContext.FloorHUDView,                
-                releaseFloorButton = onClickReleaseFloorButton
+                releaseFloorButton = onClickReleaseFloorButton,
+                onFloorPlaced = onFloorPlaced
             }));
 
             _towerBuilderPm = AddDispose(new TowerBuilderPm(new TowerBuilderPm.Ctx
@@ -48,6 +51,9 @@ namespace SceneLogic
                 onReleaseFloor = onClickReleaseFloorButton,
                 resourceLoader = _ctx.resourceLoader,
                 onBackToIdleScene = _ctx.onBackToIdleScene,
+                floorsProgress = _ctx.floorsProgress,
+                building = _ctx.building,
+                onFloorPlaced = onFloorPlaced
             }));
         }
     }

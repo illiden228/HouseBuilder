@@ -14,6 +14,7 @@ public class FloorHUDPm : BaseDisposable
         public IReadOnlyProfile profile;
         public FloorHUDView viewOnScene;
         public ReactiveEvent releaseFloorButton;
+        public ReactiveEvent<int> onFloorPlaced;
     }
 
     private readonly Ctx _ctx;
@@ -25,9 +26,9 @@ public class FloorHUDPm : BaseDisposable
 
         _ctx.viewOnScene.Init(new FloorHUDView.Ctx
         {
-            viewDisposables = AddDispose(new CompositeDisposable()),
-            //availableFloors = _ctx.profile.Floors,
-            releaseFloorButton = _ctx.releaseFloorButton
+            viewDisposables = AddDispose(new CompositeDisposable()),            
+            releaseFloorButton = _ctx.releaseFloorButton,
+            onFloorPlaced = _ctx.onFloorPlaced
         });
 
         //_ctx.resourceLoader.LoadPrefab("fake", VIEW_PREFAB_NAME, OnViewLoaded);

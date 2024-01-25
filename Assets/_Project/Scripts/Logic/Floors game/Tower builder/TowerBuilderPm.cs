@@ -1,5 +1,6 @@
 using BezierSolution;
 using Core;
+using Logic.Model;
 using System;
 using System.Collections.Generic;
 using Tools.Extensions;
@@ -14,6 +15,9 @@ public class TowerBuilderPm : BaseDisposable
         public IResourceLoader resourceLoader;
         public ReactiveEvent onReleaseFloor;
         public Action onBackToIdleScene;
+        public IReactiveProperty<FloorsProgressModel> floorsProgress;
+        public IReactiveProperty<BuildingModel> building;
+        public ReactiveEvent<int> onFloorPlaced;
     }
 
     private readonly Ctx _ctx;
@@ -28,8 +32,8 @@ public class TowerBuilderPm : BaseDisposable
     private float _timeToDestroyFailFloor = 10f;
     private float _maxAmplitudeTowerRocking = 2.61f;    
     private float _speedTowerRocking = 1f;
-
     private const string FloorViewPrefabName = "FloorView";
+
     private FloorView _floorViewPrefab;
     private float _averageTowerRockingOffsetX;
     private float _targetYPos = 0f;
@@ -45,7 +49,6 @@ public class TowerBuilderPm : BaseDisposable
         RigidbodyConstraints.FreezeRotationX |
         RigidbodyConstraints.FreezeRotationY;
     
-
     public TowerBuilderPm(Ctx ctx)
     {
         _ctx = ctx;
@@ -69,12 +72,17 @@ public class TowerBuilderPm : BaseDisposable
         _ctx.resourceLoader.LoadPrefab("fakebundles", FloorViewPrefabName, OnResourcesLoaded);
 
         CreateNewFloor();
+
+        _ctx.floorsProgress.Value.setFloors = new List<Vector3>();
+
+        _ctx.onFloorPlaced?.Notify(_ctx.building.Value.CurrentFloorsCount.Value);
     }
 
     private void OnResourcesLoaded(GameObject prefab) => _floorViewPrefab = prefab.GetComponent<FloorView>();
 
     private void CreateNewFloor(bool moveCrane = false)
     {
+        //To do: Переделать на пул(возможно)
         _floorToReleaseInstance = GameObject.Instantiate(_floorViewPrefab, _ctx.towerBuilderView.transform);
         _floorToReleaseInstance.transform.SetParent(_ctx.towerBuilderView.CableStart);        
         _ctx.towerBuilderView.CableStart.SetParent(_floorToReleaseInstance.transform);
@@ -87,6 +95,9 @@ public class TowerBuilderPm : BaseDisposable
 
     private void UpdateTowerRocking()
     {
+        //Пока работает криво
+        //*Возможно двигать только самый первый этаж, а остальные за ним (проверить как работает)
+
         //if (_installedFloors.Count < 5)
         //    return;
 
@@ -105,6 +116,7 @@ public class TowerBuilderPm : BaseDisposable
         if (_floorToReleaseInstance == null)
             return;
 
+        //Ускоряем падение вниз
         if (_floorReleased)
             _floorToReleaseInstance.Rigidbody.AddForce(_additionalForceToFloor, ForceMode.Force);
     }
@@ -122,21 +134,28 @@ public class TowerBuilderPm : BaseDisposable
 
         float impulseX = 0f;
                 
+        //Выбираем в какую сторону подтолкнуть начальным импульсом имитируя отпускание груза с маятника
         if (_floorToReleaseInstance.transform.position.x > 0f)
             impulseX = _bezierWalkerWithSpeed.MovingForward ? 1f : -1f * Mathf.InverseLerp(0f, _oscillationAmplitude, _floorToReleaseInstance.transform.position.x);
         else if (_floorToReleaseInstance.transform.position.x < 0f)
             impulseX = _bezierWalkerWithSpeed.MovingForward ? 1f : -1f * Mathf.InverseLerp(-_oscillationAmplitude, 0f, _floorToReleaseInstance.transform.position.x);
 
+        //Начальное ускорение
         _floorToReleaseInstance.Rigidbody.AddForce(new Vector3(impulseX * _initialXImpulse, _initialYImpulse, 0f), ForceMode.Impulse);
 
         _floorCollisionEvent = new ReactiveEvent();
         _floorToReleaseInstance.SetCollisionEvent(_floorCollisionEvent);
-        _floorCollisionEvent.SubscribeWithSkip(OnFloorCollision);        
+        _floorCollisionEvent.SubscribeWithSkip(OnFloorCollision);
     }
 
     private void OnFloorCollision()
     {
         _floorCollisionEvent.Dispose();
+
+        //Вычитаем этаж из даты переданной на сцену
+        _ctx.building.Value.CurrentFloorsCount.Value--;
+
+        _ctx.onFloorPlaced?.Notify(_ctx.building.Value.CurrentFloorsCount.Value);
 
         _floorToReleaseInstance.CanCheckCollision = false;
         _floorToReleaseInstance.Rigidbody.isKinematic = true;
@@ -161,6 +180,7 @@ public class TowerBuilderPm : BaseDisposable
                 _floorToReleaseInstance.transform.position.z);
             _targetYPos += _offsetYFloor;
 
+            //Считаем отклонение и записываем от 0 до 1, где 0 нет отклонения, 
             float installationCoef = Mathf.InverseLerp(0, _maxFloorDeviation, moduleFloorDeviation);
 
             _installedFloors.Add(new Floor
@@ -169,15 +189,25 @@ public class TowerBuilderPm : BaseDisposable
                 installationPointX = _floorToReleaseInstance.transform.position.x,                
                 installationCoefficient = installationCoef
             });
+                        
+            //Записали этаж в хранилище
+            _ctx.floorsProgress.Value.setFloors.Add(_floorToReleaseInstance.transform.position);
 
             CalculateAverageAmplitudeTowerRocking();
 
-            Debug.Log("Tower placed with installationCoefficient: " + installationCoef);           
+            Debug.Log("Tower placed with installationCoefficient: " + installationCoef);
 
-            CreateNewFloor(true);
-            _canReleaseFloor = true;
+            if (_ctx.building.Value.CurrentFloorsCount.Value <= 0)
+            {
+                AllFloorsPlaced();
+            }
+            else
+            {
+                CreateNewFloor(true);
+                _canReleaseFloor = true;
+            }
         }
-    }
+    }  
 
     private void CalculateAverageAmplitudeTowerRocking()
     {
@@ -214,9 +244,29 @@ public class TowerBuilderPm : BaseDisposable
 
     private void OnFloorFallInDeathZone()
     {
+        _ctx.building.Value.CurrentFloorsCount.Value = 0;
         _canReleaseFloor = false;
         Debug.Log("Death zone collision");
         FloorGameOver();
+    }
+
+    private void AllFloorsPlaced()
+    {
+        Debug.Log("All floors placed!");
+
+        float averageCoef = 0;
+
+        for (int i = 0; i < _installedFloors.Count; i++)
+        {
+            //Инвертируем чтобы было 1 хорошо, а 0 плохо
+            averageCoef += 1 - _installedFloors[i].installationCoefficient;
+        }
+
+        averageCoef /= _installedFloors.Count;
+
+       _ctx.floorsProgress.Value.reward = (int)Mathf.Lerp(_ctx.building.Value.Info.Value.minReward, _ctx.building.Value.Info.Value.maxReward, averageCoef);
+
+        _ctx.onBackToIdleScene?.Invoke();
     }
 
     private void FloorGameOver()
@@ -232,6 +282,10 @@ public class TowerBuilderPm : BaseDisposable
             _destroyFailFloorDisposable.Dispose();
         });
         AddDispose(_destroyFailFloorDisposable);
+
+        //Give min reward
+        _ctx.floorsProgress.Value.reward = _ctx.building.Value.Info.Value.minReward;
+        _ctx.onBackToIdleScene?.Invoke();
     }
 
     public class Floor
