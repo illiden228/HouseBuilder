@@ -33,7 +33,7 @@ public class FloorHUDView : BaseMonobehaviour
             .Subscribe(_ => ButtonClick())
             .AddTo(_ctx.viewDisposables);
 
-        _ctx.onFloorPlaced.SubscribeOnceWithSkip((value) => { _availableFloorsText.text = value.ToString(); })
+        _ctx.onFloorPlaced.Subscribe((value) => { _availableFloorsText.text = value.ToString(); })
             .AddTo(_ctx.viewDisposables);
 
         //_loadSceneResourcesButton.OnClickAsObservable()
