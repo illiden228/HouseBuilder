@@ -2,6 +2,7 @@
 using System.Linq;
 using Containers.Data;
 using Core;
+using Logic.Model;
 using Logic.Profile;
 using SceneLogic;
 using UniRx;
@@ -95,7 +96,19 @@ namespace Logic.Intro
                 building = _ctx.profile.CurrentBuildingFloorProgress.Value.Building,
                 floorsProgress = _ctx.profile.CurrentBuildingFloorProgress.Value.FloorsProgress,
                 resourceLoader = _ctx.resourceLoader,
-                onBackToIdleScene = () => _ctx.profile.CurrentScene.Value = Scenes.IdleScene,
+                onBackToIdleScene = () =>
+                {
+                    _ctx.profile.CurrentScene.Value = Scenes.IdleScene;
+                    BuildProgressModel currentBuildProgress = _ctx.profile.CurrentBuildingFloorProgress.Value;
+                    int floorsInCurrentBuilding = currentBuildProgress.Building.Value.CurrentFloorsCount.Value;
+                    if (floorsInCurrentBuilding == 0)
+                    {
+                        int reward = currentBuildProgress.FloorsProgress.Value.reward;
+                        _ctx.profile.Moneys.Value += reward;
+                        _ctx.profile.Buildings.Add(currentBuildProgress.Building.Value);
+                        _ctx.profile.QueueBuildProgress.Remove(currentBuildProgress);
+                    }
+                },
             };
             return new FloorsScenePm(floorsSceneCtx);
         }

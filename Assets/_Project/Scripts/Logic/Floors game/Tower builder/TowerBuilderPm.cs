@@ -82,7 +82,7 @@ public class TowerBuilderPm : BaseDisposable
 
     private void CreateNewFloor(bool moveCrane = false)
     {
-        //To do: Переделать на пул(возможно)
+        //To do: РџРµСЂРµРґРµР»Р°С‚СЊ РЅР° РїСѓР»(РІРѕР·РјРѕР¶РЅРѕ)
         _floorToReleaseInstance = GameObject.Instantiate(_floorViewPrefab, _ctx.towerBuilderView.transform);
         _floorToReleaseInstance.transform.SetParent(_ctx.towerBuilderView.CableStart);        
         _ctx.towerBuilderView.CableStart.SetParent(_floorToReleaseInstance.transform);
@@ -95,8 +95,8 @@ public class TowerBuilderPm : BaseDisposable
 
     private void UpdateTowerRocking()
     {
-        //Пока работает криво
-        //*Возможно двигать только самый первый этаж, а остальные за ним (проверить как работает)
+        //РџРѕРєР° СЂР°Р±РѕС‚Р°РµС‚ РєСЂРёРІРѕ
+        //*Р’РѕР·РјРѕР¶РЅРѕ РґРІРёРіР°С‚СЊ С‚РѕР»СЊРєРѕ СЃР°РјС‹Р№ РїРµСЂРІС‹Р№ СЌС‚Р°Р¶, Р° РѕСЃС‚Р°Р»СЊРЅС‹Рµ Р·Р° РЅРёРј (РїСЂРѕРІРµСЂРёС‚СЊ РєР°Рє СЂР°Р±РѕС‚Р°РµС‚)
 
         //if (_installedFloors.Count < 5)
         //    return;
@@ -116,7 +116,7 @@ public class TowerBuilderPm : BaseDisposable
         if (_floorToReleaseInstance == null)
             return;
 
-        //Ускоряем падение вниз
+        //РЈСЃРєРѕСЂСЏРµРј РїР°РґРµРЅРёРµ РІРЅРёР·
         if (_floorReleased)
             _floorToReleaseInstance.Rigidbody.AddForce(_additionalForceToFloor, ForceMode.Force);
     }
@@ -134,13 +134,13 @@ public class TowerBuilderPm : BaseDisposable
 
         float impulseX = 0f;
                 
-        //Выбираем в какую сторону подтолкнуть начальным импульсом имитируя отпускание груза с маятника
+        //Р’С‹Р±РёСЂР°РµРј РІ РєР°РєСѓСЋ СЃС‚РѕСЂРѕРЅСѓ РїРѕРґС‚РѕР»РєРЅСѓС‚СЊ РЅР°С‡Р°Р»СЊРЅС‹Рј РёРјРїСѓР»СЊСЃРѕРј РёРјРёС‚РёСЂСѓСЏ РѕС‚РїСѓСЃРєР°РЅРёРµ РіСЂСѓР·Р° СЃ РјР°СЏС‚РЅРёРєР°
         if (_floorToReleaseInstance.transform.position.x > 0f)
             impulseX = _bezierWalkerWithSpeed.MovingForward ? 1f : -1f * Mathf.InverseLerp(0f, _oscillationAmplitude, _floorToReleaseInstance.transform.position.x);
         else if (_floorToReleaseInstance.transform.position.x < 0f)
             impulseX = _bezierWalkerWithSpeed.MovingForward ? 1f : -1f * Mathf.InverseLerp(-_oscillationAmplitude, 0f, _floorToReleaseInstance.transform.position.x);
 
-        //Начальное ускорение
+        //РќР°С‡Р°Р»СЊРЅРѕРµ СѓСЃРєРѕСЂРµРЅРёРµ
         _floorToReleaseInstance.Rigidbody.AddForce(new Vector3(impulseX * _initialXImpulse, _initialYImpulse, 0f), ForceMode.Impulse);
 
         _floorCollisionEvent = new ReactiveEvent();
@@ -152,7 +152,7 @@ public class TowerBuilderPm : BaseDisposable
     {
         _floorCollisionEvent.Dispose();
 
-        //Вычитаем этаж из даты переданной на сцену
+        //Р’С‹С‡РёС‚Р°РµРј СЌС‚Р°Р¶ РёР· РґР°С‚С‹ РїРµСЂРµРґР°РЅРЅРѕР№ РЅР° СЃС†РµРЅСѓ
         _ctx.building.Value.CurrentFloorsCount.Value--;
 
         _ctx.onFloorPlaced?.Notify(_ctx.building.Value.CurrentFloorsCount.Value);
@@ -180,7 +180,7 @@ public class TowerBuilderPm : BaseDisposable
                 _floorToReleaseInstance.transform.position.z);
             _targetYPos += _offsetYFloor;
 
-            //Считаем отклонение и записываем от 0 до 1, где 0 нет отклонения, 
+            //РЎС‡РёС‚Р°РµРј РѕС‚РєР»РѕРЅРµРЅРёРµ Рё Р·Р°РїРёСЃС‹РІР°РµРј РѕС‚ 0 РґРѕ 1, РіРґРµ 0 РЅРµС‚ РѕС‚РєР»РѕРЅРµРЅРёСЏ, 
             float installationCoef = Mathf.InverseLerp(0, _maxFloorDeviation, moduleFloorDeviation);
 
             _installedFloors.Add(new Floor
@@ -190,7 +190,7 @@ public class TowerBuilderPm : BaseDisposable
                 installationCoefficient = installationCoef
             });
                         
-            //Записали этаж в хранилище
+            //Р—Р°РїРёСЃР°Р»Рё СЌС‚Р°Р¶ РІ С…СЂР°РЅРёР»РёС‰Рµ
             _ctx.floorsProgress.Value.setFloors.Add(_floorToReleaseInstance.transform.position);
 
             CalculateAverageAmplitudeTowerRocking();
@@ -258,7 +258,7 @@ public class TowerBuilderPm : BaseDisposable
 
         for (int i = 0; i < _installedFloors.Count; i++)
         {
-            //Инвертируем чтобы было 1 хорошо, а 0 плохо
+            //РРЅРІРµСЂС‚РёСЂСѓРµРј С‡С‚РѕР±С‹ Р±С‹Р»Рѕ 1 С…РѕСЂРѕС€Рѕ, Р° 0 РїР»РѕС…Рѕ
             averageCoef += 1 - _installedFloors[i].installationCoefficient;
         }
 
