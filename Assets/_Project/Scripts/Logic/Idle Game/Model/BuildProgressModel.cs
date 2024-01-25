@@ -18,7 +18,7 @@ namespace Logic.Model
             CurrentFloor = new ReactiveProperty<FloorModel>();
             CurrentFloorIndex = new ReactiveProperty<int>();
             Building = new ReactiveProperty<BuildingModel>();
-            FloorsProgress = new ReactiveProperty<FloorsProgressModel>();
+            FloorsProgress = new ReactiveProperty<FloorsProgressModel>(new FloorsProgressModel());
         }
     }
 }

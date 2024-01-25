@@ -5,7 +5,7 @@ namespace Logic.Model
 {
     public class FloorsProgressModel
     {
-        public List<Vector3> setFloors; // поставленные этажи для сохранения, если поставил этаж, то записываю сюда
+        public List<Vector3> setFloors = new(); // поставленные этажи для сохранения, если поставил этаж, то записываю сюда
         public int reward; // итоговая награда 
     }
 }
