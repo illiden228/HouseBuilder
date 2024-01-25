@@ -14,6 +14,7 @@ public class FloorHUDView : BaseMonobehaviour
         public IReadOnlyReactiveProperty<int> availableFloors;
         public IReadOnlyReactiveProperty<int> builtFloors;
         public ReactiveEvent releaseFloorButton;
+        public ReactiveEvent<int> onFloorPlaced;
     }
 
     [SerializeField] private Button _releaseFloorButton;
@@ -30,6 +31,9 @@ public class FloorHUDView : BaseMonobehaviour
 
         _releaseFloorButton.OnClickAsObservable()
             .Subscribe(_ => ButtonClick())
+            .AddTo(_ctx.viewDisposables);
+
+        _ctx.onFloorPlaced.SubscribeOnceWithSkip((value) => { _availableFloorsText.text = value.ToString(); })
             .AddTo(_ctx.viewDisposables);
 
         //_loadSceneResourcesButton.OnClickAsObservable()
